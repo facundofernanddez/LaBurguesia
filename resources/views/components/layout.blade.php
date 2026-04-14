@@ -10,10 +10,11 @@
 <body>
 
   <x-navbar/>
-
-  {{ $slot }}
-
+    <div class="container mt-4">
+      {{ $slot }}
+    </div>
   <x-footer/>
+
 
   <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 

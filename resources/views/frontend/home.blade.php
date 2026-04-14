@@ -9,16 +9,7 @@
 </head>
 <body>
     <x-layout>
-
-    
-        <div class="container mt-5">
-            <div class="card shadow p-4 text-center">
-                <h1 class="text-danger">Bienvenido a La Burguesia 🍔</h1>
-                <p class="lead">Bootstrap está funcionando correctamente.</p>
-
-                <button class="btn btn-dark">Botón de prueba</button>
-            </div>
-        </div>
+        <x-carrusel/>
     </x-layout>
 
 
