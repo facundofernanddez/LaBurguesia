@@ -2,10 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/', function () {
-    return view('home');
+    return view('/frontend/home');
 });
+
+Route::get('/quienessomos', function () {
+    return view('/frontend/quienessomos');
+});
+
+Route::get('/terminosusos', function () {
+    return view('/frontend/terminosusos');
+});
+
+Route::get('/contacto', function () {
+    return view('/frontend/contacto');
+});
+
+Route::get('/comercializacion', function () {
+    return view('/frontend/comercializacion');
+});
+
+
+
