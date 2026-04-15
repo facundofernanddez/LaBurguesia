@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <footer class="bg-light text-center py-3 mt-5 fixed-bottom">
+  <footer class="bg-light text-center py-3 mt-5">
     <div class="container">
       <p class="mb-0">&copy; {{ date('Y') }} La Burguesia. Todos los derechos reservados.</p>
     </div>
