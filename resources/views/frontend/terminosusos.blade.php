@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terminos y Usos</title>
-
-  <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-</head>
-<body>
+<x-layout title="Términos y Usos">
+  <h1>Términos y Usos</h1>
   
-
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
-</body>
-</html>
+  <div class="mt-4">
+    <h3 class="text-rojo">Aviso Legal</h3>
+    <p>El acceso y uso de este sitio web está sujeto a los siguientes términos y condiciones.</p>
+    
+    <h3 class="mt-4 text-rojo">Productos y Servicios</h3>
+    <p>La Burguesia ofrece hamburguesas artesanales y otros productos de comida rápida. 
+    Todos los productos están sujetos a disponibilidad.</p>
+    
+    <h3 class="mt-4 text-rojo">Políticas de Privacidad</h3>
+    <p>Los datos personales proporcionados por los usuarios serán traités de acuerdo 
+    a la legislación vigente en materia de protección de datos.</p>
+    
+    <h3 class="mt-4 text-rojo">Garantías</h3>
+    <p>Todos nuestros productos cuentan con garantía de freshness. En caso de algún problema 
+    con tu pedido, contactanos para buscar una solución.</p>
+    
+    <h3 class="mt-4 text-rojo">Formas de Entrega</h3>
+    <p>Los envíos se realizan dentro de las zonas especificadas. El tiempo estimado de entrega 
+    es de 30-45 minutos dependiendo de la zona.</p>
+    
+    <h3 class="mt-4 text-rojo">Soporte Postventa</h3>
+    <p>Nuestro equipo está disponible para resolver cualquier inquietud posterior a tu compra.</p>
+  </div>
+</x-layout>

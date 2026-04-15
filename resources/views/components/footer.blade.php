@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-
-  <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-</head>
-<body>
-
-  <footer class="bg-light text-center py-3 mt-5">
-    <div class="container">
-      <p class="mb-0">&copy; {{ date('Y') }} La Burguesia. Todos los derechos reservados.</p>
-    </div>
-  </footer>
-  
-
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-</body>
-</html>
+<footer class="text-center py-4 mt-5 footer">
+  <div class="container">
+    <p class="mb-0">&copy; {{ date('Y') }} <strong>La Burguesia</strong>. Todos los derechos reservados.</p>
+    <p class="mb-0 mt-2">
+      <a href="/terminosusos">Términos y Usos</a>
+      <span class="mx-2">|</span>
+      <a href="/contacto">Contacto</a>
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,210 @@
+/* ==========================================
+   LA BURGUESIA - Estilos Globales
+   ========================================== */
+
+:root {
+  /* Paleta de colores */
+  --rojo: #D62300;
+  --naranja: #FF8732;
+  --amarillo: #F5B800;
+  --marron: #502314;
+  --crema: #FDF3E7;
+  --blanco: #ffffff;
+  --negro: #1a1a1a;
+}
+
+/* ==========================================
+   BODY Y FUENTES
+   ========================================== */
+
+body {
+  background-color: var(--crema);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--marron);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* ==========================================
+   NAVBAR
+   ========================================== */
+
+.navbar {
+  background-color: var(--marron) !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.navbar-brand img {
+  height: 120px;
+  width: auto;
+}
+
+.navbar .nav-link {
+  color: var(--blanco) !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: var(--rojo) !important;
+}
+
+.navbar-toggler {
+  border-color: var(--rojo);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ==========================================
+   BOTONES
+   ========================================== */
+
+.btn-primary {
+  background-color: var(--rojo);
+  border-color: var(--rojo);
+  color: var(--blanco);
+}
+
+.btn-primary:hover {
+  background-color: #b51e00;
+  border-color: #b51e00;
+  color: var(--blanco);
+}
+
+.btn-rojo {
+  background-color: var(--rojo);
+  color: var(--blanco);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-rojo:hover {
+  background-color: #b51e00;
+  color: var(--blanco);
+}
+
+/* ==========================================
+   TARJETAS / CARDS
+   ========================================== */
+
+.card {
+  background-color: var(--crema);
+  border: 2px solid var(--marron);
+  border-radius: 10px;
+}
+
+.card-title {
+  color: var(--rojo);
+  font-weight: bold;
+}
+
+/* ==========================================
+   HEADINGS Y TEXTOS
+   ========================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--marron);
+  font-weight: bold;
+}
+
+.text-rojo {
+  color: var(--rojo) !important;
+}
+
+.text-marron {
+  color: var(--marron) !important;
+}
+
+.text-crema {
+  color: var(--crema) !important;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+
+.footer {
+  background-color: var(--marron);
+  color: var(--blanco);
+}
+
+.footer a {
+  color: var(--blanco);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--rojo);
+}
+
+/* ==========================================
+   HERO / SECTIONS
+   ========================================== */
+
+.hero {
+  background-color: var(--marron);
+  color: var(--blanco);
+  padding: 3rem 0;
+  border-radius: 10px;
+}
+
+.bg-marron {
+  background-color: var(--marron);
+}
+
+.bg-rojo {
+  background-color: var(--rojo);
+}
+
+.bg-crema {
+  background-color: var(--crema);
+}
+
+/* ==========================================
+   FORMULARIOS
+   ========================================== */
+
+.form-control:focus {
+  border-color: var(--rojo);
+  box-shadow: 0 0 0 0.25rem rgba(214, 35, 0, 0.25);
+}
+
+.form-label {
+  color: var(--marron);
+  font-weight: 500;
+}
+
+/* ==========================================
+   LINKS
+   ========================================== */
+
+a {
+  color: var(--rojo);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #b51e00;
+}
+
+/* ==========================================
+   UTILIDADES
+   ========================================== */
+
+.bg-dark-brown {
+  background-color: var(--marron);
+}

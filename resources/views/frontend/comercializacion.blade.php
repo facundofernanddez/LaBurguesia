@@ -1,15 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comercializacion</title>
-
-  <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-</head>
-<body>
+<x-layout title="Comercialización">
+  <h1>Comercialización</h1>
   
-
-  <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-</body>
-</html>
+  <div class="row mt-4">
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h4 class="text-rojo">Formas de Entrega</h4>
+          <ul>
+            <li>Delivery a domicilio</li>
+            <li>Takeaway en local</li>
+            <li>Mercado Envíos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h4 class="text-rojo">Métodos de Pago</h4>
+          <ul>
+            <li>Efectivo</li>
+            <li>Transferencia bancaria</li>
+            <li>Mercado Pago</li>
+            <li>Tarjetas de débito/crédito</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h4 class="text-rojo">Zonas de Envío</h4>
+          <ul>
+            <li>Corrientes Capital</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</x-layout>
