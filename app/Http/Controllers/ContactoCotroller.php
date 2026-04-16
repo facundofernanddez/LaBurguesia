@@ -13,6 +13,6 @@ class ContactoCotroller extends Controller
         $email = $request->input('email');
         $mensaje = $request->input('mensaje');
 
-        alert(nombre: $nombre, email: $email, mensaje: $mensaje);
+        dd("Nombre: $nombre, Email: $email, Mensaje: $mensaje");
     }
 }
