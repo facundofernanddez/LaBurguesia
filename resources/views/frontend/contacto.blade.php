@@ -26,7 +26,7 @@
             <label class="form-label">Mensaje</label>
             <textarea class="form-control" rows="4" placeholder="Tu mensaje..."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Enviar</button>
+          <button type="submit" class="btn btn-primary mb-1">Enviar</button>
         </form>
       </div>
     </div>
@@ -34,7 +34,7 @@
     <div class="col-md-7">
       <div class="p-4 text-center text-white bg-marron rounded">
         <h3 class="mb-3">🍔 ¡Visítanos!</h3>
-        <p>Estamos esperaándote para que pruebes las mejores hamburguesas.</p>
+        <p>Estamos esperándote para que pruebes las mejores hamburguesas.</p>
       </div>
     </div>
   </div>

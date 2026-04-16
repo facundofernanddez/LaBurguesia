@@ -10,10 +10,10 @@
   <!-- Estilos propios -->
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   <x-navbar/>
-    <main class="container py-4">
+    <main class="container py-4 ">
       {{ $slot }}
     </main>
   <x-footer/>

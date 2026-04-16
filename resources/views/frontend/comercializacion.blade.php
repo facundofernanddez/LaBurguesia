@@ -9,7 +9,6 @@
           <ul>
             <li>Delivery a domicilio</li>
             <li>Takeaway en local</li>
-            <li>Mercado Envíos</li>
           </ul>
         </div>
       </div>

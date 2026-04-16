@@ -4,8 +4,7 @@
       <h1>Quiénes Somos</h1>
       <p class="lead">Las mejores hamburguesas de la ciudad desde 2018.</p>
       <p>
-        <strong>La Burguesia</strong> nació con una misión simple: ofrecer hamburgusas artesanales,
-        feitas con ingredientes frescos y de calidad suprema.
+        <strong>La Burguesia</strong> nació con una misión simple: ofrecer hamburgusas artesanales, con ingredientes frescos y de calidad suprema.
       </p>
       <p>
         Nuestro equipo está conformado por pasión por la buena comida y el servicio impeccable.

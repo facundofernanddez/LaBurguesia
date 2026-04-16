@@ -1,13 +1,19 @@
-<div id="carouselExample" class="carousel slide">
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/img/hambur1.png" class="d-block w-100" alt="...">
+      <a href="/catalogo">
+        <img src="/img/hambur1.png" class="mb-auto" alt="...">
+      </a>
     </div>
     <div class="carousel-item">
-      <img src="/img/hambur2.png" class="d-block w-100" alt="...">
+      <a href="/catalogo">
+        <img src="/img/hambur2.png" class="mb-auto" alt="...">
+      </a>
     </div>
     <div class="carousel-item">
-      <img src="/img/hambur3.png" class="d-block w-100" alt="...">
+      <a href="/catalogo">
+        <img src="/img/hambur3.png" class="mb-auto" alt="...">
+      </a>
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
