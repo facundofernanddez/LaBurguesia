@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactoCotroller;
 
 Route::get('/', function () {
     return view('/frontend/home');
@@ -17,6 +18,8 @@ Route::get('/terminosusos', function () {
 Route::get('/contacto', function () {
     return view('/frontend/contacto');
 });
+
+Route::post('/contacto', [ContactoCotroller::class, 'contacto']);
 
 Route::get('/comercializacion', function () {
     return view('/frontend/comercializacion');

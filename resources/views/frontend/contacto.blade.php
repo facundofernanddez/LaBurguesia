@@ -13,18 +13,18 @@
       
       <div>
         <h5 class="text-rojo">Formulario de Contacto</h5>
-        <form>
+        <form action="/contacto" method="POST">
           <div class="mb-3">
             <label class="form-label">Nombre</label>
-            <input type="text" class="form-control" placeholder="Tu nombre">
+            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre">
           </div>
           <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="tu@email.com">
+            <input type="email" name="email" class="form-control" placeholder="tu@email.com">
           </div>
           <div class="mb-3">
             <label class="form-label">Mensaje</label>
-            <textarea class="form-control" rows="4" placeholder="Tu mensaje..."></textarea>
+            <textarea class="form-control" name="mensaje" rows="4" placeholder="Tu mensaje..."></textarea>
           </div>
           <button type="submit" class="btn btn-primary mb-1">Enviar</button>
         </form>
