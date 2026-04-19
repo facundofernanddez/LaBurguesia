@@ -6,7 +6,7 @@
       <div class="mb-4">
         <h5 class="text-rojo">Datos de la Empresa</h5>
         <p class="mb-1"><strong>Razón Social:</strong> La Burguesia S.R.L.</p>
-        <p class="mb-1"><strong>Domicilio:</strong> Av. Principal 1234, Ciudad</p>
+        <p class="mb-1"><strong>Domicilio:</strong> Av. Ferre 5140</p>
         <p class="mb-1"><strong>Teléfono:</strong> (011) 1234-5678</p>
         <p class="mb-1"><strong>Email:</strong> contacto@laburguesia.com</p>
       </div>

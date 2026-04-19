@@ -10,7 +10,7 @@
   <!-- Estilos propios -->
   <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 " style="background-image: url({{ asset('img/fondo.png') }});  background-size: cover; background-position: center; background-attachment: fixed;">
 
   <x-navbar/>
     <main class="container py-4 ">
