@@ -3,12 +3,11 @@
   
   <div class="row">
     <!-- Classic Burger -->
-    <div class="col-md-4 mb-4">
+    <div class="col-lg-4 mb-4">
       <div class="card-producto">
         <div class="position-relative">
           <img src="{{ asset('img/hambur1.png') }}" class="card-img" alt="Classic Burger">
           <span class="badge badge-popular">Popular</span>
-          <span class="badge-kcal">650 kcal</span>
         </div>
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -26,12 +25,11 @@
     </div>
     
     <!-- Cheese Burger -->
-    <div class="col-md-4 mb-4">
+    <div class="col-lg-4 mb-4">
       <div class="card-producto">
         <div class="position-relative">
           <img src="{{ asset('img/hambur2.png') }}" class="card-img" alt="Cheese Burger">
           <span class="badge badge-oferta">Oferta</span>
-          <span class="badge-kcal">720 kcal</span>
         </div>
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -49,12 +47,11 @@
     </div>
     
     <!-- Bacon Burger -->
-    <div class="col-md-4 mb-4">
+    <div class="col-lg-4 mb-4">
       <div class="card-producto">
         <div class="position-relative">
           <img src="{{ asset('img/hambur3.png') }}" class="card-img" alt="Bacon Burger">
           <span class="badge badge-nuevo">Nuevo</span>
-          <span class="badge-kcal">850 kcal</span>
         </div>
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-2">
@@ -79,11 +76,11 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       background: #fff;
     }
-    .card-img {
+    /* .card-img {
       height: 220px;
       width: 100%;
       object-fit: cover;
-    }
+    } */
     .badge {
       position: absolute;
       top: 15px;
