@@ -76,11 +76,7 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       background: #fff;
     }
-    /* .card-img {
-      height: 220px;
-      width: 100%;
-      object-fit: cover;
-    } */
+    
     .badge {
       position: absolute;
       top: 15px;
