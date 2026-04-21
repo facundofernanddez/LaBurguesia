@@ -3,7 +3,7 @@
   
   <div class="row mt-4">
     <div class="col-md-4 mb-4">
-      <div class="card h-100">
+      <x-card-beige>
         <div class="card-body">
           <h4 class="text-rojo">Formas de Entrega</h4>
           <ul>
@@ -11,11 +11,11 @@
             <li>Takeaway en local</li>
           </ul>
         </div>
-      </div>
+      </x-card-beige>
     </div>
     
     <div class="col-md-4 mb-4">
-      <div class="card h-100">
+      <x-card-beige>
         <div class="card-body">
           <h4 class="text-rojo">Métodos de Pago</h4>
           <ul>
@@ -25,18 +25,18 @@
             <li>Tarjetas de débito/crédito</li>
           </ul>
         </div>
-      </div>
+      </x-card-beige>
     </div>
     
     <div class="col-md-4 mb-4">
-      <div class="card h-100">
+      <x-card-beige>
         <div class="card-body">
           <h4 class="text-rojo">Zonas de Envío</h4>
           <ul>
             <li>Corrientes Capital</li>
           </ul>
         </div>
-      </div>
+      </x-card-beige>
     </div>
   </div>
 </x-layout>

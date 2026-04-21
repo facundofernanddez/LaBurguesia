@@ -1,6 +1,7 @@
 <x-layout title="Contacto">
   <div class="row">
     <div class="col-md-5">
+      <x-card-beige>
       <h2>Información de Contacto</h2>
       
       <div class="mb-4">
@@ -29,6 +30,7 @@
           <button type="submit" class="btn btn-primary mb-1">Enviar</button>
         </form>
       </div>
+    </x-card-beige>
     </div>
     
     <div class="col-md-7">

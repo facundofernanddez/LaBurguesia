@@ -3,14 +3,14 @@
    ========================================== */
 
 :root {
-  /* Paleta de colores */
-  --rojo: #D62300;
-  --naranja: #FF8732;
-  --amarillo: #F5B800;
-  --marron: #502314;
-  --crema: #FDF3E7;
-  --blanco: #ffffff;
-  --negro: #1a1a1a;
+    /* Paleta de colores */
+    --rojo: #d62300;
+    --naranja: #ff8732;
+    --amarillo: #f5b800;
+    --marron: #502314;
+    --crema: #fdf3e7;
+    --blanco: #ffffff;
+    --negro: #1a1a1a;
 }
 
 /* ==========================================
@@ -18,16 +18,16 @@
    ========================================== */
 
 body {
-  background-color: var(--crema);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--marron);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+    background-color: var(--crema);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--marron);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-  flex: 1;
+    flex: 1;
 }
 
 /* ==========================================
@@ -35,36 +35,36 @@ main {
    ========================================== */
 
 .navbar {
-  background-color: var(--marron) !important;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  overflow: visible;
+    background-color: var(--marron) !important;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    overflow: visible;
 }
 
 .navbar-brand img {
-  height: 120px;
-  width: auto;
-  margin-top: -30px;
-  margin-bottom: -30px;
+    height: 120px;
+    width: auto;
+    margin-top: -30px;
+    margin-bottom: -30px;
 }
 
 .navbar .nav-link {
-  color: var(--blanco) !important;
-  font-weight: 500;
-  padding: 0.5rem 1rem !important;
-  transition: all 0.3s ease;
+    color: var(--blanco) !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    transition: all 0.3s ease;
 }
 
 .navbar .nav-link:hover {
-  color: var(--rojo) !important;
+    color: var(--rojo) !important;
 }
 
 .navbar-toggler {
-  border-color: var(--rojo);
+    border-color: var(--rojo);
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* ==========================================
@@ -72,30 +72,30 @@ main {
    ========================================== */
 
 .btn-primary {
-  background-color: var(--rojo);
-  border-color: var(--rojo);
-  color: var(--blanco);
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+    color: var(--blanco);
 }
 
 .btn-primary:hover {
-  background-color: #b51e00;
-  border-color: #b51e00;
-  color: var(--blanco);
+    background-color: #b51e00;
+    border-color: #b51e00;
+    color: var(--blanco);
 }
 
 .btn-rojo {
-  background-color: var(--rojo);
-  color: var(--blanco);
-  border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 5px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+    background-color: var(--rojo);
+    color: var(--blanco);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
 .btn-rojo:hover {
-  background-color: #b51e00;
-  color: var(--blanco);
+    background-color: #b51e00;
+    color: var(--blanco);
 }
 
 /* ==========================================
@@ -103,54 +103,59 @@ main {
    ========================================== */
 
 .card {
-  background-color: var(--crema);
-  border: 2px solid var(--marron);
-  border-radius: 10px;
+    background-color: var(--crema);
+    border: 2px solid var(--marron);
+    border-radius: 10px;
 }
 
 .card-title {
-  color: var(--rojo);
-  font-weight: bold;
+    color: var(--rojo);
+    font-weight: bold;
 }
 
 /* ==========================================
    HEADINGS Y TEXTOS
    ========================================== */
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--marron);
-  font-weight: bold;
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--marron);
+    font-weight: bold;
 }
 
 .text-rojo {
-  color: var(--rojo) !important;
+    color: var(--rojo) !important;
 }
 
 .text-marron {
-  color: var(--marron) !important;
+    color: var(--marron) !important;
 }
 
 .text-crema {
-  color: var(--crema) !important;
-}
+    color: var(--crema) !important;
+} */
 
 /* ==========================================
    FOOTER
    ========================================== */
 
 .footer {
-  background-color: var(--marron);
-  color: var(--blanco);
+    background-color: var(--marron);
+    color: var(--blanco);
 }
 
 .footer a {
-  color: var(--blanco);
-  text-decoration: none;
-  transition: color 0.3s ease;
+    color: var(--blanco);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
-  color: var(--rojo);
+    color: var(--rojo);
 }
 
 /* ==========================================
@@ -158,22 +163,22 @@ h1, h2, h3, h4, h5, h6 {
    ========================================== */
 
 .hero {
-  background-color: var(--marron);
-  color: var(--blanco);
-  padding: 3rem 0;
-  border-radius: 10px;
+    background-color: var(--marron);
+    color: var(--blanco);
+    padding: 3rem 0;
+    border-radius: 10px;
 }
 
 .bg-marron {
-  background-color: var(--marron);
+    background-color: var(--marron);
 }
 
 .bg-rojo {
-  background-color: var(--rojo);
+    background-color: var(--rojo);
 }
 
 .bg-crema {
-  background-color: var(--crema);
+    background-color: var(--crema);
 }
 
 /* ==========================================
@@ -181,13 +186,13 @@ h1, h2, h3, h4, h5, h6 {
    ========================================== */
 
 .form-control:focus {
-  border-color: var(--rojo);
-  box-shadow: 0 0 0 0.25rem rgba(214, 35, 0, 0.25);
+    border-color: var(--rojo);
+    box-shadow: 0 0 0 0.25rem rgba(214, 35, 0, 0.25);
 }
 
 .form-label {
-  color: var(--marron);
-  font-weight: 500;
+    color: var(--marron);
+    font-weight: 500;
 }
 
 /* ==========================================
@@ -195,13 +200,13 @@ h1, h2, h3, h4, h5, h6 {
    ========================================== */
 
 a {
-  color: var(--rojo);
-  text-decoration: none;
-  transition: color 0.3s ease;
+    color: var(--rojo);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #b51e00;
+    color: #b51e00;
 }
 
 /* ==========================================
@@ -209,5 +214,5 @@ a:hover {
    ========================================== */
 
 .bg-dark-brown {
-  background-color: var(--marron);
+    background-color: var(--marron);
 }

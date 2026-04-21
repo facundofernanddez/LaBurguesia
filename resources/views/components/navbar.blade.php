@@ -25,9 +25,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/contacto">Contacto</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/consultas">Consultas</a>
-        </li>
       </ul>
     </div>
   </div>
