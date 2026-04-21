@@ -12,7 +12,12 @@
         
         <!-- Carrusel a la derecha -->
         <div class="col-md-8">
-            <x-carrusel/>
+            <x-carrusel :imagenes="[
+            ['src' => '/img/hambur1.png', 'alt' => 'Whopper'],
+    ['src' => '/img/hambur2.png', 'alt' => 'Bacon King'],
+    ['src' => '/img/hambur3.png', 'alt' => 'Crispy Chicken'],
+    ['src' => '/img/hambur1.png', 'alt' => 'Gourmet Special'],
+    ]"/>
         </div>
     </div>
 </x-layout>

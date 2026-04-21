@@ -1,25 +1,24 @@
+@props(['imagenes' => []])
+
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="/img/hambur1.png" class="d-block w-100" alt="Whopper">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/hambur2.png" class="d-block w-100" alt="Bacon King">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/hambur3.png" class="d-block w-100" alt="Crispy Chicken">
-    </div>
-    <div class="carousel-item">
-      <img src="/img/hambur1.png" class="d-block w-100" alt="Gourmet Special">
-    </div>
+    @foreach($imagenes as $index => $imagen)
+      <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+        <img src="{{ $imagen['src'] }}" class="d-block w-100" alt="{{ $imagen['alt'] }}">
+      </div>
+    @endforeach
   </div>
   
   <!-- Miniaturas -->
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true"></button>
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
-    <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3"></button>
+    @foreach($imagenes as $index => $imagen)
+      <button type="button" 
+              data-bs-target="#carouselExample" 
+              data-bs-slide-to="{{ $index }}" 
+              class="{{ $index === 0 ? 'active' : '' }}"
+              {{ $index === 0 ? 'active' : '' }}>
+      </button>
+    @endforeach
   </div>
   
   <!-- Flechas -->
