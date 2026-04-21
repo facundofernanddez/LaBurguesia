@@ -1,4 +1,4 @@
-<x-layout title="Catálogo">
+<x-layout title="Menú">
   <h1 class="mb-4 text-center">Nuestro Menú</h1>
   
   <div class="row">
