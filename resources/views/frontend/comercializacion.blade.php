@@ -1,5 +1,5 @@
 <x-layout title="Comercialización">
-    <h1>Comercialización</h1>
+    <h1 class="mb-4 text-center"><span class="bg-blur p-2">Comercialización</span></h1>
 
     <div class="row mt-4">
         <div class="col-md-4 mb-4 d-flex">

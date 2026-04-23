@@ -1,5 +1,5 @@
 <x-layout title="Menú">
-    <h1 class="mb-4 text-center">Nuestro Menú</h1>
+    <h1 class="mb-4 text-center"><span class="bg-blur p-2">Nuestro Menú</span></h1>
 
     <div class="row">
         <!-- Classic Burger -->

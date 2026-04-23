@@ -4,34 +4,35 @@
         <div class="col-lg-4">
             <x-card-beige>
                 <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
-                <p class="lead">Disfrutá del auténtico sabor artesanal</p>
-                <p class="mb-3">Desde 2018 preparando las burgers más deliciosas de la ciudad.</p>
+                <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
+                <p class="mb-3 fw-medium">Desde 2018 preparando las burgers más deliciosas de la ciudad.</p>
                 <a href="/catalogo" class="btn btn-lg mt-2" style="background-color: #D62300; color: white;">Ver Menú</a>
             </x-card-beige>
         </div>
 
         <!-- Carrusel a la derecha -->
         <div class="col-md-8">
-            <x-carrusel :imagenes="[
-                [
-                    'src' => '/img/hambur1.png',
-                    'alt' => 'Classic Burger',
-                    'titulo' => 'Classic Burger',
-                    'descripcion' => 'Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.',
-                ],
-                [
-                    'src' => '/img/hambur2.png',
-                    'alt' => 'Cheese Burger',
-                    'titulo' => 'Cheese Burger',
-                    'descripcion' => 'Con queso cheddar fundido y tocino crujiente',
-                ],
-                [
-                    'src' => '/img/hambur3.png',
-                    'alt' => 'Bacon Burger',
-                    'titulo' => 'Bacon Burger',
-                    'descripcion' => 'Doble porción de tocino y cebolla crispy',
-                ],
-            ]" />
+            <a href="/catalogo">
+                <x-carrusel :imagenes="[
+                    [
+                        'src' => '/img/hambur1.png',
+                        'alt' => 'Classic Burger',
+                        'titulo' => 'Classic Burger',
+                        'descripcion' => 'Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.',
+                    ],
+                    [
+                        'src' => '/img/hambur2.png',
+                        'alt' => 'Cheese Burger',
+                        'titulo' => 'Cheese Burger',
+                        'descripcion' => 'Con queso cheddar fundido y tocino crujiente',
+                    ],
+                    [
+                        'src' => '/img/hambur3.png',
+                        'alt' => 'Bacon Burger',
+                        'titulo' => 'Bacon Burger',
+                        'descripcion' => 'Doble porción de tocino y cebolla crispy',
+                    ],
+                ]" /></a>
         </div>
     </div>
 
@@ -60,10 +61,16 @@
 
 {{-- 
 agregar texto en el carrusel ✅
-agregar los iconos de las redes sociales en el footer
-agregar el icono de carrito en el navbar
-agregar un boton de "ver mas" en cada card del catalogo
-agregar mapa en la pagina de contacto
-poner titulo comercializacion en el medio de la pagina comercializacion
-
+agregar los iconos de las redes sociales en el footer ✅
+agregar el icono de carrito en el navbar ✅
+agregar un boton de "ver mas" en cada card del catalogo ✅
+agregar mapa en la pagina de contacto ✅
+poner titulo comercializacion en el medio de la pagina comercializacion ✅
+agregar filtro al menu
+los fondos cambiar que no sean translucidos
+canvas para el carrito
+en el home agregar tarjetas de los productos que vendemos y que redireccione al catalogo y filtrado
+Ofertas y promociones
+Los mas pedidos
+En nosotros agregar una imagen del negocio y del equipo (guiarme con una pagina por ejemplo bercomat)
  --}}

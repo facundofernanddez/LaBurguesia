@@ -25,6 +25,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-cart"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <x-layout title="Quiénes Somos">
-    <h1 class="mb-4 text-center">Quiénes Somos</h1>
+    <h1 class="mb-4 text-center"><span class="bg-blur p-2">Quiénes Somos</span></h1>
 
     <div class="row align-items-center mb-5">
         <!-- Texto a la izquierda -->
