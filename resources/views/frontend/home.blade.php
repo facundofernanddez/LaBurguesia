@@ -67,10 +67,12 @@ agregar un boton de "ver mas" en cada card del catalogo ✅
 agregar mapa en la pagina de contacto ✅
 poner titulo comercializacion en el medio de la pagina comercializacion ✅
 agregar filtro al menu
-los fondos cambiar que no sean translucidos
+los fondos cambiar que no sean translucidos ✅
+ajustar los tamaños de las tarjetas con el carrusel
 canvas para el carrito
 en el home agregar tarjetas de los productos que vendemos y que redireccione al catalogo y filtrado
 Ofertas y promociones
 Los mas pedidos
 En nosotros agregar una imagen del negocio y del equipo (guiarme con una pagina por ejemplo bercomat)
+agregar motivo al formulario de contacto
  --}}
