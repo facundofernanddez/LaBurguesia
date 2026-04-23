@@ -11,6 +11,7 @@
     --crema: #fdf3e7;
     --blanco: #ffffff;
     --negro: #1a1a1a;
+    --gris: rgba(255, 255, 255, 0.25);
 }
 
 /* ==========================================
@@ -113,11 +114,28 @@ main {
     font-weight: bold;
 }
 
+.stat-card {
+    background: linear-gradient(135deg, #d62300 0%, #a91b00 100%);
+    box-shadow: 0 10px 25px rgba(214, 35, 0, 0.3);
+}
+
+.carousel-img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    background: var(--gris);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
 /* ==========================================
    HEADINGS Y TEXTOS
    ========================================== */
 
-/* h1,
+h1,
 h2,
 h3,
 h4,
@@ -137,7 +155,7 @@ h6 {
 
 .text-crema {
     color: var(--crema) !important;
-} */
+}
 
 /* ==========================================
    FOOTER
