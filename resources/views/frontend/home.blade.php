@@ -75,4 +75,5 @@ Ofertas y promociones
 Los mas pedidos
 En nosotros agregar una imagen del negocio y del equipo (guiarme con una pagina por ejemplo bercomat)
 agregar motivo al formulario de contacto
+mejorar responsive
  --}}
