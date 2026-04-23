@@ -26,7 +26,8 @@
                     <a class="nav-link" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart"
+                        role="button">
                         <i class="bi bi-cart"></i>
                     </a>
                 </li>

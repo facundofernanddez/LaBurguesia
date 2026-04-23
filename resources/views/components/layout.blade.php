@@ -23,6 +23,9 @@
     </main>
     <x-footer />
 
+    <!-- Carrito offcanvas -->
+    <x-cart-canvas />
+
     <!-- Bootstrap JS (local) -->
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
