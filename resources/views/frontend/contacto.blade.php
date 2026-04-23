@@ -34,8 +34,8 @@
         </div>
 
         <div class="col-md-7">
-            <div class="p-4 text-center text-white bg-marron rounded">
-                <h3 class="mb-3">🍔 ¡Visítanos!</h3>
+            <div class="p-4 text-center text-white bg-rojo rounded">
+                <h3 class="mb-3 f-white">🍔 ¡Visítanos!</h3>
                 <p>Estamos esperándote para que pruebes las mejores hamburguesas.</p>
             </div>
         </div>

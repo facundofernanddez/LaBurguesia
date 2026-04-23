@@ -23,9 +23,24 @@
         <div class="col-md-7">
 
             <x-carrusel :imagenes="[
-                ['src' => '/img/chef.jpg', 'alt' => 'Empleado 1'],
-                ['src' => '/img/personal.jpg', 'alt' => 'Empleado 2'],
-                ['src' => '/img/subchef.jpg', 'alt' => 'Empleado 3'],
+                [
+                    'src' => '/img/chef.jpg',
+                    'alt' => 'Empleado 1',
+                    'titulo' => 'Chef Principal',
+                    'descripcion' => 'El líder de nuestra cocina',
+                ],
+                [
+                    'src' => '/img/personal.jpg',
+                    'alt' => 'Empleado 2',
+                    'titulo' => 'Personal de Atención',
+                    'descripcion' => 'El rostro amigable de nuestra tienda',
+                ],
+                [
+                    'src' => '/img/subchef.jpg',
+                    'alt' => 'Empleado 3',
+                    'titulo' => 'Subchef',
+                    'descripcion' => 'El ayudante del Chef Principal',
+                ],
             ]" />
         </div>
     </div>

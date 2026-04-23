@@ -5,6 +5,12 @@
         @foreach ($imagenes as $index => $imagen)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                 <img src="{{ $imagen['src'] }}" class="d-block w-100 carousel-img" alt="{{ $imagen['alt'] }}">
+
+                <div class="carousel-caption d-none d-md-block">
+                    <h5 class="mb-3"><span class="bg-blur p-2">{{ $imagen['titulo'] ?? 'Título de la imagen' }}</span>
+                    </h5>
+                    <p><span class="bg-blur p-2">{{ $imagen['descripcion'] ?? 'Descripción de la imagen' }}</span></p>
+                </div>
             </div>
         @endforeach
     </div>

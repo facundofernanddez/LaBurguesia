@@ -13,11 +13,57 @@
         <!-- Carrusel a la derecha -->
         <div class="col-md-8">
             <x-carrusel :imagenes="[
-                ['src' => '/img/hambur1.png', 'alt' => 'Whopper'],
-                ['src' => '/img/hambur2.png', 'alt' => 'Bacon King'],
-                ['src' => '/img/hambur3.png', 'alt' => 'Crispy Chicken'],
-                ['src' => '/img/hambur1.png', 'alt' => 'Gourmet Special'],
+                [
+                    'src' => '/img/hambur1.png',
+                    'alt' => 'Classic Burger',
+                    'titulo' => 'Classic Burger',
+                    'descripcion' => 'Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.',
+                ],
+                [
+                    'src' => '/img/hambur2.png',
+                    'alt' => 'Cheese Burger',
+                    'titulo' => 'Cheese Burger',
+                    'descripcion' => 'Con queso cheddar fundido y tocino crujiente',
+                ],
+                [
+                    'src' => '/img/hambur3.png',
+                    'alt' => 'Bacon Burger',
+                    'titulo' => 'Bacon Burger',
+                    'descripcion' => 'Doble porción de tocino y cebolla crispy',
+                ],
             ]" />
         </div>
     </div>
+
+    <!-- Stats con fondo rojo degradado -->
+    <div class="row text-center">
+        <div class="col-md-4 mb-3">
+            <div class="stat-card p-4 rounded-4">
+                <h2 class="fw-bold" style="color: #FFC72C;">5+</h2>
+                <p class="text-white mb-0">Años de Experiencia</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="stat-card p-4 rounded-4">
+                <h2 class="fw-bold" style="color: #FFC72C;">50K+</h2>
+                <p class="text-white mb-0">Clientes Satisfechos</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="stat-card p-4 rounded-4">
+                <h2 class="fw-bold" style="color: #FFC72C;">15+</h2>
+                <p class="text-white mb-0">Variedades de Hamburguesas</p>
+            </div>
+        </div>
+    </div>
 </x-layout>
+
+{{-- 
+agregar texto en el carrusel ✅
+agregar los iconos de las redes sociales en el footer
+agregar el icono de carrito en el navbar
+agregar un boton de "ver mas" en cada card del catalogo
+agregar mapa en la pagina de contacto
+poner titulo comercializacion en el medio de la pagina comercializacion
+
+ --}}
