@@ -7,5 +7,7 @@
     <div class="offcanvas-body">
         <p>Tu carrito está vacío</p>
         <!-- Aquí van los productos -->
+
+
     </div>
 </div>

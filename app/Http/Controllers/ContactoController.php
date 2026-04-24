@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ContactoCotroller extends Controller
+class ContactoController extends Controller
 {
     //manejo de formulario de contacto
     public function contacto(Request $request){

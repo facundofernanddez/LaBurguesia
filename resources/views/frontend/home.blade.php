@@ -69,7 +69,7 @@ poner titulo comercializacion en el medio de la pagina comercializacion ✅
 agregar filtro al menu
 los fondos cambiar que no sean translucidos ✅
 ajustar los tamaños de las tarjetas con el carrusel
-canvas para el carrito
+canvas para el carrito ✅
 en el home agregar tarjetas de los productos que vendemos y que redireccione al catalogo y filtrado
 Ofertas y promociones
 Los mas pedidos

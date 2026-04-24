@@ -19,7 +19,7 @@ Route::get('/contacto', function () {
     return view('/frontend/contacto');
 });
 
-Route::post('/contacto', [ContactoCotroller::class, 'contacto']);
+Route::post('/contacto', [ContactoController::class, 'contacto']);
 
 Route::get('/comercializacion', function () {
     return view('/frontend/comercializacion');
