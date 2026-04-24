@@ -1,72 +1,46 @@
 <x-layout title="Menú">
     <h1 class="mb-4 text-center"><span class="bg-blur p-2">Nuestro Menú</span></h1>
 
+    <!-- Filtros -->
+    <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+        <a href="/catalogo?categoria=todos" class="btn {{ $categoria === 'todos' ? 'btn-marron' : 'btn-marron' }}">
+            Todos
+        </a>
+        <a href="/catalogo?categoria=hamburguesas"
+            class="btn {{ $categoria === 'hamburguesas' ? 'btn-marron' : 'btn-marron' }}">
+            Hamburguesas
+        </a>
+        <a href="/catalogo?categoria=empanadas"
+            class="btn {{ $categoria === 'empanadas' ? 'btn-marron' : 'btn-marron' }}">
+            Empanadas
+        </a>
+        <a href="/catalogo?categoria=papas" class="btn {{ $categoria === 'papas' ? 'btn-marron' : 'btn-marron' }}">
+            Papas Fritas
+        </a>
+    </div>
+
     <div class="row">
-        <!-- Classic Burger -->
-        <div class="col-lg-4 mb-4">
-            <div class="card-producto">
-                <div class="position-relative">
-                    <img src="{{ asset('img/hambur1.png') }}" class="card-img" alt="Classic Burger">
-                    <span class="badge badge-popular">Popular</span>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="categoria">Clásica</span>
-                        <span class="rating">★ 4.5</span>
+        @foreach ($productos as $producto)
+            <div class="col-lg-4 mb-4">
+                <div class="card-producto">
+                    <div class="position-relative">
+                        <img src="{{ asset('img/' . $producto['imagen']) }}" class="card-img"
+                            alt="{{ $producto['nombre'] }}">
                     </div>
-                    <h3 class="titulo">Classic Burger</h3>
-                    <p class="descripcion">Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.</p>
-                    <div class="card-footer-custom">
-                        <span class="precio">$1.500</span>
-                        <button class="btn-agregar">+ Agregar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Cheese Burger -->
-        <div class="col-lg-4 mb-4">
-            <div class="card-producto">
-                <div class="position-relative">
-                    <img src="{{ asset('img/hambur2.png') }}" class="card-img" alt="Cheese Burger">
-                    <span class="badge badge-oferta">Oferta</span>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="categoria">Con Queso</span>
-                        <span class="rating">★ 4.8</span>
-                    </div>
-                    <h3 class="titulo">Cheese Burger</h3>
-                    <p class="descripcion">Con queso cheddar fundido y tocino crujiente.</p>
-                    <div class="card-footer-custom">
-                        <span class="precio">$1.800</span>
-                        <button class="btn-agregar">+ Agregar</button>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="categoria">{{ $producto['categoria_nombre'] }}</span>
+                        </div>
+                        <h3 class="titulo">{{ $producto['nombre'] }}</h3>
+                        <p class="descripcion">{{ $producto['descripcion'] }}</p>
+                        <div class="card-footer-custom">
+                            <span class="precio">${{ $producto['precio'] }}</span>
+                            <button class="btn-agregar">+ Agregar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- Bacon Burger -->
-        <div class="col-lg-4 mb-4">
-            <div class="card-producto">
-                <div class="position-relative">
-                    <img src="{{ asset('img/hambur3.png') }}" class="card-img" alt="Bacon Burger">
-                    <span class="badge badge-nuevo">Nuevo</span>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="categoria">Premium</span>
-                        <span class="rating">★ 4.9</span>
-                    </div>
-                    <h3 class="titulo">Bacon Burger</h3>
-                    <p class="descripcion">Doble porción de tocino y cebolla crispy.</p>
-                    <div class="card-footer-custom">
-                        <span class="precio">$2.000</span>
-                        <button class="btn-agregar">+ Agregar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <style>
