@@ -63,10 +63,13 @@
 agregar texto en el carrusel ✅
 agregar los iconos de las redes sociales en el footer ✅
 agregar el icono de carrito en el navbar ✅
+agregar productos al carrito
+la imagen del carrito tiene que quedar por fuera del menu despegable
+agregar las imagenes que faltan de los productos al catalogo
 agregar un boton de "ver mas" en cada card del catalogo ✅
 agregar mapa en la pagina de contacto ✅
 poner titulo comercializacion en el medio de la pagina comercializacion ✅
-agregar filtro al menu
+agregar filtro al menu ✅
 los fondos cambiar que no sean translucidos ✅
 ajustar los tamaños de las tarjetas con el carrusel
 canvas para el carrito ✅

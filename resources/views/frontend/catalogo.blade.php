@@ -35,12 +35,38 @@
                         <p class="descripcion">{{ $producto['descripcion'] }}</p>
                         <div class="card-footer-custom">
                             <span class="precio">${{ $producto['precio'] }}</span>
-                            <button class="btn-agregar">+ Agregar</button>
+                            <button class="btn-agregar" data-id="{{ $producto['id'] }}"
+                                data-nombre="{{ $producto['nombre'] }}" data-precio="{{ $producto['precio'] }}"
+                                data-imagen="{{ $producto['imagen'] }}">
+                                + Agregar
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         @endforeach
+
+        <script>
+            document.querySelectorAll('.btn-agregar').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const producto = {
+                        id: this.dataset.id,
+                        nombre: this.dataset.nombre,
+                        precio: parseInt(this.dataset.precio),
+                        imagen: this.dataset.imagen,
+                        cantidad: 1
+                    };
+
+                    let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                    cart.push(producto);
+                    localStorage.setItem('carrito', JSON.stringify(cart));
+
+                    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCart'));
+                    offcanvas.show();
+                });
+            });
+        </script>
+
     </div>
 
     <style>
