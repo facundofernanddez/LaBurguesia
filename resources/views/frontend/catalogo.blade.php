@@ -21,7 +21,7 @@
 
     <div class="row">
         @foreach ($productos as $producto)
-            <div class="col-lg-4 mb-4">
+            <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card-producto">
                     <div class="position-relative">
                         <img src="{{ asset('img/' . $producto['imagen']) }}" class="card-img"

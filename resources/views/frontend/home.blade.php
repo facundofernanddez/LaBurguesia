@@ -1,7 +1,7 @@
 <x-layout title="Inicio">
     <div class="row align-items-center py-4">
         <!-- Texto a la izquierda -->
-        <div class="col-lg-4 mb-4 col-md-0">
+        <div class="col-xl-4 mb-4">
             <x-card-beige>
                 <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
                 <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
@@ -11,7 +11,7 @@
         </div>
 
         <!-- Carrusel a la derecha -->
-        <div class="col-lg-8 col-md-0">
+        <div class="col-xl-8">
             <a href="/catalogo">
                 <x-carrusel :imagenes="[
                     [
