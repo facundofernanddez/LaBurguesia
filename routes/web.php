@@ -35,6 +35,9 @@ Route::get('/catalogo', function () {
         ['id' => 5, 'nombre' => 'Empanada de Queso', 'categoria' => 'empanadas', 'precio' => 450, 'descripcion' => 'Empanada con relleno de queso.', 'imagen' => 'empanada2.png', 'categoria_nombre' => 'Queso'],
         ['id' => 6, 'nombre' => 'Papas Chicas', 'categoria' => 'papas', 'precio' => 800, 'descripcion' => 'Papas fritas medianas.', 'imagen' => 'papas1.png', 'categoria_nombre' => 'Chicas'],
         ['id' => 7, 'nombre' => 'Papas Grandes', 'categoria' => 'papas', 'precio' => 1200, 'descripcion' => 'Papas fritas grandes.', 'imagen' => 'papas2.png', 'categoria_nombre' => 'Grandes'],
+        ['id' => 8, 'nombre' => 'Coca-Cola', 'categoria' => 'bebidas', 'precio' => 600, 'descripcion' => 'Bebida fría bien helada.', 'imagen' => 'bebida1.png', 'categoria_nombre' => 'Bebida'],
+        ['id' => 9, 'nombre' => 'Daiquirí', 'categoria' => 'bebidas', 'precio' => 400, 'descripcion' => 'Daiquirí de naranja.', 'imagen' => 'bebida2.png', 'categoria_nombre' => 'Bebida'],
+        ['id' => 10, 'nombre' => 'Agua Mineral', 'categoria' => 'bebidas', 'precio' => 500, 'descripcion' => 'Agua mineral natural y fresca.', 'imagen' => 'bebida3.png', 'categoria_nombre' => 'Bebida'],
     ];
 
     if ($categoria !== 'todos') {
