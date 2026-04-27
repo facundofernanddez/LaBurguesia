@@ -1,7 +1,7 @@
 <x-layout title="Inicio">
     <div class="row align-items-center py-4">
-        <!-- Texto a la izquierda con fondo semitransparente -->
-        <div class="col-lg-4">
+        <!-- Texto a la izquierda -->
+        <div class="col-lg-4 mb-4 col-md-0">
             <x-card-beige>
                 <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
                 <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
@@ -11,7 +11,7 @@
         </div>
 
         <!-- Carrusel a la derecha -->
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-0">
             <a href="/catalogo">
                 <x-carrusel :imagenes="[
                     [
@@ -77,6 +77,6 @@ en el home agregar tarjetas de los productos que vendemos y que redireccione al 
 Ofertas y promociones
 Los mas pedidos
 En nosotros agregar una imagen del negocio y del equipo (guiarme con una pagina por ejemplo bercomat)
-agregar motivo al formulario de contacto
+agregar motivo al formulario de contacto ✅
 mejorar responsive
  --}}
