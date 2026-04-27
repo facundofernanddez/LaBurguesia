@@ -64,7 +64,7 @@ agregar texto en el carrusel ✅
 agregar los iconos de las redes sociales en el footer ✅
 agregar el icono de carrito en el navbar ✅
 agregar productos al carrito ✅
-la imagen del carrito tiene que quedar por fuera del menu despegable
+la imagen del carrito tiene que quedar por fuera del menu despegable ✅
 agregar las imagenes que faltan de los productos al catalogo 
 agregar un boton de "ver mas" en cada card del catalogo ✅
 agregar mapa en la pagina de contacto ✅

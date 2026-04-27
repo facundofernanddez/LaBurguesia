@@ -24,6 +24,11 @@
                             <input type="email" name="email" class="form-control" placeholder="tu@email.com">
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Motivo</label>
+                            <input type="text" name="motivo" class="form-control"
+                                placeholder="El motivo de tu consulta">
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Mensaje</label>
                             <textarea class="form-control" name="mensaje" rows="4" placeholder="Tu mensaje..."></textarea>
                         </div>
