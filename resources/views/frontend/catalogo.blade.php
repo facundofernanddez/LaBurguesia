@@ -17,6 +17,9 @@
         <a href="/catalogo?categoria=papas" class="btn {{ $categoria === 'papas' ? 'btn-marron' : 'btn-marron' }}">
             Papas Fritas
         </a>
+        <a href="/catalogo?categoria=bebidas" class="btn {{ $categoria === 'bebidas' ? 'btn-marron' : 'btn-marron' }}">
+            Bebidas
+        </a>
     </div>
 
     <div class="row">
