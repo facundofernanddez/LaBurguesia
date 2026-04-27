@@ -15,19 +15,19 @@
             <a href="/catalogo">
                 <x-carrusel :imagenes="[
                     [
-                        'src' => '/img/hambur1.png',
+                        'src' => '/img/clasica.png',
                         'alt' => 'Classic Burger',
                         'titulo' => 'Classic Burger',
                         'descripcion' => 'Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.',
                     ],
                     [
-                        'src' => '/img/hambur2.png',
+                        'src' => '/img/cheddar.png',
                         'alt' => 'Cheese Burger',
                         'titulo' => 'Cheese Burger',
                         'descripcion' => 'Con queso cheddar fundido y tocino crujiente',
                     ],
                     [
-                        'src' => '/img/hambur3.png',
+                        'src' => '/img/cebolla.png',
                         'alt' => 'Bacon Burger',
                         'titulo' => 'Bacon Burger',
                         'descripcion' => 'Doble porción de tocino y cebolla crispy',
