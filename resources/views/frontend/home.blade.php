@@ -38,19 +38,19 @@
 
     <!-- Stats con fondo rojo degradado -->
     <div class="row text-center">
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">5+</h2>
                 <p class="text-white mb-0">Años de Experiencia</p>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">50K+</h2>
                 <p class="text-white mb-0">Clientes Satisfechos</p>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">15+</h2>
                 <p class="text-white mb-0">Variedades de Hamburguesas</p>
@@ -77,6 +77,9 @@ en el home agregar tarjetas de los productos que vendemos y que redireccione al 
 Ofertas y promociones
 Los mas pedidos
 En nosotros agregar una imagen del negocio y del equipo (guiarme con una pagina por ejemplo bercomat)
+En quienes somos agregar un ejemplo de vision y mision
+agregar mas personal en quienes somos
+Agregar mas info en todas las paginas para que no queden tan simples
 agregar motivo al formulario de contacto ✅
 mejorar responsive
  --}}
