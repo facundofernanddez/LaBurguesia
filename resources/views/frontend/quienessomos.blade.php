@@ -140,6 +140,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- Empleado 5: Imagen a la izquierda -->
+        <div class="card border-0 shadow mb-4" style="border-radius: 20px;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="/img/marketing.jpg" alt="Sof&iacute;a Torres" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="fw-bold" style="color: #502314;">Sof&iacute;a Torres</h3>
+                        <p class="fw-bold" style="color: #D62300; font-size: 0.9rem;">Marketing & Redes Sociales</p>
+                        <p class="mb-0">Creativa y estratégica, Sof&iacute;a maneja nuestra presencia digital. Con su talento logramos conectar con ustedes y mantenerlos informados de las mejores ofertas y novedades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Estilos para el hover -->
