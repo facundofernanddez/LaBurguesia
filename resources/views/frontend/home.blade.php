@@ -3,10 +3,19 @@
         <!-- Texto a la izquierda -->
         <div class="col-xl-7 mb-4">
             <x-card-beige>
-                <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
-                <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
-                <p class="mb-3 fw-medium">Desde 2018 preparando las burgers más deliciosas de la ciudad.</p>
-                <a href="/catalogo" class="btn btn-lg mt-2" style="background-color: #D62300; color: white;">Ver Menú</a>
+                <div class="row">
+                    <div class="col-4 align-items-center d-flex justify-content-center">
+                        <img src="{{ asset('img/logo.png') }}" alt="La Burguesia" class="img-fluid"
+                            style="max-width: 300px;">
+                    </div>
+                    <div class="col-8">
+                        <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
+                        <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
+                        <p class="mb-3 fw-medium">Desde 2018 preparando las burgers más deliciosas de la ciudad.</p>
+                        <a href="/catalogo" class="btn btn-lg mt-2" style="background-color: #D62300; color: white;">Ver
+                            Menú</a>
+                    </div>
+                </div>
             </x-card-beige>
         </div>
 
@@ -146,7 +155,8 @@
                 <!-- Título -->
                 <div class="text-center mb-5">
                     <h2 class="fw-bold" style="color: #502314; font-size: 2rem;">¿Por qué elegirnos?</h2>
-                    <p class="text-secondary" style="color: #555 !important;">La experiencia burger que no vas a olvidar
+                    <p class="text-secondary" style="color: #555 !important;">La experiencia burger que no vas a
+                        olvidar
                     </p>
                 </div>
 
