@@ -15,6 +15,6 @@ class ContactoController extends Controller
         $motivo = $request->input('motivo');
         $mensaje = $request->input('mensaje');
 
-        dd("Nombre: $nombre, Email: $email, Motivo: $motivo, Mensaje: $mensaje");
+        // dd("Nombre: $nombre, Email: $email, Motivo: $motivo, Mensaje: $mensaje");
     }
 }

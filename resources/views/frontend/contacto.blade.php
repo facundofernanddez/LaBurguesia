@@ -1,4 +1,31 @@
 <x-layout title="Contacto">
+    <!-- Toast notification -->
+    <div class="toast-container position-fixed top-0 start-50 translate-middle-x" style="z-index: 9999;">
+        <div id="toastEnviar" class="toast align-items-center text-white bg-success border-0 shadow" role="alert"
+            aria-live="assertive" aria-atomic="true" style="animation: slideDown 0.5s ease-out;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ✅ ¡Mensaje enviado con éxito! Nos contactaremos pronto.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(20px);
+                opacity: 1;
+            }
+        }
+    </style>
+
     <div class="row">
         <div class="col-md-5">
             <x-card-beige>
@@ -14,23 +41,25 @@
 
                 <div>
                     <h5 class="text-rojo">Formulario de Contacto</h5>
-                    <form action="/contacto" method="POST">
+                    <form action="/contacto" method="POST" id="formContacto">
+                        @csrf
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre">
+                            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="tu@email.com">
+                            <input type="email" name="email" class="form-control" placeholder="tu@email.com"
+                                required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Motivo</label>
                             <input type="text" name="motivo" class="form-control"
-                                placeholder="El motivo de tu consulta">
+                                placeholder="El motivo de tu consulta" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mensaje</label>
-                            <textarea class="form-control" name="mensaje" rows="4" placeholder="Tu mensaje..."></textarea>
+                            <textarea class="form-control" name="mensaje" rows="4" placeholder="Tu mensaje..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mb-1">Enviar</button>
                     </form>
@@ -54,3 +83,16 @@
         </div>
     </div>
 </x-layout>
+
+<script>
+    document.getElementById('formContacto').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Show toast
+        var toast = new bootstrap.Toast(document.getElementById('toastEnviar'));
+        toast.show();
+
+        // Reset form
+        this.reset();
+    });
+</script>
