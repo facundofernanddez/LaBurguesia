@@ -39,6 +39,8 @@ Route::get('/catalogo', function () {
         ['id' => 8, 'nombre' => 'Coca-Cola', 'categoria' => 'bebidas', 'precio' => 600, 'descripcion' => 'Bebida fría bien helada.', 'imagen' => 'bebida1.png', 'categoria_nombre' => 'Bebida'],
         ['id' => 9, 'nombre' => 'Daiquirí', 'categoria' => 'bebidas', 'precio' => 400, 'descripcion' => 'Daiquirí de naranja.', 'imagen' => 'bebida2.png', 'categoria_nombre' => 'Bebida'],
         ['id' => 10, 'nombre' => 'Agua Mineral', 'categoria' => 'bebidas', 'precio' => 500, 'descripcion' => 'Agua mineral natural y fresca.', 'imagen' => 'bebida3.png', 'categoria_nombre' => 'Bebida'],
+        ['id' => 11, 'nombre' => 'Combo Classic', 'categoria' => 'combos', 'precio' => 2200, 'descripcion' => 'Hamburguesa clásica + papas medianas + bebida.', 'imagen' => 'combo1.png', 'categoria_nombre' => 'Combo'],
+        ['id' => 12, 'nombre' => 'Combo Premium', 'categoria' => 'combos', 'precio' => 2800, 'descripcion' => 'Bacon burger + papas grandes + bebida.', 'imagen' => 'combo2.png', 'categoria_nombre' => 'Combo'],
     ];
 
     if ($categoria !== 'todos') {

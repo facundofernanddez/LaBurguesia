@@ -20,6 +20,9 @@
         <a href="/catalogo?categoria=bebidas" class="btn {{ $categoria === 'bebidas' ? 'btn-marron' : 'btn-marron' }}">
             Bebidas
         </a>
+        <a href="/catalogo?categoria=combos" class="btn {{ $categoria === 'combos' ? 'btn-marron' : 'btn-marron' }}">
+            Combos
+        </a>
     </div>
 
     <div class="row">
