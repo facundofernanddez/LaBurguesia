@@ -67,4 +67,103 @@
         </div>
     </div>
 
+    <!-- ============================================ -->
+    <!-- NUEVA SECCIÓN: NUESTRO EQUIPO -->
+    <!-- ============================================ -->
+    <div class="container my-5">
+        <!-- Header de sección -->
+        <div class="text-center mb-5">
+            <h2 style="color: #502314;">Nuestro Equipo</h2>
+            <p class="lead">Conoc&eacute; a quienes hacen posible La Burguesia</p>
+        </div>
+
+        <!-- Empleado 1: Imagen a la izquierda -->
+        <div class="card border-0 shadow mb-4" style="border-radius: 20px;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="/img/chef.jpg" alt="Carlos M&eacute;ndez" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="fw-bold" style="color: #502314;">Carlos M&eacute;ndez</h3>
+                        <p class="fw-bold" style="color: #D62300; font-size: 0.9rem;">Chef Principal</p>
+                        <p class="mb-0">Especialista en parrilla con m&aacute;s de 10 a&ntilde;os de experiencia. Su pasi&oacute;n por la cocina lo ha llevado a crear las recetas cls&aacute;sicas que hacen &uacute;nico a La Burguesia.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empleado 2: Imagen a la izquierda -->
+        <div class="card border-0 shadow mb-4" style="border-radius: 20px;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="/img/subchef.jpg" alt="Mar&iacute;a L&oacute;pez" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="fw-bold" style="color: #502314;">Mar&iacute;a L&oacute;pez</h3>
+                        <p class="fw-bold" style="color: #D62300; font-size: 0.9rem;">Subchef (Cocinera)</p>
+                        <p class="mb-0">Apasionada por la cocina artesanal, Mar&iacute;a se asegura de que cada hamburguesa est&eacute; perfecta. Su dedicaci&oacute;n y creatividad son clave en nuestra cocina.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empleado 3: Imagen a la izquierda -->
+        <div class="card border-0 shadow mb-4" style="border-radius: 20px;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="/img/personal.jpg" alt="Pedro Ram&iacute;rez" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="fw-bold" style="color: #502314;">Pedro Ram&iacute;rez</h3>
+                        <p class="fw-bold" style="color: #D62300; font-size: 0.9rem;">Gerente de Atenci&oacute;n al Cliente</p>
+                        <p class="mb-0">Con m&aacute;s de 5 a&ntilde;os en el sector gastron&oacute;mico, Pedro garantiza que cada cliente tenga una experiencia excepcional desde el primer contacto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empleado 4: Imagen a la izquierda -->
+        <div class="card border-0 shadow mb-4" style="border-radius: 20px;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="/img/repartidor.jpg" alt="Jorge Herrera" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="fw-bold" style="color: #502314;">Jorge Herrera</h3>
+                        <p class="fw-bold" style="color: #D62300; font-size: 0.9rem;">Repartidor</p>
+                        <p class="mb-0">El alma de las entregas a domicilio. Jorge se asegura de que tu hamburguesa llegue caliente y a tiempo, con la sonrisa que nos caracteriza.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empleado 5: Imagen a la izquierda -->
+        <div class="card border-0 shadow mb-4" style="border-radius: 20px;">
+            <div class="row g-0 align-items-center">
+                <div class="col-md-4">
+                    <img src="/img/marketing.jpg" alt="Sof&iacute;a Torres" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="fw-bold" style="color: #502314;">Sof&iacute;a Torres</h3>
+                        <p class="fw-bold" style="color: #D62300; font-size: 0.9rem;">Marketing & Redes Sociales</p>
+                        <p class="mb-0">Creativa y estratégica, Sof&iacute;a maneja nuestra presencia digital. Con su talento logramos conectar con ustedes y mantenerlos informados de las mejores ofertas y novedades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estilos para el hover -->
+    <style>
+        .card:hover {
+            transform: translateY(-5px);
+            transition: 0.3s;
+        }
+    </style>
+
 </x-layout>
