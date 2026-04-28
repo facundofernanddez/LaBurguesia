@@ -1,6 +1,6 @@
 <x-layout title="Comercialización">
     {{-- Overlay que baja el ruido del fondo --}}
-    <div style="background: rgba(255,255,255,0.88); backdrop-filter: blur(2px); padding: 3rem 0; min-height: 100vh;">
+    <div class="bg-blur" style="padding: 3rem 0; min-height: 100vh;">
 
         {{-- 1. HEADER DE SECCIÓN --}}
         <div class="container mb-5">
@@ -101,7 +101,7 @@
         {{-- 4. BOTONES DE ACCIÓN --}}
         <div class="container mt-5">
             <div class="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center">
-            <a href="https://wa.me/3795343745" target="_blank" class="btn btn-whatsapp btn-pill">
+                <a href="https://wa.me/3795343745" target="_blank" class="btn btn-whatsapp btn-pill">
                     <i class="bi bi-whatsapp me-2"></i>Pedir por WhatsApp
                 </a>
             </div>
@@ -230,10 +230,12 @@
             h1 {
                 font-size: 2rem !important;
             }
+
             .promo-box {
                 font-size: 0.9rem;
                 padding: 0.75rem 1.25rem;
             }
+
             .d-flex.flex-wrap {
                 flex-direction: column !important;
                 align-items: center !important;

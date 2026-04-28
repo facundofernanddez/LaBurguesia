@@ -3,7 +3,7 @@
 
     <div class="row align-items-center mb-5">
         <!-- Texto a la izquierda -->
-        <div class="col-xl-4 mb-4">
+        <div class="col-xl-7 mb-4">
             <x-card-beige>
                 <h2 class="mb-3" style="color: #502314;">Nuestra Historia</h2>
                 <p class="lead">Las mejores hamburguesas de la ciudad desde 2018.</p>
@@ -20,7 +20,7 @@
 
 
         <!-- Carrusel de empleados a la derecha -->
-        <div class="col-xl-8 ">
+        <div class="col-xl-5 ">
 
             <x-carrusel :imagenes="[
                 [
