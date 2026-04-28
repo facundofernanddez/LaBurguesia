@@ -1,7 +1,7 @@
 <x-layout title="Inicio">
     <div class="row align-items-center py-4">
         <!-- Texto a la izquierda -->
-        <div class="col-xl-7 mb-4">
+        <div class="col-lg-7 mb-4">
             <x-card-beige>
                 <div class="row">
                     <div class="col-4 align-items-center d-flex justify-content-center">
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Carrusel a la derecha -->
-        <div class="col-xl-5">
+        <div class="col-lg-5">
             <a href="/catalogo">
                 <x-carrusel :imagenes="[
                     [
@@ -83,9 +83,8 @@
                 <!-- Producto 1 -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="/img/clasica.png" class="card-img-top" alt="Whopper Clásica"
-                            style="height: 220px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="/img/clasica.png" class="card-img" alt="Whopper Clásica" {{-- style="height: 220px; object-fit: cover;" --}}>
+                        <div class="card-body bg-white">
                             <span class="badge bg-secondary bg-opacity-25 text-dark mb-2">Hamburguesas</span>
                             <h5 class="card-title fw-bold" style="color: #502314;">Whopper Clásica</h5>
                             <p class="card-text text-muted small">Carne 100% vaccuna con lechuga, tomate y cebolla</p>
@@ -94,7 +93,7 @@
                                 <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent border-0 pt-0">
+                        <div class="card-footer bg-white border-0 pt-0">
                             <button class="btn btn-sm btn-rojo">Agregar</button>
                         </div>
                     </div>
@@ -102,10 +101,9 @@
 
                 <!-- Producto 2 -->
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="/img/cheddar.png" class="card-img-top" alt="Cheese Burger"
-                            style="height: 220px; object-fit: cover;">
-                        <div class="card-body">
+                    <div class="card h-100 border-0 shadow-sm ">
+                        <img src="/img/cheddar.png" class="card-img" alt="Cheese Burger" {{-- style="height: 220px; object-fit: cover;" --}}>
+                        <div class="card-body bg-white">
                             <span class="badge bg-danger bg-opacity-25 text-danger mb-2">Popular</span>
                             <h5 class="card-title fw-bold" style="color: #502314;">Cheese Burger</h5>
                             <p class="card-text text-muted small">Con doble queso cheddar y tocino crujiente</p>
@@ -114,7 +112,7 @@
                                 <span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent border-0 pt-0">
+                        <div class="card-footer bg-white border-0 pt-0">
                             <button class="btn btn-sm btn-rojo">Agregar</button>
                         </div>
                     </div>
@@ -123,9 +121,8 @@
                 <!-- Producto 3 -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow-sm">
-                        <img src="/img/papas1.png" class="card-img-top" alt="Papas Fritas"
-                            style="height: 220px; object-fit: cover;">
-                        <div class="card-body">
+                        <img src="/img/papas1.png" class="card-img" alt="Papas Fritas" {{-- style="height: 220px; object-fit: cover;" --}}>
+                        <div class="card-body bg-white">
                             <span class="badge bg-secondary bg-opacity-25 text-dark mb-2">Acompañamientos</span>
                             <h5 class="card-title fw-bold" style="color: #502314;">Papas Fritas</h5>
                             <p class="card-text text-muted small">Papas crujientes y sazonadas al estilo americano</p>
@@ -134,7 +131,7 @@
                                 <span class="text-warning"><i class="bi bi-star-fill"></i> 4.7</span>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent border-0 pt-0">
+                        <div class="card-footer bg-white border-0 pt-0">
                             <button class="btn btn-sm btn-rojo">Agregar</button>
                         </div>
                     </div>
