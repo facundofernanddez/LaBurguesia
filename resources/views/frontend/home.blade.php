@@ -155,7 +155,7 @@
                     <!-- Razón 1 -->
                     <div class="col-12 col-md-4">
                         <div class="p-4 h-100 rounded-4 bg-white border-0"
-                            style="box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s ease;">
+                            style="box-shadow: 0 10px 25px rgba(0,0,0,0.08); transition: all 0.3s ease; ">
                             <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-3"
                                 style="width: 70px; height: 70px; background-color: #D62300; box-shadow: 0 8px 20px rgba(214,35,0,0.3);">
                                 <i class="bi bi-fire text-white" style="font-size: 1.8rem;"></i>

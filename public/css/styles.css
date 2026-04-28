@@ -20,7 +20,10 @@
 
 body {
     background-color: var(--crema);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    /* cambiar estilo de letra a roboto bold */
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
     color: var(--marron);
     min-height: 100vh;
     display: flex;
