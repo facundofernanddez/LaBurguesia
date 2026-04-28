@@ -1,6 +1,6 @@
 @props(['imagenes' => []])
 
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
     <div class="carousel-inner">
         @foreach ($imagenes as $index => $imagen)
             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
