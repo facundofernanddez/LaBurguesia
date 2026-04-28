@@ -1,7 +1,7 @@
 <x-layout title="Inicio">
     <div class="row align-items-center py-4">
-        <!-- Texto a la izquierda con fondo semitransparente -->
-        <div class="col-lg-4">
+        <!-- Texto a la izquierda -->
+        <div class="col-xl-4 mb-4">
             <x-card-beige>
                 <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
                 <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
@@ -11,7 +11,7 @@
         </div>
 
         <!-- Carrusel a la derecha -->
-        <div class="col-md-8">
+        <div class="col-xl-8">
             <a href="/catalogo">
                 <x-carrusel :imagenes="[
                     [
@@ -38,19 +38,19 @@
 
     <!-- Stats con fondo rojo degradado -->
     <div class="row text-center">
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">5+</h2>
                 <p class="text-white mb-0">Años de Experiencia</p>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">50K+</h2>
                 <p class="text-white mb-0">Clientes Satisfechos</p>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">15+</h2>
                 <p class="text-white mb-0">Variedades de Hamburguesas</p>
@@ -203,6 +203,9 @@ en el home agregar tarjetas de los productos que vendemos y que redireccione al 
 Ofertas y promociones
 Los mas pedidos
 En nosotros agregar una imagen del negocio y del equipo (guiarme con una pagina por ejemplo bercomat)
-agregar motivo al formulario de contacto
+En quienes somos agregar un ejemplo de vision y mision
+agregar mas personal en quienes somos
+Agregar mas info en todas las paginas para que no queden tan simples
+agregar motivo al formulario de contacto ✅
 mejorar responsive
  --}}

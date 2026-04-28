@@ -3,7 +3,7 @@
 
     <div class="row align-items-center mb-5">
         <!-- Texto a la izquierda -->
-        <div class="col-md-5">
+        <div class="col-xl-4 mb-4">
             <x-card-beige>
                 <h2 class="mb-3" style="color: #502314;">Nuestra Historia</h2>
                 <p class="lead">Las mejores hamburguesas de la ciudad desde 2018.</p>
@@ -20,7 +20,7 @@
 
 
         <!-- Carrusel de empleados a la derecha -->
-        <div class="col-md-7">
+        <div class="col-xl-8 ">
 
             <x-carrusel :imagenes="[
                 [
@@ -47,19 +47,19 @@
 
     <!-- Stats con fondo rojo degradado -->
     <div class="row text-center">
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">5+</h2>
                 <p class="text-white mb-0">Años de Experiencia</p>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">50K+</h2>
                 <p class="text-white mb-0">Clientes Satisfechos</p>
             </div>
         </div>
-        <div class="col-md-4 mb-3">
+        <div class="col-lg-4 mb-3">
             <div class="stat-card p-4 rounded-4">
                 <h2 class="fw-bold" style="color: #FFC72C;">15+</h2>
                 <p class="text-white mb-0">Variedades de Hamburguesas</p>
