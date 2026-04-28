@@ -18,19 +18,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link fw-bold" href="/">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/quienessomos">Nosotros</a>
+                    <a class="nav-link fw-bold" href="/quienessomos">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/catalogo">Menú</a>
+                    <a class="nav-link fw-bold" href="/catalogo">Menú</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/comercializacion">Comercialización</a>
+                    <a class="nav-link fw-bold" href="/comercializacion">Comercialización</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contacto">Contacto</a>
+                    <a class="nav-link fw-bold" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">

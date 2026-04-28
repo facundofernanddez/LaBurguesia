@@ -75,7 +75,7 @@
         <div class="d-flex justify-content-center text-center mb-5">
             <div class="bg-blur p-2">
                 <h2 style="color: #502314;">Nuestro Equipo</h2>
-                <p class="lead">Conoc&eacute; a quienes hacen posible La Burguesia</p>
+                <p class="lead fw-bold text-muted">Conoc&eacute; a quienes hacen posible La Burguesia</p>
             </div>
         </div>
 
@@ -103,7 +103,7 @@
             <div class="row g-0 align-items-center">
                 <div class="col-md-4">
                     <img src="/img/subchef.jpg" alt="Mar&iacute;a L&oacute;pez" class="img-fluid"
-                        style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px;">
+                        style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px; margin: 20px; object-position: top;">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
