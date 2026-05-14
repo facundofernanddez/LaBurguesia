@@ -25,6 +25,10 @@ Route::get('/comercializacion', function () {
     return view('/frontend/comercializacion');
 });
 
+Route::get('/register', function () {
+    return view('/frontend/register');
+});
+
 Route::get('/catalogo', function () {
     $categoria = request('categoria', 'todos');
 

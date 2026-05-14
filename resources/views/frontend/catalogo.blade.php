@@ -3,25 +3,23 @@
 
     <!-- Filtros -->
     <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-        <a href="/catalogo?categoria=todos" class="btn {{ $categoria === 'todos' ? 'btn-marron' : 'btn-marron' }}">
-            Todos
+        <a href="/catalogo?categoria=todos" class="btn btn-marron">
+            <span class="{{ $categoria === 'todos' ? 'texto-activo' : '' }}">Todos</span>
         </a>
-        <a href="/catalogo?categoria=hamburguesas"
-            class="btn {{ $categoria === 'hamburguesas' ? 'btn-marron' : 'btn-marron' }}">
-            Hamburguesas
+        <a href="/catalogo?categoria=hamburguesas" class="btn btn-marron">
+            <span class="{{ $categoria === 'hamburguesas' ? 'texto-activo' : '' }}">Hamburguesas</span>
         </a>
-        <a href="/catalogo?categoria=empanadas"
-            class="btn {{ $categoria === 'empanadas' ? 'btn-marron' : 'btn-marron' }}">
-            Empanadas
+        <a href="/catalogo?categoria=empanadas" class="btn btn-marron">
+            <span class="{{ $categoria === 'empanadas' ? 'texto-activo' : '' }}">Empanadas</span>
         </a>
-        <a href="/catalogo?categoria=papas" class="btn {{ $categoria === 'papas' ? 'btn-marron' : 'btn-marron' }}">
-            Papas Fritas
+        <a href="/catalogo?categoria=papas" class="btn btn-marron">
+            <span class="{{ $categoria === 'papas' ? 'texto-activo' : '' }}">Papas Fritas</span>
         </a>
-        <a href="/catalogo?categoria=bebidas" class="btn {{ $categoria === 'bebidas' ? 'btn-marron' : 'btn-marron' }}">
-            Bebidas
+        <a href="/catalogo?categoria=bebidas" class="btn btn-marron">
+            <span class="{{ $categoria === 'bebidas' ? 'texto-activo' : '' }}">Bebidas</span>
         </a>
-        <a href="/catalogo?categoria=combos" class="btn {{ $categoria === 'combos' ? 'btn-marron' : 'btn-marron' }}">
-            Combos
+        <a href="/catalogo?categoria=combos" class="btn btn-marron">
+            <span class="{{ $categoria === 'combos' ? 'texto-activo' : '' }}">Combos</span>
         </a>
     </div>
 
@@ -176,6 +174,12 @@
 
         .btn-agregar:hover {
             background: #a91b00;
+        }
+
+        .texto-activo {
+            color: #D62300;
+            font-weight: bold;
+            text-decoration: underline;
         }
     </style>
 </x-layout>

@@ -97,14 +97,12 @@
 
             </div>
         </div>
-
-        {{-- 4. BOTONES DE ACCIÓN --}}
-        <div class="container mt-5">
-            <div class="d-flex flex-column flex-md-row gap-3 justify-content-center align-items-center">
-                <a href="https://wa.me/3795343745" target="_blank" class="btn btn-whatsapp btn-pill">
-                    <i class="bi bi-whatsapp me-2"></i>Pedir por WhatsApp
-                </a>
-            </div>
+        
+        {{-- 5. MÉTODOS DE PAGO (LOGOS) --}}
+        <div class="d-flex flex-wrap align-items-center gap-3 justify-content-center pagos">
+            <img src="{{ asset('img/visa.png') }}" height="30">
+            <img src="{{ asset('img/mastercard.png') }}" height="30">
+            <img src="{{ asset('img/mercadopago.png') }}" height="30">
         </div>
 
         {{-- BONUS: Stats --}}
@@ -225,6 +223,18 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
+
+        .pagos img {
+  height: 35px;
+  opacity: 0.8;
+  transition: 0.3s;
+  
+}
+
+.pagos img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
 
         @media (max-width: 768px) {
             h1 {
