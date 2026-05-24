@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,12 @@ Route::get('/catalogo', function () {
     }
 
     return view('/frontend/catalogo', compact('productos', 'categoria'));
+});
+
+Route::get('/login', function () {
+    return view('/frontend/login');
+});
+
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'dashboard']);
 });

@@ -2,6 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
 class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable, SoftDeletes;
@@ -22,7 +27,7 @@ class Usuario extends Authenticatable
 
     protected function casts(): array
     {
-        return [password => 'hashed'];
+        return ['password' => 'hashed'];
     }
 
     public function rol()

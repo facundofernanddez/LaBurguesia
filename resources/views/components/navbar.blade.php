@@ -33,7 +33,7 @@
                     <a class="nav-link fw-bold" href="/contacto">Contacto</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/register">Login</a>
+                    <a class="nav-link fw-bold" href="/register">Regístrate</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">

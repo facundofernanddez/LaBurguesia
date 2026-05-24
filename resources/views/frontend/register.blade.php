@@ -9,7 +9,7 @@
                         <h2 class="fw-bold text-white mb-1">¡Crear Cuenta!</h2>
                         <p class="text-white-50 mb-0">Uniete a la familia burguesa</p>
                     </div>
-                    
+
                     <div class="card-body-register p-4">
                         <form>
                             <!-- Nombre completo -->
@@ -21,8 +21,8 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-person text-muted"></i>
                                     </span>
-                                    <input type="text" class="form-control border-start-0" id="nombre" 
-                                           placeholder="Juan Pérez" required>
+                                    <input type="text" class="form-control border-start-0" id="nombre"
+                                        placeholder="Juan Pérez" required>
                                 </div>
                             </div>
 
@@ -35,8 +35,8 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-envelope text-muted"></i>
                                     </span>
-                                    <input type="email" class="form-control border-start-0" id="email" 
-                                           placeholder="juan@ejemplo.com" required>
+                                    <input type="email" class="form-control border-start-0" id="email"
+                                        placeholder="juan@ejemplo.com" required>
                                 </div>
                                 <div class="form-text">Nunca compartiremos tu correo con nadie.</div>
                             </div>
@@ -50,8 +50,8 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-telephone text-muted"></i>
                                     </span>
-                                    <input type="tel" class="form-control border-start-0" id="telefono" 
-                                           placeholder="11 1234 5678">
+                                    <input type="tel" class="form-control border-start-0" id="telefono"
+                                        placeholder="11 1234 5678">
                                 </div>
                             </div>
 
@@ -64,9 +64,10 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-key text-muted"></i>
                                     </span>
-                                    <input type="password" class="form-control border-start-0" id="password" 
-                                           placeholder="••••••••" required>
-                                    <button class="btn btn-outline-secondary border-start-0" type="button" id="togglePassword">
+                                    <input type="password" class="form-control border-start-0" id="password"
+                                        placeholder="••••••••" required>
+                                    <button class="btn btn-outline-secondary border-start-0" type="button"
+                                        id="togglePassword">
                                         <i class="bi bi-eye-slash" id="eyeIcon"></i>
                                     </button>
                                 </div>
@@ -82,8 +83,8 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-key text-muted"></i>
                                     </span>
-                                    <input type="password" class="form-control border-start-0" id="password_confirm" 
-                                           placeholder="••••••••" required>
+                                    <input type="password" class="form-control border-start-0" id="password_confirm"
+                                        placeholder="••••••••" required>
                                 </div>
                             </div>
 
@@ -92,7 +93,8 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="terminos" required>
                                     <label class="form-check-label" for="terminos">
-                                        Acepto los <a href="/" class="text-decoration-none">términos y condiciones</a>
+                                        Acepto los <a href="/" class="text-decoration-none">términos y
+                                            condiciones</a>
                                     </label>
                                 </div>
                             </div>
@@ -112,8 +114,8 @@
 
                         <!-- Ya tengo cuenta -->
                         <div class="text-center">
-                            <p class="mb-0">¿Ya tenés cuenta? 
-                                <a href="#" class="fw-bold text-decoration-none">
+                            <p class="mb-0">¿Ya tenés cuenta?
+                                <a href="/login" class="fw-bold text-decoration-none">
                                     Iniciá sesión
                                 </a>
                             </p>
@@ -181,7 +183,7 @@
         document.getElementById('togglePassword').addEventListener('click', function() {
             const passwordInput = document.getElementById('password');
             const eyeIcon = document.getElementById('eyeIcon');
-            
+
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 eyeIcon.classList.remove('bi-eye-slash');
