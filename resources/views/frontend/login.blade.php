@@ -11,7 +11,9 @@
                     </div>
 
                     <div class="card-body-login p-4">
-                        <form>
+                        <form action="{{ route('login.store') }}" method="POST">
+                            @csrf
+
                             <!-- Email -->
                             <div class="mb-3">
                                 <label for="email" class="form-label fw-semibold">
@@ -21,7 +23,7 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-envelope text-muted"></i>
                                     </span>
-                                    <input type="email" class="form-control border-start-0" id="email"
+                                    <input type="email" class="form-control border-start-0" id="email" name="email"
                                         placeholder="juan@ejemplo.com" required>
                                 </div>
                             </div>
@@ -35,7 +37,7 @@
                                     <span class="input-group-text bg-white border-end-0">
                                         <i class="bi bi-key text-muted"></i>
                                     </span>
-                                    <input type="password" class="form-control border-start-0" id="password"
+                                    <input type="password" class="form-control border-start-0" id="password" name="password"
                                         placeholder="••••••••" required>
                                     <button class="btn btn-outline-secondary border-start-0" type="button"
                                         id="togglePassword">
