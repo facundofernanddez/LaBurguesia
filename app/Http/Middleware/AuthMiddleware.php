@@ -16,24 +16,14 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $isRegisterRoute = $request->routeIs('register');
-
-        if (Auth::check()) {
-            if ($isRegisterRoute) {
-                return redirect('/');
-            }
-
-            if (Auth::user()?->rol?->nombre === 'admin') {
-                return redirect('/admin/dashboard');
-            }
-
-            return redirect('/');
-        }
-
-        if ($isRegisterRoute) {
+        if (! $request->routeIs('register')) {
             return $next($request);
         }
 
-        return redirect('/login');
+        if (Auth::check()) {
+            return redirect('/');
+        }
+
+        return $next($request);
     }
 }

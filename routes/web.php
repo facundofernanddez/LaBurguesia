@@ -53,10 +53,12 @@ Route::post('/login', [AuthController::class, 'autenticar'])->name('login.store'
 Route::middleware('auth.custom')->group(function () {
     Route::get('/register', [AuthController::class, 'formularioRegistro'])->name('register');
     Route::post('/register', [AuthController::class, 'registrar'])->name('register.store');
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/', function () {
-        return view('/frontend/home');
-    })->name('Inicio');
 });
+
+Route::get('/', function () {
+    return view('/frontend/home');
+})->name('Inicio');
+
+Route::middleware('auth')->get('/admin/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
