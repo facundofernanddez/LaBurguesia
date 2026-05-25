@@ -62,16 +62,21 @@ class AuthController extends Controller
         $credenciales = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ], [
+            'email.required' => 'El correo es obligatorio.',
+            'email.email' => 'El correo no es válido.',
+            'password.required' => 'La contraseña es obligatoria.',
         ]);
 
         if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
 
-            if (Auth::user()?->rol?->nombre === 'admin') {
-                return redirect('/admin/dashboard');
-            }
+            // if (Auth::user()?->rol?->nombre === 'admin') {
+            //     return redirect('/admin/dashboard');
+            // }
+            // usar middleware para redirigir al dashboard de admin o a la pagina de cliente segun el rol del usuario
 
-            return redirect('/');
+            // return redirect('/');
         }
 
         return back()->withErrors([

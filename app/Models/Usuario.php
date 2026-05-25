@@ -33,6 +33,6 @@ class Usuario extends Authenticatable
 
     public function rol()
     {
-        $this->belongsTo(Rol::class, 'rol_id');
+        return $this->belongsTo(Rol::class, 'rol_id');
     }
 }

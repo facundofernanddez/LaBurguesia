@@ -32,9 +32,15 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bold" href="/contacto">Contacto</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bold" href="/register">Regístrate</a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="/register">Regístrate</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{{ route('logout') }}">Logout</a>
+                    </li>
+                @endguest
                 <li class="nav-item d-none d-lg-block">
                     <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
                         <i class="bi bi-cart"></i>

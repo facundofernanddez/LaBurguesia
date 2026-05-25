@@ -16,20 +16,24 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // middleware para verificar si el usuario esta autenticado, si no lo esta redirige al login
-        // si el usuario es admin redirige al dashboard de admin, si es cliente redirige a la pagina de cliente
-        if (Auth::check() === false) {
-            return redirect('/login');
-        }
+        $isRegisterRoute = $request->routeIs('register');
 
-        if (Auth::user()->rol === 'admin') {
-            return redirect('/admin/dashboard');
-        }
+        if (Auth::check()) {
+            if ($isRegisterRoute) {
+                return redirect('/');
+            }
 
-        if (Auth::user()->rol === 'cliente') {
+            if (Auth::user()?->rol?->nombre === 'admin') {
+                return redirect('/admin/dashboard');
+            }
+
             return redirect('/');
         }
 
-        return $next($request);
+        if ($isRegisterRoute) {
+            return $next($request);
+        }
+
+        return redirect('/login');
     }
 }
