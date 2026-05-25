@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,13 +26,10 @@ Route::get('/comercializacion', function () {
     return view('/frontend/comercializacion');
 });
 
-Route::get('/register', function () {
-    return view('/frontend/register');
-});
 
 Route::get('/catalogo', function () {
     $categoria = request('categoria', 'todos');
-
+    
     $productos = [
         ['id' => 1, 'nombre' => 'Classic Burger', 'categoria' => 'hamburguesas', 'precio' => 1500, 'descripcion' => 'Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.', 'imagen' => 'clasica.png', 'categoria_nombre' => 'Clásica'],
         ['id' => 2, 'nombre' => 'Cheese Burger', 'categoria' => 'hamburguesas', 'precio' => 1800, 'descripcion' => 'Con queso cheddar fundido y tocino crujiente.', 'imagen' => 'cheddar.png', 'categoria_nombre' => 'Con Queso'],
@@ -46,19 +43,16 @@ Route::get('/catalogo', function () {
         ['id' => 10, 'nombre' => 'Agua Mineral', 'categoria' => 'bebidas', 'precio' => 500, 'descripcion' => 'Agua mineral natural y fresca.', 'imagen' => 'bebida3.png', 'categoria_nombre' => 'Bebida'],
         ['id' => 11, 'nombre' => 'Combo Classic', 'categoria' => 'combos', 'precio' => 2200, 'descripcion' => 'Hamburguesa clásica + papas medianas + bebida.', 'imagen' => 'combo1.png', 'categoria_nombre' => 'Combo'],
         ['id' => 12, 'nombre' => 'Combo Premium', 'categoria' => 'combos', 'precio' => 2800, 'descripcion' => 'Bacon burger + papas grandes + bebida.', 'imagen' => 'combo2.png', 'categoria_nombre' => 'Combo'],
-    ];
-
-    if ($categoria !== 'todos') {
-        $productos = array_filter($productos, fn ($p) => $p['categoria'] === $categoria);
-    }
-
-    return view('/frontend/catalogo', compact('productos', 'categoria'));
+        ];
+        
+        if ($categoria !== 'todos') {
+            $productos = array_filter($productos, fn ($p) => $p['categoria'] === $categoria);
+            }
+            
+            return view('/frontend/catalogo', compact('productos', 'categoria'));
 });
-
-Route::get('/login', function () {
-    return view('/frontend/login');
-});
-
-Route::middleware(['auth', 'rol:admin'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'dashboard']);
-});
+            
+Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'autenticar'])->name('login.store');
+Route::get('/register', [AuthController::class, 'formularioRegistro'])->name('register');
+Route::post('/register', [AuthController::class, 'registrar'])->name('register.store');
