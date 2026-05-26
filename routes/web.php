@@ -59,7 +59,7 @@ Route::get('/', function () {
     return view('/frontend/home');
 })->name('Inicio');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/productos', [AdminController::class, 'storeProducto'])->name('admin.productos.store');
     Route::put('/admin/productos/{producto}', [AdminController::class, 'updateProducto'])->name('admin.productos.update');
