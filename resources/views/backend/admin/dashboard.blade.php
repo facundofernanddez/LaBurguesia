@@ -54,7 +54,9 @@
                     <div class="col-lg-5">
                         <h5 class="mb-3">{{ $editingProducto ? 'Editar producto' : 'Crear producto' }}</h5>
 
-                        <form action="{{ $editingProducto ? route('admin.productos.update', $editingProducto) : route('admin.productos.store') }}" method="POST">
+                        <form
+                            action="{{ $editingProducto ? route('admin.productos.update', $editingProducto) : route('admin.productos.store') }}"
+                            method="POST">
                             @csrf
                             @if ($editingProducto)
                                 @method('PUT')
@@ -62,7 +64,8 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Nombre</label>
-                                <input type="text" name="nombre" class="form-control" value="{{ old('nombre', $editingProducto->nombre ?? '') }}" required>
+                                <input type="text" name="nombre" class="form-control"
+                                    value="{{ old('nombre', $editingProducto->nombre ?? '') }}">
                                 @error('nombre')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -79,18 +82,20 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Precio</label>
-                                    <input type="number" min="0" name="precio" class="form-control" value="{{ old('precio', $editingProducto->precio ?? 0) }}" required>
+                                    <input type="number" min="0" name="precio" class="form-control"
+                                        value="{{ old('precio', $editingProducto->precio ?? 0) }}">
                                     @error('precio')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Categoría</label>
-                                    <select name="categoria" class="form-select" required>
+                                    <select name="categoria" class="form-select">
                                         <option value="">Selecciona una categoría</option>
                                         @php $categorias = ['hamburguesas', 'empanadas', 'papas', 'bebidas', 'combos']; @endphp
                                         @foreach ($categorias as $categoria)
-                                            <option value="{{ $categoria }}" {{ old('categoria', $editingProducto->categoria ?? '') === $categoria ? 'selected' : '' }}>
+                                            <option value="{{ $categoria }}"
+                                                {{ old('categoria', $editingProducto->categoria ?? '') === $categoria ? 'selected' : '' }}>
                                                 {{ ucfirst($categoria) }}
                                             </option>
                                         @endforeach
@@ -104,14 +109,18 @@
                             <div class="row g-3 mt-1">
                                 <div class="col-md-6">
                                     <label class="form-label">Imagen</label>
-                                    <input type="text" name="imagen" class="form-control" value="{{ old('imagen', $editingProducto->imagen ?? '') }}" placeholder="ej: burger.png">
+                                    <input type="text" name="imagen" class="form-control"
+                                        value="{{ old('imagen', $editingProducto->imagen ?? '') }}"
+                                        placeholder="ej: burger.png">
                                     @error('imagen')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 d-flex align-items-end">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="activo" id="activo" value="1" {{ old('activo', $editingProducto?->activo ?? true) ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="checkbox" name="activo" id="activo"
+                                            value="1"
+                                            {{ old('activo', $editingProducto?->activo ?? true) ? 'checked' : '' }}>
                                         <label class="form-check-label" for="activo">Producto activo</label>
                                     </div>
                                 </div>
@@ -122,7 +131,8 @@
                                     {{ $editingProducto ? 'Actualizar producto' : 'Crear producto' }}
                                 </button>
                                 @if ($editingProducto)
-                                    <a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">Cancelar</a>
+                                    <a href="{{ route('admin.dashboard') }}"
+                                        class="btn btn-outline-secondary">Cancelar</a>
                                 @endif
                             </div>
                         </form>
@@ -155,17 +165,22 @@
                                                 <td>{{ ucfirst($producto->categoria) }}</td>
                                                 <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
                                                 <td>
-                                                    <span class="badge {{ $producto->activo ? 'bg-success' : 'bg-secondary' }}">
+                                                    <span
+                                                        class="badge {{ $producto->activo ? 'bg-success' : 'bg-secondary' }}">
                                                         {{ $producto->activo ? 'Activo' : 'Inactivo' }}
                                                     </span>
                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-end gap-2">
-                                                        <a href="{{ route('admin.dashboard', ['edit_producto' => $producto->id]) }}" class="btn btn-sm btn-outline-primary">Editar</a>
-                                                        <form action="{{ route('admin.productos.destroy', $producto) }}" method="POST" class="d-inline">
+                                                        <a href="{{ route('admin.dashboard', ['edit_producto' => $producto->id]) }}"
+                                                            class="btn btn-sm btn-outline-primary">Editar</a>
+                                                        <form
+                                                            action="{{ route('admin.productos.destroy', $producto) }}"
+                                                            method="POST" class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-sm btn-outline-danger">Eliminar</button>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -181,4 +196,3 @@
         </div>
     </div>
 </x-layout>
-

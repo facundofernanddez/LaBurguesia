@@ -28,6 +28,17 @@ class AdminController extends Controller
             'categoria' => 'required|string|in:hamburguesas,empanadas,papas,bebidas,combos',
             'imagen' => 'nullable|string|max:100',
             'activo' => 'nullable|boolean',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.string' => 'El nombre debe ser texto.',
+            'nombre.max' => 'El nombre no puede superar los :max caracteres.',
+            'descripcion.string' => 'La descripción debe ser texto.',
+            'descripcion.max' => 'La descripción no puede superar los :max caracteres.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.integer' => 'El precio debe ser un número.',
+            'precio.min' => 'El precio debe ser mayor a 0.',
+            'categoria.required' => 'La categoría es obligatoria.',
+            'categoria.string' => 'La categoría debe ser texto.',
         ]);
 
         Producto::create([
