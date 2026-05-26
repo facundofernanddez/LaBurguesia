@@ -16,7 +16,9 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (! $request->routeIs('register')) {
+        $isAuthRoute = $request->routeIs(['login', 'register']);
+
+        if (! $isAuthRoute) {
             return $next($request);
         }
 

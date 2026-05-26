@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
@@ -47,10 +48,9 @@ Route::get('/catalogo', function () {
     return view('/frontend/catalogo', compact('productos', 'categoria'));
 });
 
-Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'autenticar'])->name('login.store');
-
 Route::middleware('auth.custom')->group(function () {
+    Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
+    Route::post('/login', [AuthController::class, 'autenticar'])->name('login.store');
     Route::get('/register', [AuthController::class, 'formularioRegistro'])->name('register');
     Route::post('/register', [AuthController::class, 'registrar'])->name('register.store');
 });
@@ -59,6 +59,11 @@ Route::get('/', function () {
     return view('/frontend/home');
 })->name('Inicio');
 
-Route::middleware('auth')->get('/admin/dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::post('/admin/productos', [AdminController::class, 'storeProducto'])->name('admin.productos.store');
+    Route::put('/admin/productos/{producto}', [AdminController::class, 'updateProducto'])->name('admin.productos.update');
+    Route::delete('/admin/productos/{producto}', [AdminController::class, 'destroyProducto'])->name('admin.productos.destroy');
+});
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
