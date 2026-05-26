@@ -37,6 +37,11 @@
                         <a class="nav-link fw-bold" href="/register">Regístrate</a>
                     </li>
                 @else
+                    @if (Auth::user()?->rol?->nombre === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link fw-bold" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link fw-bold" href="{{ route('logout') }}">Logout</a>
                     </li>
