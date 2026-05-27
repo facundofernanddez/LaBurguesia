@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminCategoriaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminProductoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactoController;
 use Illuminate\Support\Facades\Route;
@@ -61,9 +63,16 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    Route::post('/admin/productos', [AdminController::class, 'storeProducto'])->name('admin.productos.store');
-    Route::put('/admin/productos/{producto}', [AdminController::class, 'updateProducto'])->name('admin.productos.update');
-    Route::delete('/admin/productos/{producto}', [AdminController::class, 'destroyProducto'])->name('admin.productos.destroy');
+
+    Route::resource('admin/productos', AdminProductoController::class)
+        ->only(['store', 'update', 'destroy'])
+        ->names('admin.productos');
+
+    Route::put('/admin/usuarios/{usuario}/rol', [AdminController::class, 'updateUsuarioRol'])->name('admin.usuarios.updateRol');
+
+    Route::resource('admin/categorias', AdminCategoriaController::class)
+        ->only(['store', 'update', 'destroy'])
+        ->names('admin.categorias');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
