@@ -18,10 +18,6 @@ class AdminController extends Controller
         $categorias = Categoria::orderBy('nombre')->get();
         $categoriaOptions = $categorias->pluck('nombre')->toArray();
 
-        if (empty($categoriaOptions)) {
-            $categoriaOptions = ['hamburguesas', 'empanadas', 'papas', 'bebidas', 'combos'];
-        }
-
         $editingProducto = $request->filled('edit_producto')
             ? Producto::find($request->edit_producto)
             : null;
@@ -44,10 +40,6 @@ class AdminController extends Controller
     public function storeProducto(Request $request)
     {
         $categoriaOptions = Categoria::pluck('nombre')->toArray();
-
-        if (empty($categoriaOptions)) {
-            $categoriaOptions = ['hamburguesas', 'empanadas', 'papas', 'bebidas', 'combos'];
-        }
 
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
@@ -85,10 +77,6 @@ class AdminController extends Controller
     public function updateProducto(Request $request, Producto $producto)
     {
         $categoriaOptions = Categoria::pluck('nombre')->toArray();
-
-        if (empty($categoriaOptions)) {
-            $categoriaOptions = ['hamburguesas', 'empanadas', 'papas', 'bebidas', 'combos'];
-        }
 
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',

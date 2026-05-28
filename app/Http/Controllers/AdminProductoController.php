@@ -12,15 +12,11 @@ class AdminProductoController extends Controller
     {
         $categoriaOptions = Categoria::pluck('nombre')->toArray();
 
-        if (empty($categoriaOptions)) {
-            $categoriaOptions = ['hamburguesas', 'empanadas', 'papas', 'bebidas', 'combos'];
-        }
-
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
             'descripcion' => 'nullable|string|max:500',
-            'precio' => 'required|integer|min:0',
-            'categoria' => ['required', 'string', 'in:' . implode(',', $categoriaOptions)],
+            'precio' => 'required|integer|not_in:0',
+            'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|string|max:100',
             'activo' => 'nullable|boolean',
         ], [
@@ -31,7 +27,7 @@ class AdminProductoController extends Controller
             'descripcion.max' => 'La descripción no puede superar los :max caracteres.',
             'precio.required' => 'El precio es obligatorio.',
             'precio.integer' => 'El precio debe ser un número.',
-            'precio.min' => 'El precio debe ser mayor a 0.',
+            'precio.not_in' => 'El precio no puede ser 0.',
             'categoria.required' => 'La categoría es obligatoria.',
             'categoria.string' => 'La categoría debe ser texto.',
             'categoria.in' => 'La categoría seleccionada no es válida.',
@@ -53,17 +49,25 @@ class AdminProductoController extends Controller
     {
         $categoriaOptions = Categoria::pluck('nombre')->toArray();
 
-        if (empty($categoriaOptions)) {
-            $categoriaOptions = ['hamburguesas', 'empanadas', 'papas', 'bebidas', 'combos'];
-        }
-
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
             'descripcion' => 'nullable|string|max:500',
-            'precio' => 'required|integer|min:0',
-            'categoria' => ['required', 'string', 'in:' . implode(',', $categoriaOptions)],
+            'precio' => 'required|integer|not_in:0',
+            'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|string|max:100',
             'activo' => 'nullable|boolean',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.string' => 'El nombre debe ser texto.',
+            'nombre.max' => 'El nombre no puede superar los :max caracteres.',
+            'descripcion.string' => 'La descripción debe ser texto.',
+            'descripcion.max' => 'La descripción no puede superar los :max caracteres.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.integer' => 'El precio debe ser un número.',
+            'precio.not_in' => 'El precio no puede ser 0.',
+            'categoria.required' => 'La categoría es obligatoria.',
+            'categoria.string' => 'La categoría debe ser texto.',
+            'categoria.in' => 'La categoría seleccionada no es válida.',
         ]);
 
         $producto->update([

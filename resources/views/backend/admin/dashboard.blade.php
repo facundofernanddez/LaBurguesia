@@ -90,18 +90,26 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Categoría</label>
-                                    <select name="categoria" class="form-select">
-                                        <option value="">Selecciona una categoría</option>
-                                        @foreach ($categoriaOptions as $categoria)
-                                            <option value="{{ $categoria }}"
-                                                {{ old('categoria', $editingProducto->categoria ?? '') === $categoria ? 'selected' : '' }}>
-                                                {{ ucfirst($categoria) }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('categoria')
-                                        <small class="text-danger">{{ $message }}</small>
-                                    @enderror
+                                    @if (!empty($categoriaOptions) && count($categoriaOptions) > 0)
+                                        <select name="categoria" class="form-select">
+                                            <option value="">Selecciona una categoría</option>
+                                            @foreach ($categoriaOptions as $categoria)
+                                                <option value="{{ $categoria }}"
+                                                    {{ old('categoria', $editingProducto->categoria ?? '') === $categoria ? 'selected' : '' }}>
+                                                    {{ ucfirst($categoria) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('categoria')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
+                                    @else
+                                        <div class="alert alert-warning mb-0">No hay categorías. Crea una categoría en
+                                            la sección de abajo para poder agregar productos.
+                                            <a href="#categorias" class="btn btn-sm btn-secondary ms-2">Crear
+                                                categoría</a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -126,12 +134,16 @@
                             </div>
 
                             <div class="d-flex gap-2 mt-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ $editingProducto ? 'Actualizar producto' : 'Crear producto' }}
-                                </button>
-                                @if ($editingProducto)
-                                    <a href="{{ route('admin.dashboard') }}"
-                                        class="btn btn-outline-secondary">Cancelar</a>
+                                @if (!empty($categoriaOptions) && count($categoriaOptions) > 0)
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ $editingProducto ? 'Actualizar producto' : 'Crear producto' }}
+                                    </button>
+                                    @if ($editingProducto)
+                                        <a href="{{ route('admin.dashboard') }}"
+                                            class="btn btn-outline-secondary">Cancelar</a>
+                                    @endif
+                                @else
+                                    <a href="#categorias" class="btn btn-secondary">Crear categoría primero</a>
                                 @endif
                             </div>
                         </form>
@@ -246,7 +258,7 @@
             </div>
         </div>
 
-        <div class="card shadow-sm border-0 mt-4">
+        <div class="card shadow-sm border-0 mt-4" id="categorias">
             <div class="card-header bg-dark text-white">
                 <h4 class="mb-0">Gestión de categorías</h4>
             </div>
