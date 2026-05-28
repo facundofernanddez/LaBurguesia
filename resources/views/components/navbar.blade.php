@@ -34,7 +34,7 @@
                 </li>
                 @guest
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="/register">Regístrate</a>
+                        <a class="nav-link fw-bold" href="/login">Ingresar</a>
                     </li>
                 @else
                     @if (Auth::user()?->rol?->nombre === 'admin')
