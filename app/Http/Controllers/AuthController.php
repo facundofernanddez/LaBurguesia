@@ -6,6 +6,7 @@ use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -67,6 +68,16 @@ class AuthController extends Controller
             'email.email' => 'El correo no es válido.',
             'password.required' => 'La contraseña es obligatoria.',
         ]);
+
+        // Si el usuario existe y la contraseña es correcta, pero está inactivo,
+        // mostramos un mensaje de advertencia específico.
+        $usuario = Usuario::where('email', $request->email)->first();
+
+        if ($usuario && Hash::check($request->password, $usuario->password) && ! $usuario->activo) {
+            return back()->withErrors([
+                'email' => 'Usuario inactivo. Contacta al administrador.',
+            ]);
+        }
 
         if (Auth::attempt($credenciales)) {
             $request->session()->regenerate();
