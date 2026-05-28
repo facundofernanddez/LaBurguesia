@@ -19,6 +19,7 @@ class Usuario extends Authenticatable
         'password',
         'rol_id',
         'remember_token',
+        'activo',
     ];
 
     protected $hidden = [
@@ -26,10 +27,10 @@ class Usuario extends Authenticatable
         'remember_token',
     ];
 
-    protected function casts(): array
-    {
-        return ['password' => 'hashed'];
-    }
+    protected $casts = [
+        'password' => 'hashed',
+        'activo' => 'boolean',
+    ];
 
     public function rol()
     {

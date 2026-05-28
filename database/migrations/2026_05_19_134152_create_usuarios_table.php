@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->foreignId('rol_id')->constrained('roles')->onDelete('restrict');
             $table->string('remember_token');
+            $table->boolean('activo')->default(true);
             $table->softDeletes();
         });
     }

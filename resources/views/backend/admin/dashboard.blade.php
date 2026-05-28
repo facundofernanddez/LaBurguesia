@@ -221,7 +221,7 @@
                                     <th>Nombre</th>
                                     <th>Correo</th>
                                     <th>Rol</th>
-                                    <th>Registrado</th>
+                                    <th>Activo</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -247,8 +247,18 @@
                                                     class="btn btn-sm btn-outline-primary">Guardar</button>
                                             </form>
                                         </td>
-                                        <td>{{ $usuario->created_at?->format('d/m/Y H:i') ?? '-' }}</td>
-                                        <td></td>
+                                        <td>
+                                            <form action="{{ route('admin.usuarios.updateActivo', $usuario) }}" method="POST" class="d-flex align-items-center gap-2 mb-0">
+                                                @csrf
+                                                @method('PUT')
+                                                <input type="hidden" name="activo" value="0">
+                                                <div class="form-check form-switch mb-0">
+                                                    <input class="form-check-input" type="checkbox" name="activo" value="1" id="activo-{{ $usuario->id }}" {{ $usuario->activo ? 'checked' : '' }}>
+                                                    <label class="form-check-label" for="activo-{{ $usuario->id }}">{{ $usuario->activo ? 'Activo' : 'Inactivo' }}</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-sm btn-outline-primary">Guardar</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

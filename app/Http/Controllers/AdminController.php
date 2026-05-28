@@ -123,6 +123,15 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard')->with('success', 'Rol de usuario actualizado correctamente.');
     }
 
+    public function updateUsuarioActivo(Request $request, Usuario $usuario)
+    {
+        $activo = $request->boolean('activo');
+
+        $usuario->update(['activo' => $activo]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Estado de usuario actualizado correctamente.');
+    }
+
     public function storeCategoria(Request $request)
     {
         $validated = $request->validate([
