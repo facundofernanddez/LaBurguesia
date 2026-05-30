@@ -11,6 +11,19 @@
                     </div>
 
                     <div class="card-body-login p-4">
+                        @if ($errors->any())
+                            @php $emailError = $errors->first('email'); @endphp
+                            @if ($emailError && str_contains(strtolower($emailError), 'inactivo'))
+                                <div class="alert alert-warning">{{ $emailError }}</div>
+                            @else
+                                <div class="alert alert-danger">
+                                    @foreach ($errors->all() as $error)
+                                        <div>{{ $error }}</div>
+                                    @endforeach
+                                </div>
+                            @endif
+                        @endif
+
                         <form action="{{ route('login.store') }}" method="POST">
                             @csrf
 
