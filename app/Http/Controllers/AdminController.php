@@ -85,6 +85,18 @@ class AdminController extends Controller
             'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|string|max:100',
             'activo' => 'nullable|boolean',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.string' => 'El nombre debe ser texto.',
+            'nombre.max' => 'El nombre no puede superar los :max caracteres.',
+            'descripcion.string' => 'La descripción debe ser texto.',
+            'descripcion.max' => 'La descripción no puede superar los :max caracteres.',
+            'precio.required' => 'El precio es obligatorio.',
+            'precio.integer' => 'El precio debe ser un número.',
+            'precio.min' => 'El precio debe ser mayor a 0.',
+            'categoria.required' => 'La categoría es obligatoria.',
+            'categoria.string' => 'La categoría debe ser texto.',
+            'categoria.in' => 'La categoría seleccionada no es válida.',
         ]);
 
         $producto->update([
@@ -110,6 +122,10 @@ class AdminController extends Controller
     {
         $validated = $request->validate([
             'rol' => 'required|string|in:admin,cliente',
+        ], [
+            'rol.required' => 'El rol es obligatorio.',
+            'rol.string' => 'El rol debe ser texto.',
+            'rol.in' => 'El rol seleccionado no es válido.',
         ]);
 
         $rol = Rol::where('nombre', $validated['rol'])->first();
@@ -137,6 +153,11 @@ class AdminController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:100|unique:categorias,nombre',
             'descripcion' => 'nullable|string|max:500',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.max' => 'El nombre debe tener como máximo 100 caracteres.',
+            'nombre.unique' => 'El nombre ya existe.',
+            'descripcion.max' => 'La descripción debe tener como máximo 500 caracteres.',
         ]);
 
         Categoria::create($validated);
@@ -149,6 +170,11 @@ class AdminController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:100|unique:categorias,nombre,'.$categoria->id,
             'descripcion' => 'nullable|string|max:500',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.max' => 'El nombre debe tener como máximo 100 caracteres.',
+            'nombre.unique' => 'El nombre ya existe.',
+            'descripcion.max' => 'La descripción debe tener como máximo 500 caracteres.',
         ]);
 
         $oldName = $categoria->nombre;
