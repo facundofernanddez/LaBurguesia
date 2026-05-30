@@ -13,6 +13,11 @@ class AdminCategoriaController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:100|unique:categorias,nombre',
             'descripcion' => 'nullable|string|max:500',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.max' => 'El nombre debe tener como máximo 100 caracteres.',
+            'nombre.unique' => 'El nombre ya existe.',
+            'descripcion.max' => 'La descripción debe tener como máximo 500 caracteres.',
         ]);
 
         Categoria::create($validated);
@@ -25,6 +30,11 @@ class AdminCategoriaController extends Controller
         $validated = $request->validate([
             'nombre' => 'required|string|max:100|unique:categorias,nombre,'.$categoria->id,
             'descripcion' => 'nullable|string|max:500',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.max' => 'El nombre debe tener como máximo 100 caracteres.',
+            'nombre.unique' => 'El nombre ya existe.',
+            'descripcion.max' => 'La descripción debe tener como máximo 500 caracteres.',
         ]);
 
         $oldName = $categoria->nombre;
