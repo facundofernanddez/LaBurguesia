@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Contacto;
 use App\Models\Producto;
 use App\Models\Rol;
 use App\Models\Usuario;
@@ -17,6 +18,7 @@ class AdminController extends Controller
         $productos = Producto::orderBy('created_at', 'desc')->get();
         $categorias = Categoria::orderBy('nombre')->get();
         $categoriaOptions = $categorias->pluck('nombre')->toArray();
+        $contactos = Contacto::orderBy('created_at', 'desc')->get();
 
         $editingProducto = $request->filled('edit_producto')
             ? Producto::find($request->edit_producto)
@@ -33,7 +35,8 @@ class AdminController extends Controller
             'categorias',
             'categoriaOptions',
             'editingProducto',
-            'editingCategoria'
+            'editingCategoria',
+            'contactos'
         ));
     }
 

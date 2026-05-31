@@ -45,34 +45,48 @@
                         @csrf
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
-                            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                            <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" 
+                                placeholder="Tu nombre" value="{{ old('nombre') }}">
+                            @error('nombre')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="tu@email.com"
-                                required>
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" 
+                                placeholder="tu@email.com" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Motivo</label>
-                            <input type="text" name="motivo" class="form-control"
-                                placeholder="El motivo de tu consulta" required>
+                            <input type="text" name="motivo" class="form-control @error('motivo') is-invalid @enderror" 
+                                placeholder="El motivo de tu consulta" value="{{ old('motivo') }}">
+                            @error('motivo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Mensaje</label>
-                            <textarea class="form-control" name="mensaje" rows="4" placeholder="Tu mensaje..." required></textarea>
+                            <textarea class="form-control @error('mensaje') is-invalid @enderror" name="mensaje" 
+                                rows="4" placeholder="Tu mensaje...">{{ old('mensaje') }}</textarea>
+                            @error('mensaje')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary mb-1">Enviar</button>
                     </form>
                 </div>
             </x-card-beige>
         </div>
-
+ 
         <div class="col-md-7 gap-5">
             <div class="p-4 text-center text-white bg-rojo rounded">
                 <h3 class="mb-3 f-white">🍔 ¡Visítanos!</h3>
                 <p>Estamos esperándote para que pruebes las mejores hamburguesas.</p>
             </div>
-
+ 
             <!-- Mapa de Google -->
             <div class="mt-4">
                 <iframe width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
@@ -83,16 +97,12 @@
         </div>
     </div>
 </x-layout>
-
+ 
+@if (session('success'))
 <script>
-    document.getElementById('formContacto').addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Show toast
+    document.addEventListener('DOMContentLoaded', function() {
         var toast = new bootstrap.Toast(document.getElementById('toastEnviar'));
         toast.show();
-
-        // Reset form
-        this.reset();
     });
 </script>
+@endif
