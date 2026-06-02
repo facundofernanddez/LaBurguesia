@@ -1,11 +1,23 @@
 <x-layout title="Contacto">
-    <!-- Toast notification -->
+    <!-- Toast notifications -->
     <div class="toast-container position-fixed top-0 start-50 translate-middle-x" style="z-index: 9999;">
+        <!-- Success Toast -->
         <div id="toastEnviar" class="toast align-items-center text-white bg-success border-0 shadow" role="alert"
             aria-live="assertive" aria-atomic="true" style="animation: slideDown 0.5s ease-out;">
             <div class="d-flex">
                 <div class="toast-body">
                     ✅ ¡Mensaje enviado con éxito! Nos contactaremos pronto.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+
+        <!-- Error Toast -->
+        <div id="toastError" class="toast align-items-center text-white bg-danger border-0 shadow" role="alert"
+            aria-live="assertive" aria-atomic="true" style="animation: slideDown 0.5s ease-out;">
+            <div class="d-flex">
+                <div class="toast-body">
+                    ❌ {{ session('error') }}
                 </div>
                 <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
@@ -102,6 +114,15 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var toast = new bootstrap.Toast(document.getElementById('toastEnviar'));
+        toast.show();
+    });
+</script>
+@endif
+
+@if (session('error'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var toast = new bootstrap.Toast(document.getElementById('toastError'));
         toast.show();
     });
 </script>

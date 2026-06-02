@@ -33,8 +33,11 @@ class ContactoController extends Controller
             'mensaje.max' => 'El mensaje no puede superar los :max caracteres.',
         ]);
 
-        Contacto::create($validated);
-
-        return redirect()->back()->with('success', '¡Mensaje enviado con éxito! Nos contactaremos pronto.');
+        try {
+            Contacto::create($validated);
+            return redirect()->back()->with('success', '¡Mensaje enviado con éxito! Nos contactaremos pronto.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', 'Ocurrió un error inesperado al enviar el mensaje. Intente de nuevo.');
+        }
     }
 }
