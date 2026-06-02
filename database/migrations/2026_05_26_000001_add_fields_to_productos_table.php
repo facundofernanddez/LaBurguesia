@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('categoria')->after('precio');
             $table->string('imagen')->nullable()->after('categoria');
             $table->boolean('activo')->default(true)->after('imagen');
+            $table->integer('stock')->default(0)->after('activo');
         });
     }
 
@@ -34,6 +35,7 @@ return new class extends Migration
                 'categoria',
                 'imagen',
                 'activo',
+                'stock',
             ]);
         });
     }

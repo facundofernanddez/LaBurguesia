@@ -1,77 +1,82 @@
 <x-layout title="Menú">
     <h1 class="mb-4 text-center"><span class="bg-blur p-2">Nuestro Menú</span></h1>
 
-    <!-- Filtros -->
-    <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
-        <a href="/catalogo?categoria=todos" class="btn btn-marron">
-            <span class="{{ $categoria === 'todos' ? 'texto-activo' : '' }}">Todos</span>
-        </a>
-        <a href="/catalogo?categoria=hamburguesas" class="btn btn-marron">
-            <span class="{{ $categoria === 'hamburguesas' ? 'texto-activo' : '' }}">Hamburguesas</span>
-        </a>
-        <a href="/catalogo?categoria=empanadas" class="btn btn-marron">
-            <span class="{{ $categoria === 'empanadas' ? 'texto-activo' : '' }}">Empanadas</span>
-        </a>
-        <a href="/catalogo?categoria=papas" class="btn btn-marron">
-            <span class="{{ $categoria === 'papas' ? 'texto-activo' : '' }}">Papas Fritas</span>
-        </a>
-        <a href="/catalogo?categoria=bebidas" class="btn btn-marron">
-            <span class="{{ $categoria === 'bebidas' ? 'texto-activo' : '' }}">Bebidas</span>
-        </a>
-        <a href="/catalogo?categoria=combos" class="btn btn-marron">
-            <span class="{{ $categoria === 'combos' ? 'texto-activo' : '' }}">Combos</span>
-        </a>
-    </div>
+    @if ($productos->isEmpty() && $categoria === 'todos')
+        <div class="alert alert-warning text-center py-5 shadow-sm rounded-4 mt-4">
+            <h3 class="fw-bold mb-2">🍔 Catálogo vacío</h3>
+            <p class="text-muted mb-0">No hay productos cargados en el catálogo actualmente. Vuelve más tarde.</p>
+        </div>
+    @else
+        <!-- Filtros -->
+        <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+            <a href="/catalogo?categoria=todos" class="btn btn-marron">
+                <span class="{{ $categoria === 'todos' ? 'texto-activo' : '' }}">Todos</span>
+            </a>
+            @foreach ($categorias as $cat)
+                <a href="/catalogo?categoria={{ $cat->nombre }}" class="btn btn-marron">
+                    <span class="{{ $categoria === $cat->nombre ? 'texto-activo' : '' }}">{{ ucfirst($cat->nombre) }}</span>
+                </a>
+            @endforeach
+        </div>
 
-    <div class="row">
-        @foreach ($productos as $producto)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card-producto">
-                    <div class="position-relative">
-                        <img src="{{ asset('img/' . $producto['imagen']) }}" class="card-img"
-                            alt="{{ $producto['nombre'] }}">
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="categoria">{{ $producto['categoria_nombre'] }}</span>
+        <div class="row">
+            @forelse ($productos as $producto)
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card-producto">
+                        <div class="position-relative">
+                            <img src="{{ asset($producto->imagen ? 'img/' . $producto->imagen : 'img/logo.png') }}" class="card-img"
+                                alt="{{ $producto->nombre }}">
                         </div>
-                        <h3 class="titulo">{{ $producto['nombre'] }}</h3>
-                        <p class="descripcion">{{ $producto['descripcion'] }}</p>
-                        <div class="card-footer-custom">
-                            <span class="precio">${{ $producto['precio'] }}</span>
-                            <button class="btn-agregar" data-id="{{ $producto['id'] }}"
-                                data-nombre="{{ $producto['nombre'] }}" data-precio="{{ $producto['precio'] }}"
-                                data-imagen="{{ $producto['imagen'] }}">
-                                + Agregar
-                            </button>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="categoria">{{ ucfirst($producto->categoria) }}</span>
+                            </div>
+                            <h3 class="titulo">{{ $producto->nombre }}</h3>
+                            <p class="descripcion">{{ $producto->descripcion }}</p>
+                            <div class="card-footer-custom">
+                                <span class="precio">${{ number_format($producto->precio, 0, ',', '.') }}</span>
+                                @if ($producto->stock > 0)
+                                    <button class="btn-agregar" data-id="{{ $producto->id }}"
+                                        data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->precio }}"
+                                        data-imagen="{{ $producto->imagen }}">
+                                        + Agregar
+                                    </button>
+                                @else
+                                    <span class="badge bg-danger position-static">Sin Stock</span>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            @empty
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted fs-5">No hay productos disponibles en esta categoría.</p>
+                </div>
+            @endforelse
 
-        <script>
-            document.querySelectorAll('.btn-agregar').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const producto = {
-                        id: this.dataset.id,
-                        nombre: this.dataset.nombre,
-                        precio: parseInt(this.dataset.precio),
-                        imagen: this.dataset.imagen,
-                        cantidad: 1
-                    };
+            <script>
+                document.querySelectorAll('.btn-agregar').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const producto = {
+                            id: this.dataset.id,
+                            nombre: this.dataset.nombre,
+                            precio: parseInt(this.dataset.precio),
+                            imagen: this.dataset.imagen,
+                            cantidad: 1
+                        };
 
-                    let cart = JSON.parse(localStorage.getItem('carrito')) || [];
-                    cart.push(producto);
-                    localStorage.setItem('carrito', JSON.stringify(cart));
+                        let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                        cart.push(producto);
+                        localStorage.setItem('carrito', JSON.stringify(cart));
 
-                    const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCart'));
-                    offcanvas.show();
+                        const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCart'));
+                        offcanvas.show();
+                    });
                 });
-            });
-        </script>
+            </script>
 
-    </div>
+        </div>
+    @endif
 
     <style>
         .card-producto {

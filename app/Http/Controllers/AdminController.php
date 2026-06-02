@@ -51,6 +51,7 @@ class AdminController extends Controller
             'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|string|max:100',
             'activo' => 'nullable|boolean',
+            'stock' => 'required|integer|min:0',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.string' => 'El nombre debe ser texto.',
@@ -63,6 +64,9 @@ class AdminController extends Controller
             'categoria.required' => 'La categoría es obligatoria.',
             'categoria.string' => 'La categoría debe ser texto.',
             'categoria.in' => 'La categoría seleccionada no es válida.',
+            'stock.required' => 'El stock es obligatorio.',
+            'stock.integer' => 'El stock debe ser un número entero.',
+            'stock.min' => 'El stock no puede ser menor a 0.',
         ]);
 
         Producto::create([
@@ -72,6 +76,7 @@ class AdminController extends Controller
             'categoria' => $validated['categoria'],
             'imagen' => $validated['imagen'] ?? null,
             'activo' => $request->boolean('activo'),
+            'stock' => $validated['stock'],
         ]);
 
         return redirect()->route('admin.dashboard')->with('success', 'Producto creado correctamente.');
@@ -88,6 +93,7 @@ class AdminController extends Controller
             'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|string|max:100',
             'activo' => 'nullable|boolean',
+            'stock' => 'required|integer|min:0',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.string' => 'El nombre debe ser texto.',
@@ -100,6 +106,9 @@ class AdminController extends Controller
             'categoria.required' => 'La categoría es obligatoria.',
             'categoria.string' => 'La categoría debe ser texto.',
             'categoria.in' => 'La categoría seleccionada no es válida.',
+            'stock.required' => 'El stock es obligatorio.',
+            'stock.integer' => 'El stock debe ser un número entero.',
+            'stock.min' => 'El stock no puede ser menor a 0.',
         ]);
 
         $producto->update([
@@ -109,6 +118,7 @@ class AdminController extends Controller
             'categoria' => $validated['categoria'],
             'imagen' => $validated['imagen'] ?? null,
             'activo' => $request->boolean('activo'),
+            'stock' => $validated['stock'],
         ]);
 
         return redirect()->route('admin.dashboard')->with('success', 'Producto actualizado correctamente.');

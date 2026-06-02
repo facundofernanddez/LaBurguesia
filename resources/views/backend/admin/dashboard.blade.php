@@ -56,7 +56,7 @@
 
                         <form
                             action="{{ $editingProducto ? route('admin.productos.update', $editingProducto) : route('admin.productos.store') }}"
-                            method="POST">
+                            method="POST" enctype="multipart/form-data">
                             @csrf
                             @if ($editingProducto)
                                 @method('PUT')
@@ -114,16 +114,27 @@
                             </div>
 
                             <div class="row g-3 mt-1">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="form-label">Imagen</label>
-                                    <input type="text" name="imagen" class="form-control"
-                                        value="{{ old('imagen', $editingProducto->imagen ?? '') }}"
-                                        placeholder="ej: burger.png">
+                                    <input type="file" name="imagen" class="form-control" accept="image/*">
+                                    @if ($editingProducto && $editingProducto->imagen)
+                                        <div class="mt-1 text-muted small">
+                                            Actual: <code>{{ $editingProducto->imagen }}</code>
+                                        </div>
+                                    @endif
                                     @error('imagen')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <div class="col-md-6 d-flex align-items-end">
+                                <div class="col-md-4">
+                                    <label class="form-label">Stock</label>
+                                    <input type="number" min="0" name="stock" class="form-control"
+                                        value="{{ old('stock', $editingProducto->stock ?? 0) }}">
+                                    @error('stock')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end justify-content-center pb-2">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="activo" id="activo"
                                             value="1"
@@ -159,28 +170,34 @@
                             <div class="alert alert-info mb-0">Todavía no hay productos cargados.</div>
                         @else
                             <div class="table-responsive">
-                                <table class="table table-hover align-middle mb-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Categoría</th>
-                                            <th>Precio</th>
-                                            <th>Estado</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
+                                 <table class="table table-hover align-middle mb-0">
+                                     <thead>
+                                         <tr>
+                                             <th>Nombre</th>
+                                             <th>Categoría</th>
+                                             <th>Precio</th>
+                                             <th>Stock</th>
+                                             <th>Estado</th>
+                                             <th></th>
+                                         </tr>
+                                     </thead>
                                     <tbody>
                                         @foreach ($productos as $producto)
                                             <tr>
                                                 <td>{{ $producto->nombre }}</td>
                                                 <td>{{ ucfirst($producto->categoria) }}</td>
-                                                <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
-                                                <td>
-                                                    <span
-                                                        class="badge {{ $producto->activo ? 'bg-success' : 'bg-secondary' }}">
-                                                        {{ $producto->activo ? 'Activo' : 'Inactivo' }}
-                                                    </span>
-                                                </td>
+                                                 <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
+                                                 <td>
+                                                     <span class="badge {{ $producto->stock > 0 ? 'bg-info' : 'bg-danger' }}">
+                                                         {{ $producto->stock }}
+                                                     </span>
+                                                 </td>
+                                                 <td>
+                                                     <span
+                                                         class="badge {{ $producto->activo ? 'bg-success' : 'bg-secondary' }}">
+                                                         {{ $producto->activo ? 'Activo' : 'Inactivo' }}
+                                                     </span>
+                                                 </td>
                                                 <td>
                                                     <div class="d-flex justify-content-end gap-2">
                                                         <a href="{{ route('admin.dashboard', ['edit_producto' => $producto->id]) }}"
