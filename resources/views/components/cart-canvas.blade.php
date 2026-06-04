@@ -8,10 +8,18 @@
         <div id="carrito-items"></div>
 
         <div id="carrito-total" class="mt-3 pt-3 border-top d-none">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between mb-3">
                 <strong>Total:</strong>
                 <strong id="total-precio">$0</strong>
             </div>
+            @guest
+                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Inicia sesión para iniciar tu compra</a>
+            @else
+                <button id="btn-comprar" class="btn btn-success w-100 fw-bold">
+                    <span id="btn-comprar-texto">Comprar</span>
+                    <span id="btn-comprar-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            @endguest
         </div>
     </div>
 </div>
@@ -65,4 +73,63 @@
 
     // Cargar al abrir el offcanvas
     document.getElementById('offcanvasCart').addEventListener('shown.bs.offcanvas', mostrarCarrito);
+
+    // Comprar
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnComprar = document.getElementById('btn-comprar');
+        if (btnComprar) {
+            btnComprar.addEventListener('click', async function() {
+                const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                if (cart.length === 0) return;
+
+                const btnTexto = document.getElementById('btn-comprar-texto');
+                const btnSpinner = document.getElementById('btn-comprar-spinner');
+                btnComprar.disabled = true;
+                btnTexto.textContent = 'Procesando...';
+                btnSpinner.classList.remove('d-none');
+
+                try {
+                    const response = await fetch('/carrito/comprar', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ carrito: cart })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        localStorage.removeItem('carrito');
+                        mostrarCarrito();
+
+                        // Cerrar el offcanvas
+                        const offcanvasEl = document.getElementById('offcanvasCart');
+                        const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+                        if (offcanvas) {
+                            offcanvas.hide();
+                        }
+
+                        // Mostrar toast
+                        const toastEl = document.getElementById('compraToast');
+                        if (toastEl) {
+                            const toast = new bootstrap.Toast(toastEl);
+                            toast.show();
+                        }
+                    } else {
+                        alert(data.message || 'Hubo un problema al procesar tu compra.');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('Ocurrió un error inesperado al conectar con el servidor.');
+                } finally {
+                    btnComprar.disabled = false;
+                    btnTexto.textContent = 'Comprar';
+                    btnSpinner.classList.add('d-none');
+                }
+            });
+        }
+    });
 </script>

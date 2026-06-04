@@ -2,9 +2,97 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Producto;
+use App\Models\Venta;
+use App\Models\VentaDetalle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
-    //
+    public function comprar(Request $request)
+    {
+        $cart = $request->input('carrito', []);
+
+        if (empty($cart)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'El carrito está vacío.'
+            ], 400);
+        }
+
+        try {
+            DB::beginTransaction();
+
+            $total = 0;
+            $itemsToProcess = [];
+
+            foreach ($cart as $item) {
+                $producto = Producto::find($item['id']);
+
+                if (!$producto) {
+                    throw new \Exception("El producto ya no está disponible.");
+                }
+
+                // Si por alguna razón no está activo
+                if (!$producto->activo) {
+                    throw new \Exception("El producto '{$producto->nombre}' ya no está activo para su venta.");
+                }
+
+                $cantidad = isset($item['cantidad']) ? (int)$item['cantidad'] : 1;
+
+                if ($producto->stock < $cantidad) {
+                    throw new \Exception("Stock insuficiente para: {$producto->nombre} (Quedan: {$producto->stock})");
+                }
+
+                $precioUnitario = $producto->precio;
+                $total += $precioUnitario * $cantidad;
+
+                $itemsToProcess[] = [
+                    'producto' => $producto,
+                    'cantidad' => $cantidad,
+                    'precio_unitario' => $precioUnitario,
+                ];
+            }
+
+            // Registrar la venta
+            $venta = Venta::create([
+                'usuario_id' => auth()->id(),
+                'total' => $total,
+            ]);
+
+            // Registrar los detalles de la venta y actualizar stock
+            foreach ($itemsToProcess as $processItem) {
+                $prod = $processItem['producto'];
+                $cant = $processItem['cantidad'];
+                $pu = $processItem['precio_unitario'];
+
+                // Descontar del stock
+                $prod->stock -= $cant;
+                $prod->save();
+
+                // Crear detalle
+                VentaDetalle::create([
+                    'venta_id' => $venta->id,
+                    'producto_id' => $prod->id,
+                    'cantidad' => $cant,
+                    'precio_unitario' => $pu,
+                ]);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => '¡Compra realizada con éxito!'
+            ]);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 422);
+        }
+    }
 }

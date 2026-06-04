@@ -52,6 +52,10 @@ Route::get('/', function () {
     return view('/frontend/home');
 })->name('Inicio');
 
+Route::post('/carrito/comprar', [App\Http\Controllers\ClienteController::class, 'comprar'])
+    ->middleware('auth')
+    ->name('carrito.comprar');
+
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 

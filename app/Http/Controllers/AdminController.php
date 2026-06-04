@@ -7,6 +7,7 @@ use App\Models\Contacto;
 use App\Models\Producto;
 use App\Models\Rol;
 use App\Models\Usuario;
+use App\Models\Venta;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -19,6 +20,33 @@ class AdminController extends Controller
         $categorias = Categoria::orderBy('nombre')->get();
         $categoriaOptions = $categorias->pluck('nombre')->toArray();
         $contactos = Contacto::orderBy('created_at', 'desc')->get();
+
+        // Consulta de ventas con relaciones
+        $ventasQuery = Venta::with(['usuario', 'detalles.producto'])
+            ->orderBy('created_at', 'desc');
+
+        // Filtro por usuario
+        if ($request->filled('filtrar_usuario')) {
+            $ventasQuery->where('usuario_id', $request->filtrar_usuario);
+        }
+
+        // Filtro por producto
+        if ($request->filled('filtrar_producto')) {
+            $ventasQuery->whereHas('detalles', function ($q) use ($request) {
+                $q->where('producto_id', $request->filtrar_producto);
+            });
+        }
+
+        // Filtros por fecha
+        if ($request->filled('filtrar_fecha_desde')) {
+            $ventasQuery->whereDate('created_at', '>=', $request->filtrar_fecha_desde);
+        }
+
+        if ($request->filled('filtrar_fecha_hasta')) {
+            $ventasQuery->whereDate('created_at', '<=', $request->filtrar_fecha_hasta);
+        }
+
+        $ventas = $ventasQuery->get();
 
         $editingProducto = $request->filled('edit_producto')
             ? Producto::find($request->edit_producto)
@@ -36,7 +64,8 @@ class AdminController extends Controller
             'categoriaOptions',
             'editingProducto',
             'editingCategoria',
-            'contactos'
+            'contactos',
+            'ventas'
         ));
     }
 
