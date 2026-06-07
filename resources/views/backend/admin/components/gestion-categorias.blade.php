@@ -52,8 +52,11 @@
                 @if ($categorias->isEmpty())
                     <div class="alert alert-info mb-0">No hay categorías registradas aún.</div>
                 @else
+                    <!-- Buscador de categorías -->
+                    <x-search-input id="buscarCategoria" placeholder="Buscar por nombre o descripción..." />
+
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
+                        <table class="table table-hover align-middle mb-0" id="tablaCategorias">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -61,11 +64,11 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="cuerpoTablaCategorias">
                                 @foreach ($categorias as $categoria)
-                                    <tr>
-                                        <td>{{ ucfirst($categoria->nombre) }}</td>
-                                        <td>{{ $categoria->descripcion }}</td>
+                                    <tr class="fila-categoria">
+                                        <td class="col-nombre">{{ ucfirst($categoria->nombre) }}</td>
+                                        <td class="col-descripcion">{{ $categoria->descripcion }}</td>
                                         <td>
                                             <div class="d-flex justify-content-end gap-2">
                                                 <a href="{{ route('admin.dashboard', ['edit_categoria' => $categoria->id]) }}"
@@ -82,6 +85,12 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <!-- Fila de sin resultados -->
+                                <tr id="sinResultadosCategorias" style="display: none;">
+                                    <td colspan="3" class="text-center text-muted py-3">
+                                        No se encontraron categorías que coincidan con la búsqueda.
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -90,3 +99,40 @@
         </div>
     </div>
 </div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputBuscar = document.getElementById('buscarCategoria');
+        const cuerpoTabla = document.getElementById('cuerpoTablaCategorias');
+        const filaSinResultados = document.getElementById('sinResultadosCategorias');
+
+        if (inputBuscar && cuerpoTabla) {
+            const filas = cuerpoTabla.querySelectorAll('.fila-categoria');
+
+            inputBuscar.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                let coincidencias = 0;
+
+                filas.forEach(fila => {
+                    const nombre = fila.querySelector('.col-nombre').textContent.toLowerCase();
+                    const descripcion = fila.querySelector('.col-descripcion').textContent.toLowerCase();
+
+                    if (nombre.includes(query) || descripcion.includes(query)) {
+                        fila.style.display = '';
+                        coincidencias++;
+                    } else {
+                        fila.style.display = 'none';
+                    }
+                });
+
+                if (coincidencias === 0) {
+                    filaSinResultados.style.display = '';
+                } else {
+                    filaSinResultados.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>

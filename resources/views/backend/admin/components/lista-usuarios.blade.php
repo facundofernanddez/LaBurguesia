@@ -7,8 +7,15 @@
         @if ($usuariosList->isEmpty())
             <div class="alert alert-info mb-0">No hay usuarios registrados aún.</div>
         @else
+            <!-- Buscador de usuarios -->
+            <div class="row mb-3">
+                <div class="col-md-6 col-lg-4">
+                    <x-search-input id="buscarUsuario" placeholder="Buscar por nombre o correo..." />
+                </div>
+            </div>
+
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
+                <table class="table table-hover align-middle mb-0" id="tablaUsuarios">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -18,11 +25,11 @@
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="cuerpoTablaUsuarios">
                         @foreach ($usuariosList as $usuario)
-                            <tr>
-                                <td>{{ $usuario->nombre }}</td>
-                                <td>{{ $usuario->email }}</td>
+                            <tr class="fila-usuario">
+                                <td class="col-nombre">{{ $usuario->nombre }}</td>
+                                <td class="col-email">{{ $usuario->email }}</td>
                                 <td>
                                     <form action="{{ route('admin.usuarios.updateRol', $usuario) }}"
                                                 method="POST" class="d-flex gap-2 align-items-center mb-0">
@@ -54,9 +61,52 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <!-- Fila de sin resultados -->
+                        <tr id="sinResultadosUsuarios" style="display: none;">
+                            <td colspan="5" class="text-center text-muted py-3">
+                                No se encontraron usuarios que coincidan con la búsqueda.
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         @endif
     </div>
 </div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputBuscar = document.getElementById('buscarUsuario');
+        const cuerpoTabla = document.getElementById('cuerpoTablaUsuarios');
+        const filaSinResultados = document.getElementById('sinResultadosUsuarios');
+
+        if (inputBuscar && cuerpoTabla) {
+            const filas = cuerpoTabla.querySelectorAll('.fila-usuario');
+
+            inputBuscar.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                let coincidencias = 0;
+
+                filas.forEach(fila => {
+                    const nombre = fila.querySelector('.col-nombre').textContent.toLowerCase();
+                    const email = fila.querySelector('.col-email').textContent.toLowerCase();
+
+                    if (nombre.includes(query) || email.includes(query)) {
+                        fila.style.display = '';
+                        coincidencias++;
+                    } else {
+                        fila.style.display = 'none';
+                    }
+                });
+
+                if (coincidencias === 0) {
+                    filaSinResultados.style.display = '';
+                } else {
+                    filaSinResultados.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>

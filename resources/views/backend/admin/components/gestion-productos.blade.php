@@ -125,8 +125,11 @@
                 @if ($productos->isEmpty())
                     <div class="alert alert-info mb-0">Todavía no hay productos cargados.</div>
                 @else
+                    <!-- Buscador de productos -->
+                    <x-search-input id="buscarProducto" placeholder="Buscar por nombre o categoría..." />
+
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
+                        <table class="table table-hover align-middle mb-0" id="tablaProductos">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -137,11 +140,11 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="cuerpoTablaProductos">
                                 @foreach ($productos as $producto)
-                                    <tr>
-                                        <td>{{ $producto->nombre }}</td>
-                                        <td>{{ ucfirst($producto->categoria) }}</td>
+                                    <tr class="fila-producto">
+                                        <td class="col-nombre">{{ $producto->nombre }}</td>
+                                        <td class="col-categoria">{{ ucfirst($producto->categoria) }}</td>
                                         <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
                                         <td>
                                             <span class="badge {{ $producto->stock > 0 ? 'bg-info' : 'bg-danger' }}">
@@ -170,6 +173,12 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <!-- Fila de sin resultados -->
+                                <tr id="sinResultadosProductos" style="display: none;">
+                                    <td colspan="6" class="text-center text-muted py-3">
+                                        No se encontraron productos que coincidan con la búsqueda.
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -179,8 +188,11 @@
     </div>
 </div>
 
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Script para label de imagen
         const imagenInput = document.getElementById('imagen');
         const imagenLabel = document.getElementById('imagen-label');
 
@@ -197,6 +209,38 @@
                     imagenLabel.innerHTML = originalHTML;
                     imagenLabel.classList.remove('btn-success', 'text-white');
                     imagenLabel.classList.add('btn-outline-secondary');
+                }
+            });
+        }
+
+        // Script para buscador dinámico
+        const inputBuscar = document.getElementById('buscarProducto');
+        const cuerpoTabla = document.getElementById('cuerpoTablaProductos');
+        const filaSinResultados = document.getElementById('sinResultadosProductos');
+
+        if (inputBuscar && cuerpoTabla) {
+            const filas = cuerpoTabla.querySelectorAll('.fila-producto');
+
+            inputBuscar.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                let coincidencias = 0;
+
+                filas.forEach(fila => {
+                    const nombre = fila.querySelector('.col-nombre').textContent.toLowerCase();
+                    const categoria = fila.querySelector('.col-categoria').textContent.toLowerCase();
+
+                    if (nombre.includes(query) || categoria.includes(query)) {
+                        fila.style.display = '';
+                        coincidencias++;
+                    } else {
+                        fila.style.display = 'none';
+                    }
+                });
+
+                if (coincidencias === 0) {
+                    filaSinResultados.style.display = '';
+                } else {
+                    filaSinResultados.style.display = 'none';
                 }
             });
         }
