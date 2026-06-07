@@ -4,6 +4,7 @@
         <h5 class="offcanvas-title">Tu Carrito</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
+    <hr class="my-0" style="border-top: 2px solid var(--marron); opacity: 0.25;">
     <div class="offcanvas-body">
         <div id="carrito-items"></div>
 
@@ -37,15 +38,21 @@
         } else {
             let total = 0;
             container.innerHTML = cart.map((item, index) => {
-                total += item.precio;
+                total += item.precio * item.cantidad;
+                const esMaxStock = item.cantidad >= item.stock;
                 return `
                 <div class="card mb-2" style="max-height: 100px;">
                     <div class="card-body p-2 d-flex align-items-center">
                         <img src="${item.imagen ? '/img/' + item.imagen : '/img/hambur1.png'}" alt="${item.nombre}" 
                              class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
                         <div class="flex-grow-1">
-                            <h6 class="mb-1">${item.nombre}</h6>
+                            <h6 class="mb-1" style="font-size: 14px;">${item.nombre}</h6>
                             <small class="text-muted">$${item.precio}</small>
+                        </div>
+                        <div class="d-flex align-items-center gap-1 me-2">
+                            <button class="btn btn-sm btn-outline-secondary px-2 py-0 btn-disminuir" data-index="${index}">-</button>
+                            <span class="fw-bold px-1" style="font-size: 14px;">${item.cantidad}</span>
+                            <button class="btn btn-sm btn-outline-secondary px-2 py-0 btn-incrementar" data-index="${index}" ${esMaxStock ? 'disabled' : ''}>+</button>
                         </div>
                         <button class="btn btn-sm btn-danger eliminar-item" data-index="${index}">
                             <i class="bi bi-trash"></i>
@@ -59,6 +66,42 @@
         }
     }
 
+    // Incrementar cantidad
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.btn-incrementar')) {
+            const btn = e.target.closest('.btn-incrementar');
+            const index = parseInt(btn.dataset.index);
+            let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            if (cart[index]) {
+                if (cart[index].cantidad < cart[index].stock) {
+                    cart[index].cantidad += 1;
+                    localStorage.setItem('carrito', JSON.stringify(cart));
+                    window.dispatchEvent(new CustomEvent('cart-updated'));
+                }
+            }
+        }
+    });
+
+    // Disminuir cantidad
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.btn-disminuir')) {
+            const btn = e.target.closest('.btn-disminuir');
+            const index = parseInt(btn.dataset.index);
+            let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+            
+            if (cart[index]) {
+                if (cart[index].cantidad > 1) {
+                    cart[index].cantidad -= 1;
+                } else {
+                    cart.splice(index, 1);
+                }
+                localStorage.setItem('carrito', JSON.stringify(cart));
+                window.dispatchEvent(new CustomEvent('cart-updated'));
+            }
+        }
+    });
+
     // Eliminar item
     document.addEventListener('click', function(e) {
         if (e.target.closest('.eliminar-item')) {
@@ -67,12 +110,15 @@
             let cart = JSON.parse(localStorage.getItem('carrito')) || [];
             cart.splice(index, 1);
             localStorage.setItem('carrito', JSON.stringify(cart));
-            mostrarCarrito();
+            window.dispatchEvent(new CustomEvent('cart-updated'));
         }
     });
 
     // Cargar al abrir el offcanvas
     document.getElementById('offcanvasCart').addEventListener('shown.bs.offcanvas', mostrarCarrito);
+
+    // Sincronizar dinámicamente ante cualquier actualización del carrito
+    window.addEventListener('cart-updated', mostrarCarrito);
 
     // Comprar
     document.addEventListener('DOMContentLoaded', function() {
@@ -103,7 +149,9 @@
 
                     if (response.ok && data.success) {
                         localStorage.removeItem('carrito');
-                        mostrarCarrito();
+                        
+                        // Notificar la actualización (el stock bajó en DB, el carrito local se vació)
+                        window.dispatchEvent(new CustomEvent('cart-updated'));
 
                         // Cerrar el offcanvas
                         const offcanvasEl = document.getElementById('offcanvasCart');

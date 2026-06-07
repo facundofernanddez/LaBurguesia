@@ -33,17 +33,34 @@
                             </div>
                             <h3 class="titulo">{{ $producto->nombre }}</h3>
                             <p class="descripcion">{{ $producto->descripcion }}</p>
+                            
+                            <!-- Indicador de Stock -->
+                            @if ($producto->stock > 0)
+                                <p class="small text-muted mb-2">
+                                    Disponibles: <span class="stock-display fw-bold text-success" data-id="{{ $producto->id }}">{{ $producto->stock }}</span>
+                                </p>
+                            @endif
+
                             <div class="card-footer-custom">
                                 <span class="precio">${{ number_format($producto->precio, 0, ',', '.') }}</span>
-                                @if ($producto->stock > 0)
-                                    <button class="btn-agregar" data-id="{{ $producto->id }}"
-                                        data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->precio }}"
-                                        data-imagen="{{ $producto->imagen }}">
-                                        + Agregar
-                                    </button>
-                                @else
-                                    <span class="badge bg-danger position-static">Sin Stock</span>
-                                @endif
+                                
+                                <!-- Contenedor de acción dinámica de stock -->
+                                <div class="action-container" 
+                                     data-id="{{ $producto->id }}" 
+                                     data-stock="{{ $producto->stock }}" 
+                                     data-nombre="{{ $producto->nombre }}" 
+                                     data-precio="{{ $producto->precio }}" 
+                                     data-imagen="{{ $producto->imagen }}">
+                                    @if ($producto->stock > 0)
+                                        <button class="btn-agregar" data-id="{{ $producto->id }}"
+                                            data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->precio }}"
+                                            data-imagen="{{ $producto->imagen }}" data-stock="{{ $producto->stock }}">
+                                            + Agregar
+                                        </button>
+                                    @else
+                                        <span class="badge bg-danger position-static">Sin Stock</span>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,23 +72,110 @@
             @endforelse
 
             <script>
-                document.querySelectorAll('.btn-agregar').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const producto = {
-                            id: this.dataset.id,
-                            nombre: this.dataset.nombre,
-                            precio: parseInt(this.dataset.precio),
-                            imagen: this.dataset.imagen,
-                            cantidad: 1
-                        };
-
-                        let cart = JSON.parse(localStorage.getItem('carrito')) || [];
-                        cart.push(producto);
-                        localStorage.setItem('carrito', JSON.stringify(cart));
-
-                        const offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasCart'));
-                        offcanvas.show();
+                // Función para sincronizar la UI del catálogo con el carrito de localStorage
+                function syncCatalogStock() {
+                    const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                    
+                    document.querySelectorAll('.action-container').forEach(container => {
+                        const id = container.dataset.id;
+                        const stock = parseInt(container.dataset.stock);
+                        const nombre = container.dataset.nombre;
+                        const precio = container.dataset.precio;
+                        const imagen = container.dataset.imagen;
+                        
+                        // Buscar la cantidad de este producto ya agregada en el carrito
+                        const cartItem = cart.find(item => item.id == id);
+                        const cantidadInCart = cartItem ? cartItem.cantidad : 0;
+                        const remainingStock = stock - cantidadInCart;
+                        
+                        // Actualizar número de stock disponible en la tarjeta
+                        const stockDisplay = document.querySelector(`.stock-display[data-id="${id}"]`);
+                        if (stockDisplay) {
+                            stockDisplay.textContent = remainingStock;
+                            if (remainingStock <= 0) {
+                                stockDisplay.classList.remove('text-success');
+                                stockDisplay.classList.add('text-danger');
+                            } else {
+                                stockDisplay.classList.remove('text-danger');
+                                stockDisplay.classList.add('text-success');
+                            }
+                        }
+                        
+                        // Cambiar botón / badge de Sin Stock
+                        if (remainingStock <= 0) {
+                            container.innerHTML = `<span class="badge bg-danger position-static">Sin Stock</span>`;
+                        } else {
+                            container.innerHTML = `
+                                <button class="btn-agregar" data-id="${id}"
+                                    data-nombre="${nombre}" data-precio="${precio}"
+                                    data-imagen="${imagen}" data-stock="${stock}">
+                                    + Agregar
+                                </button>
+                            `;
+                        }
                     });
+                    
+                    // Como re-creamos los botones en el HTML, debemos re-vincular los eventos
+                    attachAddEventListeners();
+                }
+
+                // Vincula los eventos de click en los botones "+ Agregar"
+                function attachAddEventListeners() {
+                    document.querySelectorAll('.btn-agregar').forEach(btn => {
+                        // Evita duplicar listeners clonando el botón
+                        const newBtn = btn.cloneNode(true);
+                        btn.parentNode.replaceChild(newBtn, btn);
+                        
+                        newBtn.addEventListener('click', function() {
+                            const id = this.dataset.id;
+                            const nombre = this.dataset.nombre;
+                            const precio = parseInt(this.dataset.precio);
+                            const imagen = this.dataset.imagen;
+                            const stock = parseInt(this.dataset.stock);
+                            
+                            let cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                            
+                            // Buscar si ya está en el carrito
+                            let cartItem = cart.find(item => item.id == id);
+                            
+                            if (cartItem) {
+                                if (cartItem.cantidad >= stock) {
+                                    alert('No hay más stock disponible para este producto.');
+                                    return;
+                                }
+                                cartItem.cantidad += 1;
+                            } else {
+                                cart.push({
+                                    id: id,
+                                    nombre: nombre,
+                                    precio: precio,
+                                    imagen: imagen,
+                                    stock: stock,
+                                    cantidad: 1
+                                });
+                            }
+                            
+                            localStorage.setItem('carrito', JSON.stringify(cart));
+                            
+                            // Disparar el evento global de actualización
+                            window.dispatchEvent(new CustomEvent('cart-updated'));
+                            
+                            // Abrir el sidebar/canvas del carrito
+                            const offcanvasEl = document.getElementById('offcanvasCart');
+                            if (offcanvasEl) {
+                                const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
+                                offcanvas.show();
+                            }
+                        });
+                    });
+                }
+
+                // Inicializar
+                document.addEventListener('DOMContentLoaded', function() {
+                    syncCatalogStock();
+                    
+                    // Escuchar actualizaciones externas del carrito (ej: cambios o eliminación en el canvas)
+                    window.addEventListener('cart-updated', syncCatalogStock);
                 });
             </script>
 
