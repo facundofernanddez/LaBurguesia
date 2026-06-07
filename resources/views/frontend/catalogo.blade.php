@@ -33,13 +33,6 @@
                             </div>
                             <h3 class="titulo">{{ $producto->nombre }}</h3>
                             <p class="descripcion">{{ $producto->descripcion }}</p>
-                            
-                            <!-- Indicador de Stock -->
-                            @if ($producto->stock > 0)
-                                <p class="small text-muted mb-2">
-                                    Disponibles: <span class="stock-display fw-bold text-success" data-id="{{ $producto->id }}">{{ $producto->stock }}</span>
-                                </p>
-                            @endif
 
                             <div class="card-footer-custom">
                                 <span class="precio">${{ number_format($producto->precio, 0, ',', '.') }}</span>

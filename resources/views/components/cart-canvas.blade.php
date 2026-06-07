@@ -135,6 +135,16 @@
 
     // Comprar
     document.addEventListener('DOMContentLoaded', function() {
+        // Verificar si venimos de una compra exitosa
+        if (sessionStorage.getItem('compra_exitosa') === 'true') {
+            sessionStorage.removeItem('compra_exitosa');
+            const toastEl = document.getElementById('compraToast');
+            if (toastEl) {
+                const toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+        }
+
         const btnComprar = document.getElementById('btn-comprar');
         if (btnComprar) {
             btnComprar.addEventListener('click', async function() {
@@ -162,23 +172,8 @@
 
                     if (response.ok && data.success) {
                         localStorage.removeItem('carrito');
-                        
-                        // Notificar la actualización (el stock bajó en DB, el carrito local se vació)
-                        window.dispatchEvent(new CustomEvent('cart-updated'));
-
-                        // Cerrar el offcanvas
-                        const offcanvasEl = document.getElementById('offcanvasCart');
-                        const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
-                        if (offcanvas) {
-                            offcanvas.hide();
-                        }
-
-                        // Mostrar toast
-                        const toastEl = document.getElementById('compraToast');
-                        if (toastEl) {
-                            const toast = new bootstrap.Toast(toastEl);
-                            toast.show();
-                        }
+                        sessionStorage.setItem('compra_exitosa', 'true');
+                        window.location.reload();
                     } else {
                         mostrarErrorToast(data.message || 'Hubo un problema al procesar tu compra.');
                     }
