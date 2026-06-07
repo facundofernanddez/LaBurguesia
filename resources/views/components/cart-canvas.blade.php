@@ -120,6 +120,19 @@
     // Sincronizar dinámicamente ante cualquier actualización del carrito
     window.addEventListener('cart-updated', mostrarCarrito);
 
+    // Mostrar Toast de Error
+    function mostrarErrorToast(mensaje) {
+        const toastEl = document.getElementById('errorToast');
+        const messageEl = document.getElementById('errorToastMessage');
+        if (toastEl && messageEl) {
+            messageEl.textContent = mensaje;
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        } else {
+            alert(mensaje);
+        }
+    }
+
     // Comprar
     document.addEventListener('DOMContentLoaded', function() {
         const btnComprar = document.getElementById('btn-comprar');
@@ -167,11 +180,11 @@
                             toast.show();
                         }
                     } else {
-                        alert(data.message || 'Hubo un problema al procesar tu compra.');
+                        mostrarErrorToast(data.message || 'Hubo un problema al procesar tu compra.');
                     }
                 } catch (error) {
                     console.error(error);
-                    alert('Ocurrió un error inesperado al conectar con el servidor.');
+                    mostrarErrorToast('Ocurrió un error inesperado al conectar con el servidor.');
                 } finally {
                     btnComprar.disabled = false;
                     btnTexto.textContent = 'Comprar';
