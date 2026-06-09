@@ -39,11 +39,11 @@
                 @else
                     @if (Auth::user()?->rol?->nombre === 'admin')
                         <li class="nav-item">
-                            <a class="nav-link fw-bold" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                            <a class="nav-link fw-bold" href="{{ route('admin.dashboard') }}">Panel Administrativo</a>
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link fw-bold" href="{{ route('logout') }}">Logout</a>
+                        <a class="nav-link fw-bold" href="{{ route('logout') }}">Salir</a>
                     </li>
                 @endguest
                 <li class="nav-item d-none d-lg-block">
