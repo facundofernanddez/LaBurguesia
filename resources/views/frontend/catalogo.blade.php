@@ -2,7 +2,7 @@
     <h1 class="mb-4 text-center"><span class="bg-blur p-2">Nuestro Menú</span></h1>
 
     @if ($productos->isEmpty() && $categoria === 'todos')
-        <div class="alert alert-warning text-center py-5 shadow-sm rounded-4 mt-4">
+        <div class="alert alert-warning text-center py-5 shadow-sm rounded-4 mt-4 bg-blur">
             <h3 class="fw-bold mb-2">🍔 Catálogo vacío</h3>
             <p class="text-muted mb-0">No hay productos cargados en el catálogo actualmente. Vuelve más tarde.</p>
         </div>
@@ -62,7 +62,7 @@
                     </div>
                 </div>
             @empty
-                <div class="col-12 text-center py-5">
+                <div class="col-12 text-center py-5 bg-blur">
                     <p class="text-muted fs-5">No hay productos disponibles en esta categoría.</p>
                 </div>
             @endforelse

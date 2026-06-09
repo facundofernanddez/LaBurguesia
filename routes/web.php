@@ -52,7 +52,15 @@ Route::get('/', function () {
     $destacados = Producto::where('activo', true)
         ->where('destacado', true)
         ->get();
-    return view('/frontend/home', compact('destacados'));
+
+    $carruselProductos = Producto::where('activo', true)
+        ->whereNotNull('imagen')
+        ->where('imagen', '!=', '')
+        ->inRandomOrder()
+        ->take(5)
+        ->get();
+
+    return view('/frontend/home', compact('destacados', 'carruselProductos'));
 })->name('Inicio');
 
 Route::post('/carrito/comprar', [App\Http\Controllers\ClienteController::class, 'comprar'])

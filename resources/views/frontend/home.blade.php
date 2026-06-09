@@ -1,4 +1,15 @@
 <x-layout title="Inicio">
+    @php
+        $imagenesCarrusel = [];
+        foreach ($carruselProductos as $p) {
+            $imagenesCarrusel[] = [
+                'src' => asset('img/' . $p->imagen),
+                'alt' => $p->nombre,
+                'titulo' => $p->nombre,
+                'descripcion' => $p->descripcion
+            ];
+        }
+    @endphp
     <div class="row align-items-center py-4">
         <!-- Texto a la izquierda -->
         <div class="col-lg-7 mb-4">
@@ -21,27 +32,15 @@
 
         <!-- Carrusel a la derecha -->
         <div class="col-lg-5">
-            <a href="/catalogo">
-                <x-carrusel :imagenes="[
-                    [
-                        'src' => '/img/clasica.png',
-                        'alt' => 'Classic Burger',
-                        'titulo' => 'Classic Burger',
-                        'descripcion' => 'Hamburguesa clásica con lechuga, tomate y nuestra salsa secreta.',
-                    ],
-                    [
-                        'src' => '/img/cheddar.png',
-                        'alt' => 'Cheese Burger',
-                        'titulo' => 'Cheese Burger',
-                        'descripcion' => 'Con queso cheddar fundido y tocino crujiente',
-                    ],
-                    [
-                        'src' => '/img/cebolla.png',
-                        'alt' => 'Bacon Burger',
-                        'titulo' => 'Bacon Burger',
-                        'descripcion' => 'Doble porción de tocino y cebolla crispy',
-                    ],
-                ]" /></a>
+            @if (count($imagenesCarrusel) > 0)
+                <a href="/catalogo">
+                    <x-carrusel :imagenes="$imagenesCarrusel" />
+                </a>
+            @else
+                <div class="d-flex align-items-center justify-content-center bg-white shadow-sm" style="height: 400px; border-radius: 10px; border: 1px solid rgba(0, 0, 0, 0.05);">
+                    <img src="{{ asset('img/logo.png') }}" alt="La Burguesia" class="img-fluid" style="max-height: 280px; object-fit: contain;">
+                </div>
+            @endif
         </div>
     </div>
 
