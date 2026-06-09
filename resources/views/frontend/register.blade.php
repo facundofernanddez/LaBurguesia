@@ -6,7 +6,7 @@
                     <div class="card-header-register text-center">
                         <img src="{{ asset('img/logo.png') }}" alt="La Burguesía" class="mb-3" style="height: 80px;">
                         <h2 class="fw-bold text-white mb-1">¡Crear Cuenta!</h2>
-                        <p class="text-white-50 mb-0">Uniete a la familia burguesa</p>
+                        <p class="text-white-50 mb-0">Únete a la familia burguesa</p>
                     </div>
 
                     <div class="card-body-register p-4">
