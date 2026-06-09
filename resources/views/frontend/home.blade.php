@@ -93,9 +93,7 @@
                                 <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
                             </div>
                         </div>
-                        <div class="card-footer bg-white border-0 pt-0">
-                            <button class="btn btn-sm btn-rojo">Agregar</button>
-                        </div>
+                       
                     </div>
                 </div>
 
@@ -112,9 +110,7 @@
                                 <span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span>
                             </div>
                         </div>
-                        <div class="card-footer bg-white border-0 pt-0">
-                            <button class="btn btn-sm btn-rojo">Agregar</button>
-                        </div>
+                       
                     </div>
                 </div>
 
@@ -131,9 +127,7 @@
                                 <span class="text-warning"><i class="bi bi-star-fill"></i> 4.7</span>
                             </div>
                         </div>
-                        <div class="card-footer bg-white border-0 pt-0">
-                            <button class="btn btn-sm btn-rojo">Agregar</button>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
