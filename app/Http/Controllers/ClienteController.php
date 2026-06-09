@@ -95,4 +95,51 @@ class ClienteController extends Controller
             ], 422);
         }
     }
+
+    public function perfil(Request $request)
+    {
+        $usuario = auth()->user();
+        $usuario->load('rol');
+
+        $compras = Venta::where('usuario_id', $usuario->id)
+            ->with('detalles.producto')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('frontend.perfil', compact('usuario', 'compras'));
+    }
+
+    public function updatePerfil(Request $request)
+    {
+        $usuario = auth()->user();
+
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:100',
+            'email' => 'required|email|max:100|unique:usuarios,email,' . $usuario->id,
+            'password' => 'nullable|string|min:6|confirmed',
+        ], [
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.string' => 'El nombre debe ser texto.',
+            'nombre.max' => 'El nombre no puede superar los :max caracteres.',
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El formato del correo electrónico no es válido.',
+            'email.max' => 'El correo electrónico no puede superar los :max caracteres.',
+            'email.unique' => 'Este correo electrónico ya está registrado por otro usuario.',
+            'password.min' => 'La contraseña debe tener al menos :min caracteres.',
+            'password.confirmed' => 'La confirmación de la contraseña no coincide.',
+        ]);
+
+        $updateData = [
+            'nombre' => $validated['nombre'],
+            'email' => $validated['email'],
+        ];
+
+        if (!empty($validated['password'])) {
+            $updateData['password'] = bcrypt($validated['password']);
+        }
+
+        $usuario->update($updateData);
+
+        return redirect()->route('perfil')->with('success', 'Perfil actualizado correctamente.');
+    }
 }

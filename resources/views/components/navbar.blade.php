@@ -43,6 +43,9 @@
                         </li>
                     @endif
                     <li class="nav-item">
+                        <a class="nav-link fw-bold" href="{{ route('perfil') }}">Mi Perfil</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link fw-bold" href="{{ route('logout') }}">Salir</a>
                     </li>
                 @endguest

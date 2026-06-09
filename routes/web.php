@@ -63,9 +63,11 @@ Route::get('/', function () {
     return view('/frontend/home', compact('destacados', 'carruselProductos'));
 })->name('Inicio');
 
-Route::post('/carrito/comprar', [App\Http\Controllers\ClienteController::class, 'comprar'])
-    ->middleware('auth')
-    ->name('carrito.comprar');
+Route::middleware('auth')->group(function () {
+    Route::post('/carrito/comprar', [App\Http\Controllers\ClienteController::class, 'comprar'])->name('carrito.comprar');
+    Route::get('/perfil', [App\Http\Controllers\ClienteController::class, 'perfil'])->name('perfil');
+    Route::put('/perfil', [App\Http\Controllers\ClienteController::class, 'updatePerfil'])->name('perfil.update');
+});
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
