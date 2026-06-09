@@ -80,56 +80,31 @@
 
             <!-- Grid de productos -->
             <div class="row g-4">
-                <!-- Producto 1 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="/img/clasica.png" class="card-img" alt="Whopper Clásica" {{-- style="height: 220px; object-fit: cover;" --}}>
-                        <div class="card-body bg-white">
-                            <span class="badge bg-secondary bg-opacity-25 text-dark mb-2">Hamburguesas</span>
-                            <h5 class="card-title fw-bold" style="color: #502314;">Whopper Clásica</h5>
-                            <p class="card-text text-muted small">Carne 100% vaccuna con lechuga, tomate y cebolla</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold fs-5" style="color: #D62300;">$4.500</span>
-                                <span class="text-warning"><i class="bi bi-star-fill"></i> 4.8</span>
+                @forelse($destacados as $producto)
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <img src="{{ asset($producto->imagen ? 'img/' . $producto->imagen : 'img/logo.png') }}" class="card-img" alt="{{ $producto->nombre }}" style="object-fit: cover; max-height: 220px;">
+                            <div class="card-body bg-white d-flex flex-column">
+                                <div>
+                                    <span class="badge bg-secondary bg-opacity-25 text-dark mb-2">{{ ucfirst($producto->categoria) }}</span>
+                                    <h5 class="card-title fw-bold" style="color: #502314;">{{ $producto->nombre }}</h5>
+                                    <p class="card-text text-muted small">{{ $producto->descripcion }}</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+                                    <span class="fw-bold fs-5" style="color: #D62300;">${{ number_format($producto->precio, 0, ',', '.') }}</span>
+                                    <a href="/catalogo?categoria={{ urlencode($producto->categoria) }}" class="btn btn-sm text-white" style="background-color: #D62300; border-radius: 20px;">Pedir</a>
+                                </div>
                             </div>
                         </div>
-                       
                     </div>
-                </div>
-
-                <!-- Producto 2 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm ">
-                        <img src="/img/cheddar.png" class="card-img" alt="Cheese Burger" {{-- style="height: 220px; object-fit: cover;" --}}>
-                        <div class="card-body bg-white">
-                            <span class="badge bg-danger bg-opacity-25 text-danger mb-2">Popular</span>
-                            <h5 class="card-title fw-bold" style="color: #502314;">Cheese Burger</h5>
-                            <p class="card-text text-muted small">Con doble queso cheddar y tocino crujiente</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold fs-5" style="color: #D62300;">$5.200</span>
-                                <span class="text-warning"><i class="bi bi-star-fill"></i> 4.9</span>
-                            </div>
+                @empty
+                    <div class="col-12 text-center py-5">
+                        <div class="bg-blur d-inline-block px-4 py-3 rounded-4 shadow-sm">
+                            <p class="text-muted mb-0">¡Próximamente nuevos productos destacados!</p>
+                            <a href="/catalogo" class="btn btn-sm text-white mt-2" style="background-color: #D62300; border-radius: 20px;">Ver catálogo completo</a>
                         </div>
-                       
                     </div>
-                </div>
-
-                <!-- Producto 3 -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="/img/papas1.png" class="card-img" alt="Papas Fritas" {{-- style="height: 220px; object-fit: cover;" --}}>
-                        <div class="card-body bg-white">
-                            <span class="badge bg-secondary bg-opacity-25 text-dark mb-2">Acompañamientos</span>
-                            <h5 class="card-title fw-bold" style="color: #502314;">Papas Fritas</h5>
-                            <p class="card-text text-muted small">Papas crujientes y sazonadas al estilo americano</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="fw-bold fs-5" style="color: #D62300;">$5.800</span>
-                                <span class="text-warning"><i class="bi bi-star-fill"></i> 4.7</span>
-                            </div>
-                        </div>
-                       
-                    </div>
-                </div>
+                @endforelse
             </div>
 
 

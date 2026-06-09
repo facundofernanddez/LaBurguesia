@@ -49,7 +49,10 @@ Route::middleware('auth.custom')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('/frontend/home');
+    $destacados = Producto::where('activo', true)
+        ->where('destacado', true)
+        ->get();
+    return view('/frontend/home', compact('destacados'));
 })->name('Inicio');
 
 Route::post('/carrito/comprar', [App\Http\Controllers\ClienteController::class, 'comprar'])
@@ -58,6 +61,8 @@ Route::post('/carrito/comprar', [App\Http\Controllers\ClienteController::class, 
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+    Route::patch('/admin/productos/{producto}/destacado', [AdminProductoController::class, 'updateDestacado'])->name('admin.productos.updateDestacado');
 
     Route::resource('admin/productos', AdminProductoController::class)
         ->only(['store', 'update', 'destroy'])

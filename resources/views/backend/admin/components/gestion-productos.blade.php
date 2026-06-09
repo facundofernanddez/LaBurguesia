@@ -91,12 +91,18 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-                        <div class="col-md-4 d-flex align-items-end justify-content-center pb-2">
-                            <div class="form-check">
+                        <div class="col-md-4 d-flex flex-column justify-content-end pb-2">
+                            <div class="form-check mb-2">
                                 <input class="form-check-input" type="checkbox" name="activo" id="activo"
                                             value="1"
                                             {{ old('activo', $editingProducto?->activo ?? true) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="activo">Producto activo</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="destacado" id="destacado"
+                                            value="1"
+                                            {{ old('destacado', $editingProducto?->destacado ?? false) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="destacado">Destacado ⭐</label>
                             </div>
                         </div>
                     </div>
@@ -137,6 +143,7 @@
                                     <th>Precio</th>
                                     <th>Stock</th>
                                     <th>Estado</th>
+                                    <th>Destacado</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -158,6 +165,23 @@
                                             </span>
                                         </td>
                                         <td>
+                                            <form action="{{ route('admin.productos.updateDestacado', $producto) }}" method="POST" class="mb-0">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="btn btn-sm p-0 border-0 bg-transparent text-decoration-none" title="Cambiar destacado">
+                                                    @if ($producto->destacado)
+                                                        <span class="badge bg-warning text-dark" style="cursor: pointer;">
+                                                            <i class="bi bi-star-fill text-dark me-1"></i>Sí
+                                                        </span>
+                                                    @else
+                                                        <span class="badge bg-light text-muted border" style="cursor: pointer;">
+                                                            <i class="bi bi-star me-1"></i>No
+                                                        </span>
+                                                    @endif
+                                                </button>
+                                            </form>
+                                        </td>
+                                        <td>
                                             <div class="d-flex justify-content-end gap-2">
                                                 <a href="{{ route('admin.dashboard', ['edit_producto' => $producto->id]) }}"
                                                              class="btn btn-sm btn-outline-primary">Editar</a>
@@ -175,7 +199,7 @@
                                 @endforeach
                                 <!-- Fila de sin resultados -->
                                 <tr id="sinResultadosProductos" style="display: none;">
-                                    <td colspan="6" class="text-center text-muted py-3">
+                                    <td colspan="7" class="text-center text-muted py-3">
                                         No se encontraron productos que coincidan con la búsqueda.
                                     </td>
                                 </tr>

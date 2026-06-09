@@ -24,6 +24,9 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card-producto">
                         <div class="position-relative">
+                            @if ($producto->destacado)
+                                <span class="badge badge-destacado"><i class="bi bi-star-fill me-1"></i>Destacado</span>
+                            @endif
                             <img src="{{ asset($producto->imagen ? 'img/' . $producto->imagen : 'img/logo.png') }}" class="card-img"
                                 alt="{{ $producto->nombre }}">
                         </div>
@@ -196,6 +199,14 @@
             left: 15px;
             background: #D62300;
             color: white;
+        }
+
+        .badge-destacado {
+            left: 15px;
+            background: #FFC72C;
+            color: #502314;
+            box-shadow: 0 4px 10px rgba(255, 199, 44, 0.3);
+            border: 1px solid rgba(80, 35, 20, 0.1);
         }
 
         .badge-oferta {

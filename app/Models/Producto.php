@@ -14,10 +14,12 @@ class Producto extends Model
         'imagen',
         'activo',
         'stock',
+        'destacado',
     ];
 
     protected $casts = [
         'activo' => 'boolean',
+        'destacado' => 'boolean',
         'precio' => 'integer',
         'stock' => 'integer',
     ];

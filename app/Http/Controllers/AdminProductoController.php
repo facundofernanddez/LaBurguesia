@@ -19,6 +19,7 @@ class AdminProductoController extends Controller
             'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'activo' => 'nullable|boolean',
+            'destacado' => 'nullable|boolean',
             'stock' => 'required|integer|min:0',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
@@ -54,6 +55,7 @@ class AdminProductoController extends Controller
             'categoria' => $validated['categoria'],
             'imagen' => $imageName,
             'activo' => $request->boolean('activo'),
+            'destacado' => $request->boolean('destacado'),
             'stock' => $validated['stock'],
         ]);
 
@@ -71,6 +73,7 @@ class AdminProductoController extends Controller
             'categoria' => ['required', 'string', 'in:'.implode(',', $categoriaOptions)],
             'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'activo' => 'nullable|boolean',
+            'destacado' => 'nullable|boolean',
             'stock' => 'required|integer|min:0',
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
@@ -110,6 +113,7 @@ class AdminProductoController extends Controller
             'categoria' => $validated['categoria'],
             'imagen' => $imageName,
             'activo' => $request->boolean('activo'),
+            'destacado' => $request->boolean('destacado'),
             'stock' => $validated['stock'],
         ]);
 
@@ -121,5 +125,14 @@ class AdminProductoController extends Controller
         $producto->delete();
 
         return redirect()->route('admin.dashboard')->with('success', 'Producto eliminado correctamente.');
+    }
+
+    public function updateDestacado(Producto $producto)
+    {
+        $producto->update([
+            'destacado' => !$producto->destacado
+        ]);
+
+        return redirect()->route('admin.dashboard')->with('success', 'Estado destacado del producto actualizado correctamente.');
     }
 }
