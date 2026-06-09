@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contacto;
+use App\Mail\ConsultaRecibida;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactoController extends Controller
 {
@@ -34,7 +36,12 @@ class ContactoController extends Controller
         ]);
 
         try {
-            Contacto::create($validated);
+            // Crear la consulta
+            $contacto = Contacto::create($validated);
+            
+            // Enviar email de confirmación al usuario
+            Mail::to($validated['email'])->send(new ConsultaRecibida($contacto));
+            
             return redirect()->back()->with('success', '¡Mensaje enviado con éxito! Nos contactaremos pronto.');
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->with('error', 'Ocurrió un error inesperado al enviar el mensaje. Intente de nuevo.');
