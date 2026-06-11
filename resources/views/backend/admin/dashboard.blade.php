@@ -29,7 +29,7 @@
         <div class="row mb-4">
             <div class="col">
                 <div class="bg-blur p-4 shadow-sm text-center">
-                    <h1 class="fw-bold mb-2">Dashboard administrativo</h1>
+                    <h1 class="fw-bold mb-2">Panel administrativo</h1>
                     <p class="text-muted mb-0">Resumen del negocio y gestión de productos.</p>
                 </div>
             </div>
