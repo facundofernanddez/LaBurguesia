@@ -35,7 +35,7 @@
                                                 method="POST" class="d-flex gap-2 align-items-center mb-0">
                                         @csrf
                                         @method('PUT')
-                                        <select name="rol" class="form-select form-select-sm">
+                                        <select name="rol" class="form-select form-select-sm" disabled>
                                             <option value="cliente"
                                                         {{ $usuario->rol?->nombre === 'cliente' ? 'selected' : '' }}>
                                                 Cliente</option>
@@ -44,7 +44,7 @@
                                                 Admin</option>
                                         </select>
                                         <button type="submit"
-                                                    class="btn btn-sm btn-outline-primary">Guardar</button>
+                                                    class="btn btn-sm btn-outline-primary" disabled>Guardar</button>
                                     </form>
                                 </td>
                                 <td>

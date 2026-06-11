@@ -197,4 +197,13 @@ agregar mas personal en quienes somos
 Agregar mas info en todas las paginas para que no queden tan simples
 agregar motivo al formulario de contacto ✅
 mejorar responsive
+refresh y limpiar los campos
+mantener campo con valor original cuando vacio el campo en el formulario
+imagen obligatoria al crear producto
+no eliminar producto de la base solo cambiar estado
+desabilitar el cambio de admin y cliente
+el admin no puede autodesactivarse
+mas datos al finalizar la compra
+resoonder las consultas desde las consultas hacia el correo
+en consulta cuando esta registrado autocompletar campos de correo y nombre
  --}}
