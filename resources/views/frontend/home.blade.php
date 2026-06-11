@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
                                     <span class="fw-bold fs-5" style="color: #D62300;">${{ number_format($producto->precio, 0, ',', '.') }}</span>
-                                    <a href="/catalogo?categoria={{ urlencode($producto->categoria) }}" class="btn btn-sm text-white" style="background-color: #D62300; border-radius: 20px;">Pedir</a>
+                                    <a href="/catalogo?categoria={{ urlencode($producto->categoria) }}&producto={{ $producto->id }}" class="btn btn-sm text-white" style="background-color: #D62300; border-radius: 20px;">Pedir</a>
                                 </div>
                             </div>
                         </div>

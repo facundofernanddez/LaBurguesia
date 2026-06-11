@@ -22,7 +22,7 @@
         <div class="row">
             @forelse ($productos as $producto)
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card-producto">
+                    <div class="card-producto" data-id="{{ $producto->id }}">
                         <div class="position-relative">
                             @if ($producto->destacado)
                                 <span class="badge badge-destacado"><i class="bi bi-star-fill me-1"></i>Destacado</span>
@@ -172,6 +172,19 @@
                     
                     // Escuchar actualizaciones externas del carrito (ej: cambios o eliminación en el canvas)
                     window.addEventListener('cart-updated', syncCatalogStock);
+
+                    // Resaltar y hacer scroll al producto seleccionado desde el home
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const highlightId = urlParams.get('producto');
+                    if (highlightId) {
+                        const targetCard = document.querySelector(`.card-producto[data-id="${highlightId}"]`);
+                        if (targetCard) {
+                            targetCard.classList.add('highlight-product');
+                            setTimeout(() => {
+                                targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 300);
+                        }
+                    }
                 });
             </script>
 
@@ -182,8 +195,37 @@
         .card-producto {
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
             background: #fff;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card-producto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes highlightGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            }
+            30% {
+                transform: scale(1.04);
+                box-shadow: 0 0 20px rgba(214, 35, 0, 0.4);
+            }
+            70% {
+                transform: scale(1.04);
+                box-shadow: 0 0 20px rgba(214, 35, 0, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+            }
+        }
+
+        .highlight-product {
+            animation: highlightGlow 1s ease-in-out;
         }
 
         .badge {
