@@ -14,12 +14,12 @@
         <!-- Texto a la izquierda -->
         <div class="col-lg-7 mb-4">
             <x-card-beige>
-                <div class="row">
-                    <div class="col-4 align-items-center d-flex justify-content-center">
+                <div class="row align-items-center">
+                    <div class="col-12 col-sm-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center">
                         <img src="{{ asset('img/logo.png') }}" alt="La Burguesia" class="img-fluid"
-                            style="max-width: 300px;">
+                            style="max-width: 150px;">
                     </div>
-                    <div class="col-8">
+                    <div class="col-12 col-sm-8 text-center text-sm-start">
                         <h2 class="fw-bold" style="color: #502314;">La burguesía</h2>
                         <p class="lead fw-medium">Disfrutá del auténtico sabor artesanal</p>
                         <p class="mb-3 fw-medium">Desde 2018 preparando las burgers más deliciosas de la ciudad.</p>

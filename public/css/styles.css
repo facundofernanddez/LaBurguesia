@@ -256,3 +256,28 @@ a:hover {
 .bg-dark-brown {
     background-color: var(--marron);
 }
+
+/* Responsive adjustments for 992px - 1400px range */
+@media (min-width: 992px) and (max-width: 1400px) {
+    .navbar .nav-link {
+        padding: 0.5rem 0.6rem !important;
+        font-size: 0.9rem;
+    }
+
+    .navbar-brand img {
+        height: 100px;
+        margin-top: -20px;
+        margin-bottom: -20px;
+    }
+
+    .carousel-img {
+        height: 350px;
+    }
+}
+
+/* Mobile adjustments */
+@media (max-width: 767.98px) {
+    .carousel-img {
+        height: 260px;
+    }
+}
