@@ -10,7 +10,7 @@
 
                 <form
                     action="{{ $editingProducto ? route('admin.productos.update', $editingProducto) : route('admin.productos.store') }}"
-                    method="POST" enctype="multipart/form-data">
+                    method="POST" enctype="multipart/form-data" id="formProducto" class="needs-validation" novalidate>
                     @csrf
                     @if ($editingProducto)
                         @method('PUT')
@@ -19,7 +19,8 @@
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
                         <input type="text" name="nombre" class="form-control"
-                            value="{{ old('nombre', $editingProducto->nombre ?? '') }}">
+                            value="{{ old('nombre', $editingProducto->nombre ?? '') }}" required>
+                        <div class="invalid-feedback">El nombre es obligatorio.</div>
                         @error('nombre')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
@@ -36,8 +37,9 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <label class="form-label">Precio</label>
-                            <input type="number" min="0" name="precio" class="form-control"
-                                        value="{{ old('precio', $editingProducto->precio ?? 0) }}">
+                            <input type="number" min="1" name="precio" class="form-control"
+                                        value="{{ old('precio', $editingProducto->precio ?? '') }}" required>
+                            <div class="invalid-feedback">El precio debe ser un número entero mayor a 0.</div>
                             @error('precio')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
@@ -45,7 +47,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Categoría</label>
                             @if (!empty($categoriaOptions) && count($categoriaOptions) > 0)
-                                <select name="categoria" class="form-select">
+                                <select name="categoria" class="form-select" required>
                                     <option value="">Selecciona una categoría</option>
                                     @foreach ($categoriaOptions as $categoria)
                                         <option value="{{ $categoria }}"
@@ -54,6 +56,7 @@
                                         </option>
                                     @endforeach
                                 </select>
+                                <div class="invalid-feedback">La categoría es obligatoria.</div>
                                 @error('categoria')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -73,7 +76,8 @@
                             <label for="imagen" id="imagen-label" class="btn btn-outline-secondary w-100 text-truncate" style="transition: all 0.3s ease;">
                                 <i class="bi bi-cloud-upload me-2"></i>Seleccionar imagen
                             </label>
-                            <input type="file" name="imagen" id="imagen" class="d-none" accept="image/*">
+                            <input type="file" name="imagen" id="imagen" class="d-none" accept="image/*" {{ $editingProducto ? '' : 'required' }}>
+                            <div class="invalid-feedback">La imagen es obligatoria para crear un producto.</div>
                             @if ($editingProducto && $editingProducto->imagen)
                                 <div class="mt-1 text-muted small">
                                     Actual: <code>{{ $editingProducto->imagen }}</code>
@@ -86,7 +90,8 @@
                         <div class="col-md-4">
                             <label class="form-label">Stock</label>
                             <input type="number" min="0" name="stock" class="form-control"
-                                        value="{{ old('stock', $editingProducto->stock ?? 0) }}">
+                                        value="{{ old('stock', $editingProducto->stock ?? 0) }}" required>
+                            <div class="invalid-feedback">El stock no puede ser menor a 0.</div>
                             @error('stock')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

@@ -9,7 +9,7 @@
                 <h5 class="mb-3">{{ $editingCategoria ? 'Editar categoría' : 'Crear categoría' }}</h5>
                 <form
                     action="{{ $editingCategoria ? route('admin.categorias.update', $editingCategoria) : route('admin.categorias.store') }}"
-                    method="POST">
+                    method="POST" id="formCategoria" class="needs-validation" novalidate>
                     @csrf
                     @if ($editingCategoria)
                         @method('PUT')
@@ -18,7 +18,8 @@
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
                         <input type="text" name="nombre" class="form-control"
-                            value="{{ old('nombre', $editingCategoria->nombre ?? '') }}">
+                            value="{{ old('nombre', $editingCategoria->nombre ?? '') }}" required>
+                        <div class="invalid-feedback">El nombre de la categoría es obligatorio.</div>
                         @error('nombre')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror

@@ -23,6 +23,11 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Custom invalid style for file upload input label */
+        .was-validated #imagen:invalid ~ #imagen-label {
+            border-color: #dc3545 !important;
+            color: #dc3545 !important;
+        }
     </style>
 
     <div class="container py-4">
@@ -137,7 +142,43 @@
                     switchTab(this.id);
                     const targetHash = this.id.replace('-tab', '');
                     history.replaceState(null, null, '#' + targetHash);
+
+                    // Reset product and category forms when switching tabs
+                    const formProducto = document.getElementById('formProducto');
+                    if (formProducto) {
+                        formProducto.reset();
+                        formProducto.classList.remove('was-validated');
+                        formProducto.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+                        formProducto.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
+                        // Reset image label styling
+                        const imgLabel = document.getElementById('imagen-label');
+                        if (imgLabel) {
+                            imgLabel.innerHTML = '<i class="bi bi-cloud-upload me-2"></i>Seleccionar imagen';
+                            imgLabel.classList.remove('btn-success', 'text-white');
+                            imgLabel.classList.add('btn-outline-secondary');
+                        }
+                    }
+
+                    const formCategoria = document.getElementById('formCategoria');
+                    if (formCategoria) {
+                        formCategoria.reset();
+                        formCategoria.classList.remove('was-validated');
+                        formCategoria.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+                        formCategoria.querySelectorAll('.text-danger').forEach(el => el.textContent = '');
+                    }
                 });
+            });
+
+            // Client-side validation using Bootstrap needs-validation class
+            const forms = document.querySelectorAll('.needs-validation');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
             });
 
             // Determine active tab on load
