@@ -196,9 +196,9 @@ En quienes somos agregar un ejemplo de vision y mision
 agregar mas personal en quienes somos
 Agregar mas info en todas las paginas para que no queden tan simples
 agregar motivo al formulario de contacto ✅
-mejorar responsive
-refresh y limpiar los campos
-mantener campo con valor original cuando vacio el campo en el formulario
+mejorar responsive ✅
+refresh y limpiar los campos ✅
+mantener campo con valor original cuando vacio el campo en el formularios ✅
 imagen obligatoria al crear producto
 no eliminar producto de la base solo cambiar estado
 desabilitar el cambio de admin y cliente

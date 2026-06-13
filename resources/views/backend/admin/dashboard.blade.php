@@ -138,12 +138,21 @@
             }
 
             tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    switchTab(this.id);
+                button.addEventListener('click', function(e) {
+                    const urlParams = new URLSearchParams(window.location.search);
                     const targetHash = this.id.replace('-tab', '');
+
+                    if (urlParams.has('edit_producto') || urlParams.has('edit_categoria')) {
+                        // Si está editando, redireccionar al dashboard limpio con la pestaña objetivo
+                        e.preventDefault();
+                        window.location.href = window.location.pathname + '#' + targetHash;
+                        return;
+                    }
+
+                    switchTab(this.id);
                     history.replaceState(null, null, '#' + targetHash);
 
-                    // Reset product and category forms when switching tabs
+                    // Reset product and category forms when switching tabs normally
                     const formProducto = document.getElementById('formProducto');
                     if (formProducto) {
                         formProducto.reset();
@@ -179,6 +188,27 @@
                     }
                     form.classList.add('was-validated');
                 }, false);
+            });
+
+            // Restore original values on empty blur
+            const inputsToRestore = document.querySelectorAll(
+                '#formProducto input:not([type="hidden"]):not([type="file"]):not([type="checkbox"]), ' +
+                '#formProducto textarea, ' +
+                '#formProducto select, ' +
+                '#formCategoria input:not([type="hidden"]):not([type="file"]), ' +
+                '#formCategoria textarea'
+            );
+
+            inputsToRestore.forEach(input => {
+                // Save initial value
+                input.setAttribute('data-original', input.value);
+
+                // Revert to initial value if blurred while empty
+                input.addEventListener('blur', function() {
+                    if (this.value.trim() === '') {
+                        this.value = this.getAttribute('data-original') || '';
+                    }
+                });
             });
 
             // Determine active tab on load
