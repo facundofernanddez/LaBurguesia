@@ -1,4 +1,22 @@
 <!-- Registro de Ventas -->
+<style>
+    #cuerpoTablaVentas .accordion-button:not(.collapsed) {
+        background-color: #f0e9dd !important;
+        color: #502314 !important;
+        box-shadow: none !important;
+    }
+    #cuerpoTablaVentas .accordion-button:focus {
+        box-shadow: none !important;
+        border-color: rgba(80, 35, 20, 0.1) !important;
+    }
+    #cuerpoTablaVentas .border-bottom-dashed {
+        border-bottom: 1px dashed #dee2e6;
+    }
+    #cuerpoTablaVentas .border-bottom-dashed:last-child {
+        border-bottom: none;
+    }
+</style>
+
 <div class="card shadow-sm border-0 mt-4" id="ventas">
     <div class="card-header bg-marron text-white d-flex justify-content-between align-items-center">
         <h4 class="mb-0 text-white">Registro de ventas</h4>
@@ -51,66 +69,88 @@
         @if ($ventas->isEmpty())
             <div class="alert alert-info mb-0">No se encontraron ventas registradas en el sistema.</div>
         @else
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Fecha</th>
-                            <th>Cliente</th>
-                            <th>Productos Vendidos</th>
-                            <th class="text-end">Total</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cuerpoTablaVentas">
-                        @foreach ($ventas as $venta)
-                            <tr class="fila-venta" 
-                                data-id="{{ $venta->id }}" 
-                                data-usuario-id="{{ $venta->usuario_id }}" 
-                                data-fecha="{{ $venta->created_at->format('Y-m-d') }}" 
-                                data-productos="{{ implode(',', $venta->detalles->pluck('producto_id')->filter()->toArray()) }}">
-                                <td class="fw-bold">#{{ $venta->id }}</td>
-                                <td class="text-nowrap text-muted font-monospace">
-                                    {{ $venta->created_at->format('d/m/Y H:i') }}
-                                </td>
-                                <td>
-                                    <div class="fw-bold">{{ $venta->usuario?->nombre }}</div>
-                                    <small class="text-muted">{{ $venta->usuario?->email }}</small>
-                                    <div class="mt-2 small text-muted">
-                                        <span class="badge bg-light text-dark border"><i class="bi bi-truck me-1"></i>{{ $venta->metodo_entrega === 'delivery' ? 'Envío' : 'Take Away' }}</span>
-                                        <span class="badge bg-light text-dark border"><i class="bi bi-wallet2 me-1"></i>{{ $venta->forma_pago === 'efectivo' ? 'Efectivo' : ($venta->forma_pago === 'tarjeta' ? 'Tarjeta' : 'Transferencia') }}</span>
-                                        @if($venta->metodo_entrega === 'delivery')
-                                            <div class="mt-1 font-monospace" style="font-size: 11px;">
-                                                <i class="bi bi-geo-alt me-1"></i>{{ $venta->direccion }}
-                                                <br><i class="bi bi-cash me-1"></i>Envío: ${{ number_format($venta->costo_envio, 0, ',', '.') }}
-                                            </div>
-                                        @endif
+            <div class="accordion" id="cuerpoTablaVentas">
+                @foreach ($ventas as $venta)
+                    <div class="accordion-item border-0 mb-3 shadow-sm rounded-3 overflow-hidden fila-venta"
+                         data-id="{{ $venta->id }}" 
+                         data-usuario-id="{{ $venta->usuario_id }}" 
+                         data-fecha="{{ $venta->created_at->format('Y-m-d') }}" 
+                         data-productos="{{ implode(',', $venta->detalles->pluck('producto_id')->filter()->toArray()) }}">
+                        <h2 class="accordion-header" id="heading-{{ $venta->id }}">
+                            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ $venta->id }}" aria-expanded="false" aria-controls="collapse-{{ $venta->id }}" style="background-color: #fcfaf6; color: #502314;">
+                                <div class="d-flex justify-content-between align-items-center w-100 pe-3 flex-wrap gap-3">
+                                    <div>
+                                        <span class="text-muted small d-block">Venta #{{ $venta->id }}</span>
+                                        <span class="font-monospace text-muted" style="font-size: 13px;">{{ $venta->created_at->format('d/m/Y H:i') }} hs</span>
                                     </div>
-                                </td>
-                                <td>
-                                    <ul class="list-unstyled mb-0">
-                                        @foreach ($venta->detalles as $detalle)
-                                            <li class="mb-1">
-                                                <span class="badge bg-secondary me-1">{{ $detalle->cantidad }}x</span>
-                                                {{ $detalle->producto?->nombre ?? 'Producto Eliminado' }}
-                                                <small class="text-muted">(${{ number_format($detalle->precio_unitario, 0, ',', '.') }} c/u)</small>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </td>
-                                <td class="text-end fw-bold text-success fs-5">
-                                    ${{ number_format($venta->total, 0, ',', '.') }}
-                                </td>
-                            </tr>
-                        @endforeach
-                        <!-- Fila de sin resultados -->
-                        <tr id="sinResultadosVentas" style="display: none;">
-                            <td colspan="5" class="text-center text-muted py-3">
-                                No se encontraron ventas que coincidan con los filtros.
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                    <div class="flex-grow-1 ms-lg-4 text-start">
+                                        <span class="d-block fw-bold text-dark">{{ $venta->usuario?->nombre }}</span>
+                                        <span class="text-muted small">{{ $venta->usuario?->email }}</span>
+                                    </div>
+                                    <div class="text-end">
+                                        <span class="fs-5 fw-bold text-success">${{ number_format($venta->total, 0, ',', '.') }}</span>
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapse-{{ $venta->id }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ $venta->id }}" data-bs-parent="#cuerpoTablaVentas">
+                            <div class="accordion-body bg-white p-3">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless align-middle mb-0">
+                                        <thead>
+                                            <tr class="border-bottom text-muted small">
+                                                <th scope="col" style="width: 70px;">Item</th>
+                                                <th scope="col">Producto</th>
+                                                <th scope="col" class="text-center">Cant.</th>
+                                                <th scope="col" class="text-end">Precio</th>
+                                                <th scope="col" class="text-end">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($venta->detalles as $detalle)
+                                                <tr class="border-bottom-dashed">
+                                                    <td>
+                                                        <img src="{{ asset($detalle->producto?->imagen ? 'img/' . $detalle->producto->imagen : 'img/logo.png') }}" alt="{{ $detalle->producto?->nombre ?? 'Producto' }}" class="img-fluid rounded-3" style="max-height: 50px; width: 50px; object-fit: cover;">
+                                                    </td>
+                                                    <td>
+                                                        <span class="fw-semibold text-dark">{{ $detalle->producto?->nombre ?? 'Producto de baja' }}</span>
+                                                    </td>
+                                                    <td class="text-center">{{ $detalle->cantidad }}</td>
+                                                    <td class="text-end">${{ number_format($detalle->precio_unitario, 0, ',', '.') }}</td>
+                                                    <td class="text-end fw-semibold text-dark">${{ number_format($detalle->precio_unitario * $detalle->cantidad, 0, ',', '.') }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Checkout Info -->
+                                <div class="mt-3 pt-3 border-top d-flex flex-wrap gap-4 text-muted small">
+                                    <div>
+                                        <i class="bi bi-truck me-1"></i><strong>Entrega:</strong> 
+                                        {{ $venta->metodo_entrega === 'delivery' ? 'Envío a domicilio' : 'Retiro en local (Take Away)' }}
+                                    </div>
+                                    @if($venta->metodo_entrega === 'delivery')
+                                        <div>
+                                            <i class="bi bi-geo-alt me-1"></i><strong>Dirección:</strong> {{ $venta->direccion }}
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-cash me-1"></i><strong>Costo Envío:</strong> ${{ number_format($venta->costo_envio, 0, ',', '.') }}
+                                        </div>
+                                    @endif
+                                    <div>
+                                        <i class="bi bi-wallet2 me-1"></i><strong>Forma de Pago:</strong> 
+                                        {{ $venta->forma_pago === 'efectivo' ? 'Efectivo' : ($venta->forma_pago === 'tarjeta' ? 'Tarjeta' : 'Transferencia') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Div de sin resultados para JS -->
+            <div id="sinResultadosVentas" class="alert alert-warning text-center mt-3" style="display: none;">
+                No se encontraron ventas que coincidan con los filtros.
             </div>
         @endif
     </div>

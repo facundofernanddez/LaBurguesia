@@ -204,6 +204,6 @@ no eliminar producto de la base solo cambiar estado ✅
 desabilitar el cambio de admin y cliente ✅
 el admin no puede autodesactivarse ✅
 mas datos al finalizar la compra ✅
-resoonder las consultas desde las consultas hacia el correo
+responder las consultas desde las consultas hacia el correo
 en consulta cuando esta registrado autocompletar campos de correo y nombre
  --}}
