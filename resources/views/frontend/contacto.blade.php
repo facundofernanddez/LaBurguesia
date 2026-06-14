@@ -58,7 +58,11 @@
                         <div class="mb-3">
                             <label class="form-label">Nombre</label>
                             <input type="text" name="nombre" class="form-control @error('nombre') is-invalid @enderror" 
-                                placeholder="Tu nombre" value="{{ old('nombre') }}">
+                                placeholder="Tu nombre" value="{{ Auth::check() ? Auth::user()->nombre : old('nombre') }}"
+                                {{ Auth::check() ? 'disabled' : '' }}>
+                            @if(Auth::check())
+                                <input type="hidden" name="nombre" value="{{ Auth::user()->nombre }}">
+                            @endif
                             @error('nombre')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -66,7 +70,11 @@
                         <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" 
-                                placeholder="tu@email.com" value="{{ old('email') }}">
+                                placeholder="tu@email.com" value="{{ Auth::check() ? Auth::user()->email : old('email') }}"
+                                {{ Auth::check() ? 'disabled' : '' }}>
+                            @if(Auth::check())
+                                <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                            @endif
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

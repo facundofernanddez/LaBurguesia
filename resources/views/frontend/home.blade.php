@@ -205,5 +205,5 @@ desabilitar el cambio de admin y cliente ✅
 el admin no puede autodesactivarse ✅
 mas datos al finalizar la compra ✅
 responder las consultas desde las consultas hacia el correo
-en consulta cuando esta registrado autocompletar campos de correo y nombre
+en consulta cuando esta registrado autocompletar campos de correo y nombre ✅
  --}}
