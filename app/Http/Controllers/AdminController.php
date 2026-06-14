@@ -15,7 +15,12 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         $usuarios = Usuario::count();
-        $usuariosList = Usuario::with('rol')->orderBy('created_at', 'desc')->get();
+        $usuariosList = Usuario::with('rol')
+            ->leftJoin('roles', 'usuarios.rol_id', '=', 'roles.id')
+            ->select('usuarios.*')
+            ->orderByRaw("CASE WHEN roles.nombre = 'admin' THEN 0 ELSE 1 END")
+            ->orderBy('usuarios.created_at', 'desc')
+            ->get();
         $productos = Producto::orderBy('created_at', 'desc')->get();
         $categorias = Categoria::orderBy('nombre')->get();
         $categoriaOptions = $categorias->pluck('nombre')->toArray();
@@ -138,30 +143,13 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard')->with('success', 'Producto eliminado correctamente.');
     }
 
-    public function updateUsuarioRol(Request $request, Usuario $usuario)
-    {
-        $validated = $request->validate([
-            'rol' => 'required|string|in:admin,cliente',
-        ], [
-            'rol.required' => 'El rol es obligatorio.',
-            'rol.string' => 'El rol debe ser texto.',
-            'rol.in' => 'El rol seleccionado no es válido.',
-        ]);
-
-        $rol = Rol::where('nombre', $validated['rol'])->first();
-
-        if (! $rol) {
-            return redirect()->route('admin.dashboard')->with('success', 'El rol seleccionado no es válido.');
-        }
-
-        $usuario->update(['rol_id' => $rol->id]);
-
-        return redirect()->route('admin.dashboard')->with('success', 'Rol de usuario actualizado correctamente.');
-    }
-
     public function updateUsuarioActivo(Request $request, Usuario $usuario)
     {
         $activo = $request->boolean('activo');
+
+        if (auth()->id() === $usuario->id && ! $activo) {
+            return redirect()->route('admin.dashboard')->with('error', 'No puedes desactivar tu propio usuario administrador.');
+        }
 
         $usuario->update(['activo' => $activo]);
 

@@ -78,7 +78,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
         ->only(['store', 'update', 'destroy'])
         ->names('admin.productos');
 
-    Route::put('/admin/usuarios/{usuario}/rol', [AdminController::class, 'updateUsuarioRol'])->name('admin.usuarios.updateRol');
     Route::put('/admin/usuarios/{usuario}/activo', [AdminController::class, 'updateUsuarioActivo'])->name('admin.usuarios.updateActivo');
 
     Route::resource('admin/categorias', AdminCategoriaController::class)

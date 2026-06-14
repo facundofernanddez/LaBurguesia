@@ -127,6 +127,25 @@
                                                     </tbody>
                                                 </table>
                                             </div>
+                                            <!-- Checkout Info -->
+                                            <div class="mt-3 pt-3 border-top d-flex flex-wrap gap-4 text-muted small">
+                                                <div>
+                                                    <i class="bi bi-truck me-1"></i><strong>Entrega:</strong> 
+                                                    {{ ($compra->metodo_entrega ?? 'take_away') === 'delivery' ? 'Envío a domicilio' : 'Retiro en local (Take Away)' }}
+                                                </div>
+                                                @if(($compra->metodo_entrega ?? 'take_away') === 'delivery')
+                                                    <div>
+                                                        <i class="bi bi-geo-alt me-1"></i><strong>Dirección:</strong> {{ $compra->direccion }}
+                                                    </div>
+                                                    <div>
+                                                        <i class="bi bi-cash me-1"></i><strong>Costo Envío:</strong> ${{ number_format($compra->costo_envio ?? 0, 0, ',', '.') }}
+                                                    </div>
+                                                @endif
+                                                <div>
+                                                    <i class="bi bi-wallet2 me-1"></i><strong>Forma de Pago:</strong> 
+                                                    {{ ($compra->forma_pago ?? 'efectivo') === 'efectivo' ? 'Efectivo' : (($compra->forma_pago ?? 'efectivo') === 'tarjeta' ? 'Tarjeta' : 'Transferencia') }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

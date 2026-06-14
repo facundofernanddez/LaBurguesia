@@ -31,21 +31,9 @@
                                 <td class="col-nombre">{{ $usuario->nombre }}</td>
                                 <td class="col-email">{{ $usuario->email }}</td>
                                 <td>
-                                    <form action="{{ route('admin.usuarios.updateRol', $usuario) }}"
-                                                method="POST" class="d-flex gap-2 align-items-center mb-0">
-                                        @csrf
-                                        @method('PUT')
-                                        <select name="rol" class="form-select form-select-sm" disabled>
-                                            <option value="cliente"
-                                                        {{ $usuario->rol?->nombre === 'cliente' ? 'selected' : '' }}>
-                                                Cliente</option>
-                                            <option value="admin"
-                                                        {{ $usuario->rol?->nombre === 'admin' ? 'selected' : '' }}>
-                                                Admin</option>
-                                        </select>
-                                        <button type="submit"
-                                                    class="btn btn-sm btn-outline-primary" disabled>Guardar</button>
-                                    </form>
+                                    <span class="badge {{ $usuario->rol?->nombre === 'admin' ? 'bg-primary' : 'bg-secondary' }}">
+                                        {{ ucfirst($usuario->rol?->nombre ?? 'cliente') }}
+                                    </span>
                                 </td>
                                 <td>
                                     <form action="{{ route('admin.usuarios.updateActivo', $usuario) }}" method="POST" class="d-flex align-items-center gap-2 mb-0">

@@ -12,22 +12,28 @@ class ClienteController extends Controller
 {
     public function comprar(Request $request)
     {
-        $cart = $request->input('carrito', []);
-
-        if (empty($cart)) {
-            return response()->json([
-                'success' => false,
-                'message' => 'El carrito está vacío.'
-            ], 400);
-        }
+        $validated = $request->validate([
+            'carrito' => 'required|array|min:1',
+            'metodo_entrega' => 'required|string|in:take_away,delivery',
+            'direccion' => 'required_if:metodo_entrega,delivery|nullable|string|max:255',
+            'forma_pago' => 'required|string|in:efectivo,tarjeta,transferencia',
+        ], [
+            'metodo_entrega.required' => 'El método de entrega es obligatorio.',
+            'metodo_entrega.in' => 'El método de entrega no es válido.',
+            'direccion.required_if' => 'La dirección es obligatoria para envío a domicilio.',
+            'direccion.max' => 'La dirección no puede superar los 255 caracteres.',
+            'forma_pago.required' => 'La forma de pago es obligatoria.',
+            'forma_pago.in' => 'La forma de pago seleccionada no es válida.',
+        ]);
 
         try {
             DB::beginTransaction();
 
-            $total = 0;
+            $costoEnvio = ($validated['metodo_entrega'] === 'delivery') ? 1000 : 0;
+            $total = $costoEnvio;
             $itemsToProcess = [];
 
-            foreach ($cart as $item) {
+            foreach ($validated['carrito'] as $item) {
                 $producto = Producto::find($item['id']);
 
                 if (!$producto) {
@@ -59,6 +65,10 @@ class ClienteController extends Controller
             $venta = Venta::create([
                 'usuario_id' => auth()->id(),
                 'total' => $total,
+                'metodo_entrega' => $validated['metodo_entrega'],
+                'direccion' => $validated['metodo_entrega'] === 'delivery' ? $validated['direccion'] : null,
+                'forma_pago' => $validated['forma_pago'],
+                'costo_envio' => $costoEnvio,
             ]);
 
             // Registrar los detalles de la venta y actualizar stock

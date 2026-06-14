@@ -76,6 +76,16 @@
                                 <td>
                                     <div class="fw-bold">{{ $venta->usuario?->nombre }}</div>
                                     <small class="text-muted">{{ $venta->usuario?->email }}</small>
+                                    <div class="mt-2 small text-muted">
+                                        <span class="badge bg-light text-dark border"><i class="bi bi-truck me-1"></i>{{ $venta->metodo_entrega === 'delivery' ? 'Envío' : 'Take Away' }}</span>
+                                        <span class="badge bg-light text-dark border"><i class="bi bi-wallet2 me-1"></i>{{ $venta->forma_pago === 'efectivo' ? 'Efectivo' : ($venta->forma_pago === 'tarjeta' ? 'Tarjeta' : 'Transferencia') }}</span>
+                                        @if($venta->metodo_entrega === 'delivery')
+                                            <div class="mt-1 font-monospace" style="font-size: 11px;">
+                                                <i class="bi bi-geo-alt me-1"></i>{{ $venta->direccion }}
+                                                <br><i class="bi bi-cash me-1"></i>Envío: ${{ number_format($venta->costo_envio, 0, ',', '.') }}
+                                            </div>
+                                        @endif
+                                    </div>
                                 </td>
                                 <td>
                                     <ul class="list-unstyled mb-0">

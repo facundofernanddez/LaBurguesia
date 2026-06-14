@@ -25,6 +25,106 @@
     </div>
 </div>
 
+<!-- Modal de Checkout -->
+<div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 rounded-4 shadow" style="background-color: #fcfaf6;">
+            <div class="modal-header bg-marron text-white rounded-top-4 py-3">
+                <h5 class="modal-title text-white" id="checkoutModalLabel">
+                    <i class="bi bi-credit-card-2-front me-2"></i>Finalizar Compra
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="formCheckout" class="needs-validation" novalidate>
+                    <!-- Método de Entrega -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-marron">Método de Entrega</label>
+                        <div class="d-flex gap-3">
+                            <div class="flex-fill">
+                                <input type="radio" class="btn-check" name="metodo_entrega" id="entrega_take_away" value="take_away" checked>
+                                <label class="btn btn-outline-marron w-100 py-3 rounded-3" for="entrega_take_away">
+                                    <i class="bi bi-shop fs-3 d-block mb-1"></i>
+                                    Take Away<br><small class="text-success fw-bold">Gratis</small>
+                                </label>
+                            </div>
+                            <div class="flex-fill">
+                                <input type="radio" class="btn-check" name="metodo_entrega" id="entrega_delivery" value="delivery">
+                                <label class="btn btn-outline-marron w-100 py-3 rounded-3" for="entrega_delivery">
+                                    <i class="bi bi-bicycle fs-3 d-block mb-1"></i>
+                                    Envío<br><small class="text-danger fw-bold">+$1.000</small>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dirección de Envío (Oculta por defecto) -->
+                    <div class="mb-4 d-none" id="contenedor-direccion">
+                        <label for="direccion" class="form-label fw-bold text-marron">Dirección de Envío</label>
+                        <input type="text" class="form-control rounded-3 border-marron" id="direccion" name="direccion" placeholder="Ej: Av. Siempreviva 742">
+                        <div class="invalid-feedback">
+                            Por favor ingresa una dirección de envío.
+                        </div>
+                    </div>
+
+                    <!-- Forma de Pago -->
+                    <div class="mb-4">
+                        <label for="forma_pago" class="form-label fw-bold text-marron">Forma de Pago</label>
+                        <select class="form-select rounded-3 border-marron" id="forma_pago" name="forma_pago" required>
+                            <option value="efectivo" selected>Efectivo</option>
+                            <option value="tarjeta">Tarjeta (Débito/Crédito)</option>
+                            <option value="transferencia">Transferencia Bancaria</option>
+                        </select>
+                    </div>
+
+                    <!-- Resumen del Pedido -->
+                    <div class="p-3 bg-light rounded-3 mb-4 border border-dashed">
+                        <h6 class="fw-bold text-marron mb-3"><i class="bi bi-receipt me-2"></i>Resumen</h6>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Productos:</span>
+                            <span class="fw-semibold text-dark" id="checkout-subtotal">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2 text-success d-none" id="fila-checkout-envio">
+                            <span class="text-muted">Envío a domicilio:</span>
+                            <span class="fw-semibold">+$1.000</span>
+                        </div>
+                        <hr class="my-2 text-muted">
+                        <div class="d-flex justify-content-between">
+                            <strong class="text-marron">Total Final:</strong>
+                            <strong class="text-danger fs-5" id="checkout-total">$0</strong>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn text-white w-100 py-3 fw-bold rounded-pill shadow-sm" style="background-color: #D62300; transition: all 0.3s ease;" id="btn-confirmar-compra">
+                        <span id="btn-confirmar-texto">Confirmar Pedido</span>
+                        <span id="btn-confirmar-spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-outline-marron {
+        color: #502314;
+        border-color: #502314;
+        background-color: transparent;
+        transition: all 0.2s ease;
+    }
+    .btn-outline-marron:hover, .btn-check:checked + .btn-outline-marron {
+        background-color: #502314 !important;
+        color: #fff !important;
+        border-color: #502314 !important;
+    }
+    .border-marron {
+        border-color: #502314 !important;
+    }
+    .text-marron {
+        color: #502314 !important;
+    }
+</style>
+
 <script>
     function mostrarCarrito() {
         const cart = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -146,16 +246,101 @@
         }
 
         const btnComprar = document.getElementById('btn-comprar');
-        if (btnComprar) {
-            btnComprar.addEventListener('click', async function() {
+        const checkoutModalEl = document.getElementById('checkoutModal');
+        let checkoutModal = null;
+        if (checkoutModalEl) {
+            checkoutModal = new bootstrap.Modal(checkoutModalEl);
+        }
+
+        if (btnComprar && checkoutModal) {
+            btnComprar.addEventListener('click', function() {
                 const cart = JSON.parse(localStorage.getItem('carrito')) || [];
                 if (cart.length === 0) return;
 
-                const btnTexto = document.getElementById('btn-comprar-texto');
-                const btnSpinner = document.getElementById('btn-comprar-spinner');
-                btnComprar.disabled = true;
-                btnTexto.textContent = 'Procesando...';
-                btnSpinner.classList.remove('d-none');
+                // 1. Calculate subtotal
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.precio * item.cantidad;
+                });
+
+                // 2. Set subtotal in modal
+                document.getElementById('checkout-subtotal').textContent = '$' + subtotal.toLocaleString('es-AR');
+
+                // 3. Trigger change event to initialize delivery option logic
+                const deliveryRad = document.querySelector('input[name="metodo_entrega"]:checked');
+                updateCheckoutTotal(subtotal, deliveryRad.value);
+
+                // 4. Hide offcanvas cart
+                const offcanvasCartEl = document.getElementById('offcanvasCart');
+                const offcanvasCart = bootstrap.Offcanvas.getInstance(offcanvasCartEl);
+                if (offcanvasCart) {
+                    offcanvasCart.hide();
+                }
+
+                // 5. Show checkout modal
+                checkoutModal.show();
+            });
+        }
+
+        // Logic for toggling address and recalculating total based on delivery option
+        const entregaRadios = document.querySelectorAll('input[name="metodo_entrega"]');
+        const contenedorDireccion = document.getElementById('contenedor-direccion');
+        const inputDireccion = document.getElementById('direccion');
+        const filaCheckoutEnvio = document.getElementById('fila-checkout-envio');
+
+        function updateCheckoutTotal(subtotal, metodo) {
+            const envio = metodo === 'delivery' ? 1000 : 0;
+            const totalFinal = subtotal + envio;
+            document.getElementById('checkout-total').textContent = '$' + totalFinal.toLocaleString('es-AR');
+            
+            if (envio > 0) {
+                filaCheckoutEnvio.classList.remove('d-none');
+                contenedorDireccion.classList.remove('d-none');
+                inputDireccion.setAttribute('required', 'required');
+            } else {
+                filaCheckoutEnvio.classList.add('d-none');
+                contenedorDireccion.classList.add('d-none');
+                inputDireccion.removeAttribute('required');
+                inputDireccion.value = '';
+            }
+        }
+
+        entregaRadios.forEach(rad => {
+            rad.addEventListener('change', function() {
+                const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                let subtotal = 0;
+                cart.forEach(item => {
+                    subtotal += item.precio * item.cantidad;
+                });
+                updateCheckoutTotal(subtotal, this.value);
+            });
+        });
+
+        // Form Submit
+        const formCheckout = document.getElementById('formCheckout');
+        if (formCheckout) {
+            formCheckout.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (!formCheckout.checkValidity()) {
+                    formCheckout.classList.add('was-validated');
+                    return;
+                }
+
+                const cart = JSON.parse(localStorage.getItem('carrito')) || [];
+                if (cart.length === 0) return;
+
+                const metodoEntrega = document.querySelector('input[name="metodo_entrega"]:checked').value;
+                const direccion = inputDireccion.value.trim();
+                const formaPago = document.getElementById('forma_pago').value;
+
+                const btnConfirmar = document.getElementById('btn-confirmar-compra');
+                const btnConfirmarTexto = document.getElementById('btn-confirmar-texto');
+                const btnConfirmarSpinner = document.getElementById('btn-confirmar-spinner');
+
+                btnConfirmar.disabled = true;
+                btnConfirmarTexto.textContent = 'Procesando...';
+                btnConfirmarSpinner.classList.remove('d-none');
 
                 try {
                     const response = await fetch('/carrito/comprar', {
@@ -165,7 +350,12 @@
                             'Accept': 'application/json',
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
                         },
-                        body: JSON.stringify({ carrito: cart })
+                        body: JSON.stringify({
+                            carrito: cart,
+                            metodo_entrega: metodoEntrega,
+                            direccion: direccion,
+                            forma_pago: formaPago
+                        })
                     });
 
                     const data = await response.json();
@@ -181,9 +371,9 @@
                     console.error(error);
                     mostrarErrorToast('Ocurrió un error inesperado al conectar con el servidor.');
                 } finally {
-                    btnComprar.disabled = false;
-                    btnTexto.textContent = 'Comprar';
-                    btnSpinner.classList.add('d-none');
+                    btnConfirmar.disabled = false;
+                    btnConfirmarTexto.textContent = 'Confirmar Pedido';
+                    btnConfirmarSpinner.classList.add('d-none');
                 }
             });
         }

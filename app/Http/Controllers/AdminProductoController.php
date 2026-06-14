@@ -123,9 +123,12 @@ class AdminProductoController extends Controller
 
     public function destroy(Producto $producto)
     {
-        $producto->delete();
+        $producto->update([
+            'activo' => !$producto->activo
+        ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Producto eliminado correctamente.');
+        $statusText = $producto->activo ? 'activado' : 'desactivado';
+        return redirect()->route('admin.dashboard')->with('success', "Producto {$statusText} correctamente.");
     }
 
     public function updateDestacado(Producto $producto)

@@ -196,7 +196,9 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                                 class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                                                 class="btn btn-sm {{ $producto->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                                        {{ $producto->activo ? 'Desactivar' : 'Activar' }}
+                                                    </button>
                                                 </form>
                                             </div>
                                         </td>

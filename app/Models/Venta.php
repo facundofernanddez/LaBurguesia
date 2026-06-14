@@ -11,10 +11,15 @@ class Venta extends Model
     protected $fillable = [
         'usuario_id',
         'total',
+        'metodo_entrega',
+        'direccion',
+        'forma_pago',
+        'costo_envio',
     ];
 
     protected $casts = [
         'total' => 'integer',
+        'costo_envio' => 'integer',
     ];
 
     public function usuario()
