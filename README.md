@@ -108,9 +108,13 @@ MAIL_FROM_NAME="La Burguesía"
 ```
 
 ### 5. Ejecutar Migraciones y Seeds
-Crea las tablas y los registros iniciales obligatorios en tu base de datos local:
+Crea las tablas y siembra los registros obligatorios, las categorías y los 28 productos iniciales en tu base de datos:
 ```bash
 php artisan migrate --seed
+```
+*(Si ya tenías creadas las tablas anteriormente y solo deseas cargar o actualizar las categorías y productos, puedes ejecutar únicamente el seeder):*
+```bash
+php artisan db:seed
 ```
 
 ### 6. Levantar Servidores locales
