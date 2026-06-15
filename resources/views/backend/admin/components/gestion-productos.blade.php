@@ -140,9 +140,10 @@
                     <x-search-input id="buscarProducto" placeholder="Buscar por nombre o categoría..." />
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0" id="tablaProductos">
+                        <table class="table table-hover align-middle mb-0 table-sm" id="tablaProductos" style="font-size: 0.85rem;">
                             <thead>
                                 <tr>
+                                    <th>Imagen</th>
                                     <th>Nombre</th>
                                     <th>Categoría</th>
                                     <th>Precio</th>
@@ -155,6 +156,12 @@
                             <tbody id="cuerpoTablaProductos">
                                 @foreach ($productos as $producto)
                                     <tr class="fila-producto">
+                                        <td>
+                                            <img src="{{ asset($producto->imagen ? 'img/producto/' . $producto->imagen : 'img/logo.png') }}" 
+                                                 alt="{{ $producto->nombre }}" 
+                                                 class="rounded-3 shadow-sm" 
+                                                 style="width: 45px; height: 45px; object-fit: cover; border: 1px solid #dee2e6;">
+                                        </td>
                                         <td class="col-nombre">{{ $producto->nombre }}</td>
                                         <td class="col-categoria">{{ ucfirst($producto->categoria) }}</td>
                                         <td>${{ number_format($producto->precio, 0, ',', '.') }}</td>
@@ -187,17 +194,20 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="d-flex justify-content-end gap-2">
+                                            <div class="d-flex justify-content-end gap-1">
                                                 <a href="{{ route('admin.dashboard', ['edit_producto' => $producto->id]) }}"
-                                                             class="btn btn-sm btn-outline-primary">Editar</a>
+                                                             class="btn btn-sm btn-outline-primary" title="Editar">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
                                                 <form
                                                              action="{{ route('admin.productos.destroy', $producto) }}"
                                                              method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                                 class="btn btn-sm {{ $producto->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
-                                                        {{ $producto->activo ? 'Desactivar' : 'Activar' }}
+                                                                 class="btn btn-sm {{ $producto->activo ? 'btn-outline-danger' : 'btn-outline-success' }}"
+                                                                 title="{{ $producto->activo ? 'Desactivar' : 'Activar' }}">
+                                                        <i class="bi {{ $producto->activo ? 'bi-toggle-on' : 'bi-toggle-off' }} fs-6"></i>
                                                     </button>
                                                 </form>
                                             </div>
@@ -206,7 +216,7 @@
                                 @endforeach
                                 <!-- Fila de sin resultados -->
                                 <tr id="sinResultadosProductos" style="display: none;">
-                                    <td colspan="7" class="text-center text-muted py-3">
+                                    <td colspan="8" class="text-center text-muted py-3">
                                         No se encontraron productos que coincidan con la búsqueda.
                                     </td>
                                 </tr>

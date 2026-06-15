@@ -64,7 +64,7 @@
                     <x-search-input id="buscarCategoria" placeholder="Buscar por nombre o descripción..." />
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0" id="tablaCategorias">
+                        <table class="table table-hover align-middle mb-0 table-sm" id="tablaCategorias" style="font-size: 0.85rem;">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
@@ -84,17 +84,20 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <div class="d-flex justify-content-end gap-2">
+                                            <div class="d-flex justify-content-end gap-1">
                                                 <a href="{{ route('admin.dashboard', ['edit_categoria' => $categoria->id]) }}"
-                                                                class="btn btn-sm btn-outline-primary">Editar</a>
+                                                                class="btn btn-sm btn-outline-primary" title="Editar">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
                                                 <form
                                                                 action="{{ route('admin.categorias.destroy', $categoria) }}"
                                                                 method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                                class="btn btn-sm {{ $categoria->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
-                                                        {{ $categoria->activo ? 'Desactivar' : 'Activar' }}
+                                                                class="btn btn-sm {{ $categoria->activo ? 'btn-outline-danger' : 'btn-outline-success' }}"
+                                                                title="{{ $categoria->activo ? 'Desactivar' : 'Activar' }}">
+                                                        <i class="bi {{ $categoria->activo ? 'bi-toggle-on' : 'bi-toggle-off' }} fs-6"></i>
                                                     </button>
                                                 </form>
                                             </div>
