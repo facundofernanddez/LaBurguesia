@@ -189,10 +189,15 @@
                     if (highlightId) {
                         const targetCard = document.querySelector(`.card-producto[data-id="${highlightId}"]`);
                         if (targetCard) {
-                            targetCard.classList.add('highlight-product');
+                            // Primero scrolleamos suavemente hacia la tarjeta
                             setTimeout(() => {
                                 targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            }, 300);
+                            }, 150);
+
+                            // Agregamos la clase de animación cuando el scroll esté finalizando (aprox. 850ms de delay)
+                            setTimeout(() => {
+                                targetCard.classList.add('highlight-product');
+                            }, 850);
                         }
                     }
                 });
@@ -235,7 +240,7 @@
         }
 
         .highlight-product {
-            animation: highlightGlow 1s ease-in-out;
+            animation: highlightGlow 1.5s ease-in-out;
         }
 
         .badge {
