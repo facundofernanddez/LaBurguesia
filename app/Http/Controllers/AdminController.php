@@ -9,6 +9,8 @@ use App\Models\Rol;
 use App\Models\Usuario;
 use App\Models\Venta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RespuestaConsulta;
 
 class AdminController extends Controller
 {
@@ -205,5 +207,29 @@ class AdminController extends Controller
         $categoria->delete();
 
         return redirect()->route('admin.dashboard')->with('success', 'Categoría eliminada correctamente.');
+    }
+
+    public function responderConsulta(Request $request, Contacto $contacto)
+    {
+        $validated = $request->validate([
+            'respuesta' => 'required|string|min:5|max:2000',
+        ], [
+            'respuesta.required' => 'La respuesta es obligatoria.',
+            'respuesta.min' => 'La respuesta debe tener al menos 5 caracteres.',
+            'respuesta.max' => 'La respuesta no puede superar los 2000 caracteres.',
+        ]);
+
+        try {
+            Mail::to($contacto->email)->send(new RespuestaConsulta($contacto, $validated['respuesta']));
+
+            $contacto->update([
+                'respondido' => true,
+                'respuesta' => $validated['respuesta']
+            ]);
+
+            return redirect()->route('admin.dashboard')->with('success', 'Respuesta enviada correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('admin.dashboard')->with('error', 'No se pudo enviar el correo de respuesta: ' . $e->getMessage());
+        }
     }
 }

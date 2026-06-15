@@ -11,5 +11,11 @@ class Contacto extends Model
         'email',
         'motivo',
         'mensaje',
+        'respondido',
+        'respuesta',
+    ];
+
+    protected $casts = [
+        'respondido' => 'boolean',
     ];
 }

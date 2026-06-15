@@ -80,6 +80,8 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::put('/admin/usuarios/{usuario}/activo', [AdminController::class, 'updateUsuarioActivo'])->name('admin.usuarios.updateActivo');
 
+    Route::post('/admin/consultas/{contacto}/responder', [AdminController::class, 'responderConsulta'])->name('admin.consultas.responder');
+
     Route::resource('admin/categorias', AdminCategoriaController::class)
         ->only(['store', 'update', 'destroy'])
         ->names('admin.categorias');
