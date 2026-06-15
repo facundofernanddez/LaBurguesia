@@ -67,7 +67,7 @@ Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local:
 
 ### 1. Clonar el repositorio e Instalar dependencias
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/facundofernanddez/LaBurguesia
 cd LaBurguesia
 composer install
 npm install
@@ -90,8 +90,8 @@ DB_CONNECTION=mariadb
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=laburguesia_barrios_fernandez
-DB_USERNAME=tu_usuario
-DB_PASSWORD=tu_contraseña
+DB_USERNAME=root
+DB_PASSWORD=root
 ```
 
 ### 4. Configurar Mailtrap para el envío de correos
@@ -100,8 +100,8 @@ Para probar la confirmación de consultas y la funcionalidad de responder consul
 MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
 MAIL_PORT=2525
-MAIL_USERNAME=tu_usuario_mailtrap
-MAIL_PASSWORD=tu_password_mailtrap
+MAIL_USERNAME=8d7eb99252ddd0
+MAIL_PASSWORD=1074576514a647
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="no-reply@laburguesia.com"
 MAIL_FROM_NAME="La Burguesía"
