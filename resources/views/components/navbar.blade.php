@@ -10,9 +10,11 @@
             </button>
 
             <!-- Carrito siempre visible en móvil -->
-            <a class="nav-link d-lg-none" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
-                <i class="bi bi-cart"></i>
-            </a>
+            @if (Auth::user()?->rol?->nombre !== 'admin')
+                <a class="nav-link d-lg-none" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
+                    <i class="bi bi-cart"></i>
+                </a>
+            @endif
         </div>
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -49,11 +51,13 @@
                         <a class="nav-link fw-bold" href="{{ route('logout') }}">Salir</a>
                     </li>
                 @endguest
-                <li class="nav-item d-none d-lg-block">
-                    <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
-                        <i class="bi bi-cart"></i>
-                    </a>
-                </li>
+                @if (Auth::user()?->rol?->nombre !== 'admin')
+                    <li class="nav-item d-none d-lg-block">
+                        <a class="nav-link" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart">
+                            <i class="bi bi-cart"></i>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

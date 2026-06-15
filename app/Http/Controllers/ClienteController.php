@@ -12,6 +12,13 @@ class ClienteController extends Controller
 {
     public function comprar(Request $request)
     {
+        if (auth()->user()?->rol?->nombre === 'admin') {
+            return response()->json([
+                'success' => false,
+                'message' => 'Los administradores no pueden realizar compras.'
+            ], 403);
+        }
+
         $validated = $request->validate([
             'carrito' => 'required|array|min:1',
             'metodo_entrega' => 'required|string|in:take_away,delivery',

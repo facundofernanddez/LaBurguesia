@@ -47,7 +47,9 @@
                                      data-nombre="{{ $producto->nombre }}" 
                                      data-precio="{{ $producto->precio }}" 
                                      data-imagen="{{ $producto->imagen }}">
-                                    @if ($producto->stock > 0)
+                                    @if (Auth::user()?->rol?->nombre === 'admin')
+                                        {{-- El admin no puede realizar compras --}}
+                                    @elseif ($producto->stock > 0)
                                         <button class="btn-agregar" data-id="{{ $producto->id }}"
                                             data-nombre="{{ $producto->nombre }}" data-precio="{{ $producto->precio }}"
                                             data-imagen="{{ $producto->imagen }}" data-stock="{{ $producto->stock }}">
@@ -68,8 +70,16 @@
             @endforelse
 
             <script>
+                const isAdmin = {{ Auth::user()?->rol?->nombre === 'admin' ? 'true' : 'false' }};
+
                 // Función para sincronizar la UI del catálogo con el carrito de localStorage
                 function syncCatalogStock() {
+                    if (isAdmin) {
+                        document.querySelectorAll('.action-container').forEach(container => {
+                            container.innerHTML = '';
+                        });
+                        return;
+                    }
                     const cart = JSON.parse(localStorage.getItem('carrito')) || [];
                     
                     document.querySelectorAll('.action-container').forEach(container => {
