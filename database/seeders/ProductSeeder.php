@@ -13,11 +13,44 @@ class ProductSeeder extends Seeder
      */
     public function run(): void
     {
-        // Asegurar que exista la categoría Bebidas
-        Categoria::firstOrCreate(
-            ['nombre' => 'Bebidas'],
-            ['descripcion' => 'Bebidas frescas y gaseosas para acompañar tu comida.', 'activo' => true]
-        );
+        // Asegurar que existan todas las categorías
+        $categorias = [
+            [
+                'nombre' => 'Hamburguesas',
+                'descripcion' => 'Hamburguesas gourmet elaboradas con carne vacuna de primera y aderezos artesanales.',
+                'activo' => true
+            ],
+            [
+                'nombre' => 'Combos',
+                'descripcion' => 'Los mejores combos que incluyen hamburguesa, papas fritas y bebida para una comida completa.',
+                'activo' => true
+            ],
+            [
+                'nombre' => 'Papas Fritas',
+                'descripcion' => 'Papas fritas crujientes en porciones ideales para acompañar o compartir.',
+                'activo' => true
+            ],
+            [
+                'nombre' => 'Empanadas',
+                'descripcion' => 'Empanadas artesanales fritas o al horno con rellenos súper sabrosos.',
+                'activo' => true
+            ],
+            [
+                'nombre' => 'Bebidas',
+                'descripcion' => 'Bebidas frescas y gaseosas para acompañar tu menú.',
+                'activo' => true
+            ],
+        ];
+
+        foreach ($categorias as $cat) {
+            Categoria::updateOrCreate(
+                ['nombre' => $cat['nombre']],
+                [
+                    'descripcion' => $cat['descripcion'],
+                    'activo' => $cat['activo']
+                ]
+            );
+        }
 
         $productos = [
             // Hamburguesas
