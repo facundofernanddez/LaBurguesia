@@ -1,58 +1,142 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🍔 La Burguesía — Hamburguesería Gourmet
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/img/logo.png" alt="La Burguesía Logo" width="220px">
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🏛️ Contexto Académico
+* **Institución:** Universidad Nacional del Nordeste (UNNE)
+* **Facultad:** Facultad de Ciencias Exactas y Naturales y Agrimensura (FACENA)
+* **Carrera:** Licenciatura en Sistemas de Información
+* **Materia:** Taller de Programación I (3er Año)
+* **Año Académico:** 2026
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 👥 Integrantes del Proyecto
+* 👨‍💻 **Fernández, Alejandro Facundo**
+* 👩‍💻 **Barrios, Guadalupe Aymara**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📝 Descripción del Proyecto
+**La Burguesía** es una plataforma web completa de comercio electrónico y gestión administrativa diseñada específicamente para una hamburguesería gourmet. Combina una interfaz pública moderna y fluida para que los clientes exploren el menú y realicen compras, con un potente panel de administración privado (Dashboard) para gestionar el inventario, los usuarios, el catálogo de productos, las categorías y responder de forma directa a las consultas de los clientes mediante correo electrónico.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🚀 Características Principales
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 🛒 Portal del Cliente (Frontend)
+* **Página de Inicio Dinámica:** Carrusel interactivo que muestra productos con imágenes reales de forma aleatoria y una sección de destacados.
+* **Catálogo de Menú Interactivo:** Filtrado en tiempo real por categorías activas, actualización dinámica del stock y control de unidades disponibles.
+* **Carrito de Compras Offcanvas (Bootstrap):** Sincronización local en tiempo real (`localStorage`), permitiendo agregar productos, cambiar cantidades y calcular totales al instante.
+* **Flujo de Checkout Personalizado:** Formulario para concretar la compra donde el usuario indica:
+  * **Método de entrega:** *Take Away* o *Envío a domicilio* (aplicando un recargo automático de $1.000 por envío).
+  * **Forma de pago:** Efectivo, Tarjeta de Crédito/Débito o Transferencia Bancaria.
+  * **Dirección de envío:** Validación condicional según la entrega seleccionada.
+* **Perfil de Usuario:** Panel personal del cliente con su información y un historial de compras estético en formato de acordeones desplegables detallando cada pedido.
+* **Formulario de Contacto Inteligente:** Para usuarios autenticados autocompleta el nombre y correo electrónico bloqueando su edición (`disabled`) para evitar fraudes, enviando además un correo automático de confirmación.
 
-## Agentic Development
+### 🛡️ Panel de Administración (Backend/Dashboard)
+* **Control de Accesos y Permisos:** Restricciones estrictas por roles (Admins/Clientes). Los administradores tienen deshabilitado el flujo de compras y botones del carrito en toda la app.
+* **Gestión de Usuarios:** Listado de cuentas registradas con prioridad visual para administradores y posibilidad de activar o desactivar usuarios de forma lógica.
+* **Gestión de Productos (CRUD):** 
+  * Cargar productos con imagen, precio, stock y categoría.
+  * Marcar productos como destacados con un solo clic (sistema de estrellas).
+  * Activación/Desactivación lógica (en lugar de eliminaciones físicas que rompan el historial de ventas).
+* **Gestión de Categorías (CRUD):**
+  * Activación/Desactivación lógica de categorías.
+  * Ocultamiento inteligente: al desactivar una categoría, esta desaparece del catálogo y todos sus productos se ocultan automáticamente del catálogo y del inicio para evitar compras de productos no ofertados.
+* **Centro de Respuestas a Consultas:** El administrador puede visualizar los mensajes recibidos y **responderlos directamente desde el Dashboard**. Esto genera un correo electrónico HTML formal enviado al cliente (vía SMTP/Mailtrap) y registra la respuesta en la base de datos para futuras consultas de auditoría.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
 
+## 🛠️ Tecnologías Utilizadas
+
+* **Framework Principal:** [Laravel 11](https://laravel.com/)
+* **Lenguaje:** PHP 8.2+ & JavaScript ES6 (Vanilla)
+* **Base de Datos:** MariaDB / MySQL
+* **Diseño y Estilos:** Bootstrap 5, Vanilla CSS & Bootstrap Icons
+* **Pruebas de Correo:** Mailtrap (Entorno de desarrollo SMTP seguro)
+
+---
+
+## ⚙️ Instrucciones de Instalación y Configuración
+
+Sigue estos pasos para clonar y ejecutar el proyecto en tu entorno local:
+
+### 1. Clonar el repositorio e Instalar dependencias
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <url-del-repositorio>
+cd LaBurguesia
+composer install
+npm install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Configurar el archivo de entorno `.env`
+Duplica el archivo de ejemplo `.env.example` y renómbralo a `.env`:
+```bash
+cp .env.example .env
+```
+Genera la clave de aplicación:
+```bash
+php artisan key:generate
+```
 
-## Contributing
+### 3. Configurar Base de Datos en el `.env`
+Edita las variables de conexión de base de datos según tu servidor local:
+```env
+DB_CONNECTION=mariadb
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laburguesia_barrios_fernandez
+DB_USERNAME=tu_usuario
+DB_PASSWORD=tu_contraseña
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. Configurar Mailtrap para el envío de correos
+Para probar la confirmación de consultas y la funcionalidad de responder consultas de administrador, ingresa tus credenciales de Mailtrap SMTP en el archivo `.env`:
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=tu_usuario_mailtrap
+MAIL_PASSWORD=tu_password_mailtrap
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="no-reply@laburguesia.com"
+MAIL_FROM_NAME="La Burguesía"
+```
 
-## Code of Conduct
+### 5. Ejecutar Migraciones y Seeds
+Crea las tablas y los registros iniciales obligatorios en tu base de datos local:
+```bash
+php artisan migrate --seed
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 6. Levantar Servidores locales
+Inicia el servidor de desarrollo de Laravel:
+```bash
+php artisan serve
+```
+Y si es necesario, compila los recursos Frontend para desarrollo:
+```bash
+npm run dev
+```
 
-## Security Vulnerabilities
+El sistema estará accesible en tu navegador en: [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 📂 Estructura Principal del Proyecto
+* **`app/Http/Controllers/`:** Controladores que contienen la lógica empresarial (`AdminController`, `AdminCategoriaController`, `AdminProductoController`, `ClienteController`, `ContactoController`, `AuthController`).
+* **`app/Mail/`:** Clases Mailables encargadas de estructurar los envíos de correos electrónicos (`ConsultaRecibida`, `RespuestaConsulta`).
+* **`resources/views/`:** VistasBlade organizadas por componentes reutilizables, correos HTML (`emails/`), panel de administración (`backend/admin/`), y páginas públicas (`frontend/`).
+* **`database/migrations/`:** Historial de migraciones para la generación estructurada de la base de datos.
+* **`public/css/styles.css`:** Hojas de estilos del proyecto.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+<p align="center" style="margin-top: 30px;">
+  Trabajo práctico desarrollado para la cátedra <b>Taller de Programación I</b>.<br>
+  <b>Licenciatura en Sistemas de Información - UNNE</b>
+</p>
