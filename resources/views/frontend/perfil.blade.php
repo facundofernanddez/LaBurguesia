@@ -114,7 +114,7 @@
                                                         @foreach ($compra->detalles as $detalle)
                                                             <tr class="border-bottom-dashed">
                                                                 <td>
-                                                                    <img src="{{ asset($detalle->producto?->imagen ? 'img/' . $detalle->producto->imagen : 'img/logo.png') }}" alt="{{ $detalle->producto?->nombre ?? 'Producto' }}" class="img-fluid rounded-3" style="max-height: 50px; width: 50px; object-fit: cover;">
+                                                                    <img src="{{ asset($detalle->producto?->imagen ? 'img/producto/' . $detalle->producto->imagen : 'img/logo.png') }}" alt="{{ $detalle->producto?->nombre ?? 'Producto' }}" class="img-fluid rounded-3" style="max-height: 50px; width: 50px; object-fit: cover;">
                                                                 </td>
                                                                 <td>
                                                                     <span class="fw-semibold text-dark">{{ $detalle->producto?->nombre ?? 'Producto eliminado' }}</span>

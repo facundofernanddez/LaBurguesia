@@ -3,7 +3,7 @@
         $imagenesCarrusel = [];
         foreach ($carruselProductos as $p) {
             $imagenesCarrusel[] = [
-                'src' => asset('img/' . $p->imagen),
+                'src' => asset('img/producto/' . $p->imagen),
                 'alt' => $p->nombre,
                 'titulo' => $p->nombre,
                 'descripcion' => $p->descripcion
@@ -82,7 +82,7 @@
                 @forelse($destacados as $producto)
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="card h-100 border-0 shadow-sm">
-                            <img src="{{ asset($producto->imagen ? 'img/' . $producto->imagen : 'img/logo.png') }}" class="card-img" alt="{{ $producto->nombre }}" style="object-fit: cover; height: 280px;">
+                            <img src="{{ asset($producto->imagen ? 'img/producto/' . $producto->imagen : 'img/logo.png') }}" class="card-img" alt="{{ $producto->nombre }}" style="object-fit: cover; height: 280px;">
                             <div class="card-body bg-white d-flex flex-column">
                                 <div>
                                     <span class="badge bg-secondary bg-opacity-25 text-dark mb-2">{{ ucfirst($producto->categoria) }}</span>

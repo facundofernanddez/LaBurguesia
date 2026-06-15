@@ -143,8 +143,8 @@
                 return `
                 <div class="card mb-2" style="max-height: 100px;">
                     <div class="card-body p-2 d-flex align-items-center">
-                        <img src="${item.imagen ? '/img/' + item.imagen : '/img/hambur1.png'}" alt="${item.nombre}" 
-                             class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                         <img src="${item.imagen ? '/img/producto/' + item.imagen : '/img/hambur1.png'}" alt="${item.nombre}" 
+                              class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
                         <div class="flex-grow-1">
                             <h6 class="mb-1" style="font-size: 14px;">${item.nombre}</h6>
                             <small class="text-muted">$${item.precio}</small>

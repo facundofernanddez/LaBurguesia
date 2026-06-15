@@ -46,7 +46,7 @@ class AdminProductoController extends Controller
         if ($request->hasFile('imagen')) {
             $image = $request->file('imagen');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('img'), $imageName);
+            $image->move(public_path('img/producto'), $imageName);
         }
 
         Producto::create([
@@ -99,12 +99,12 @@ class AdminProductoController extends Controller
         $imageName = $producto->imagen;
         if ($request->hasFile('imagen')) {
             // Delete old image if it exists
-            if ($producto->imagen && file_exists(public_path('img/' . $producto->imagen))) {
-                @unlink(public_path('img/' . $producto->imagen));
+            if ($producto->imagen && file_exists(public_path('img/producto/' . $producto->imagen))) {
+                @unlink(public_path('img/producto/' . $producto->imagen));
             }
             $image = $request->file('imagen');
             $imageName = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('img'), $imageName);
+            $image->move(public_path('img/producto'), $imageName);
         }
 
         $producto->update([

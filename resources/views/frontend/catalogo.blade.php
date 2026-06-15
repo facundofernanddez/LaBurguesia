@@ -27,7 +27,7 @@
                             @if ($producto->destacado)
                                 <span class="badge badge-destacado"><i class="bi bi-star-fill me-1"></i>Destacado</span>
                             @endif
-                            <img src="{{ asset($producto->imagen ? 'img/' . $producto->imagen : 'img/logo.png') }}" class="card-img"
+                            <img src="{{ asset($producto->imagen ? 'img/producto/' . $producto->imagen : 'img/logo.png') }}" class="card-img"
                                 alt="{{ $producto->nombre }}">
                         </div>
                         <div class="card-body">
