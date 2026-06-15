@@ -39,12 +39,13 @@ class ContactoController extends Controller
             // Crear la consulta
             $contacto = Contacto::create($validated);
             
-            // Enviar email de confirmación al usuario (comentado temporalmente para desarrollo local sin SMTP)
-            // try {
-            //     Mail::to($validated['email'])->send(new ConsultaRecibida($contacto));
-            // } catch (\Exception $mailEx) {
-            //     // Capturar falla silenciosamente en local
-            // }
+            // Enviar email de confirmación al usuario
+            try {
+                Mail::to($validated['email'])->send(new ConsultaRecibida($contacto));
+            } catch (\Exception $mailEx) {
+                // Capturar falla en local/desarrollo y registrarla
+                logger()->error('Error al enviar correo de consulta recibida: ' . $mailEx->getMessage());
+            }
             
             return redirect()->back()->with('success', '¡Mensaje enviado con éxito! Nos contactaremos pronto.');
         } catch (\Exception $e) {
