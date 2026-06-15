@@ -63,7 +63,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'nombre' => 'Hamburguesa con Cebolla Simple',
-                'descripcion' => 'Exquisita hamburguesa con medallón de carne vacuna, queso cheddar y cebolla caramelizada suave artesanal.',
+                'descripcion' => 'Exquisita hamburguesa con medallón de carne vacuna, queso cheddar y aros de cebolla artesanal.',
                 'precio' => 6200,
                 'categoria' => 'Hamburguesas',
                 'imagen' => 'BurguerCebolla1.png',
@@ -73,7 +73,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'nombre' => 'Hamburguesa con Cebolla Doble',
-                'descripcion' => 'Exquisita hamburguesa con doble medallón de carne vacuna, doble queso cheddar y abundante cebolla caramelizada.',
+                'descripcion' => 'Exquisita hamburguesa con doble medallón de carne vacuna, doble queso cheddar y aros de cebolla artesanal.',
                 'precio' => 6900,
                 'categoria' => 'Hamburguesas',
                 'imagen' => 'BurguerCebolla2.png',
@@ -83,7 +83,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'nombre' => 'Hamburguesa Cebolla Crispy',
-                'descripcion' => 'Hamburguesa gourmet con medallón de carne vacuna, queso cheddar, cebolla caramelizada y crujientes aros de cebolla crispy.',
+                'descripcion' => 'Hamburguesa gourmet con medallón de carne vacuna, queso cheddar, cebolla caramelizada crispy.',
                 'precio' => 7300,
                 'categoria' => 'Hamburguesas',
                 'imagen' => 'BurguerCebollaCrispy.png',
@@ -195,7 +195,7 @@ class ProductSeeder extends Seeder
             ],
             [
                 'nombre' => 'Super Combo Doble Cheddar',
-                'descripcion' => 'Hamburguesa doble con abundante queso cheddar y panceta. Acompañada de una porción de papas fritas grandes y gaseosa de 500ml.',
+                'descripcion' => 'Hamburguesa doble con abundante queso cheddar y panceta. Acompañada de una porción de papas fritas grandes y trago de la casa.',
                 'precio' => 9500,
                 'categoria' => 'Combos',
                 'imagen' => 'combo2.png',
@@ -290,8 +290,8 @@ class ProductSeeder extends Seeder
                 'stock' => 150,
             ],
             [
-                'nombre' => 'Paso de los Toros Pomelo 500ml',
-                'descripcion' => 'Gaseosa de agua tónica sabor pomelo Paso de los Toros de 500ml, con el amargor justo.',
+                'nombre' => 'Bebida de la casa 500ml',
+                'descripcion' => 'Trago de la casa sabor a elección de 500ml.',
                 'precio' => 1200,
                 'categoria' => 'Bebidas',
                 'imagen' => 'bebida2.png',
@@ -300,15 +300,15 @@ class ProductSeeder extends Seeder
                 'stock' => 150,
             ],
             [
-                'nombre' => '7Up 500ml',
-                'descripcion' => 'Gaseosa refrescante sabor lima-limón en botella de 500ml helada.',
-                'precio' => 1200,
+                'nombre' => 'Agua mineral 500ml',
+                'descripcion' => 'Agua mineral natural en botella de 500ml helada.',
+                'precio' => 1000,
                 'categoria' => 'Bebidas',
                 'imagen' => 'bebida3.png',
                 'activo' => true,
                 'destacado' => false,
                 'stock' => 150,
-            ]
+            ],
         ];
 
         foreach ($productos as $prod) {
