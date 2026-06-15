@@ -33,6 +33,13 @@
                         @enderror
                     </div>
 
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" name="activo" id="activo_categoria"
+                            value="1"
+                            {{ old('activo', $editingCategoria?->activo ?? true) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="activo_categoria">Categoría activa</label>
+                    </div>
+
                     <div class="d-flex gap-2 mt-3">
                         <button type="submit" class="btn btn-primary">
                             {{ $editingCategoria ? 'Actualizar categoría' : 'Crear categoría' }}
@@ -62,6 +69,7 @@
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Descripción</th>
+                                    <th>Estado</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -70,6 +78,11 @@
                                     <tr class="fila-categoria">
                                         <td class="col-nombre">{{ ucfirst($categoria->nombre) }}</td>
                                         <td class="col-descripcion">{{ $categoria->descripcion }}</td>
+                                        <td>
+                                            <span class="badge {{ $categoria->activo ? 'bg-success' : 'bg-secondary' }}">
+                                                {{ $categoria->activo ? 'Activo' : 'Inactivo' }}
+                                            </span>
+                                        </td>
                                         <td>
                                             <div class="d-flex justify-content-end gap-2">
                                                 <a href="{{ route('admin.dashboard', ['edit_categoria' => $categoria->id]) }}"
@@ -80,7 +93,9 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit"
-                                                                class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                                                class="btn btn-sm {{ $categoria->activo ? 'btn-outline-danger' : 'btn-outline-success' }}">
+                                                        {{ $categoria->activo ? 'Desactivar' : 'Activar' }}
+                                                    </button>
                                                 </form>
                                             </div>
                                         </td>
@@ -88,7 +103,7 @@
                                 @endforeach
                                 <!-- Fila de sin resultados -->
                                 <tr id="sinResultadosCategorias" style="display: none;">
-                                    <td colspan="3" class="text-center text-muted py-3">
+                                    <td colspan="4" class="text-center text-muted py-3">
                                         No se encontraron categorías que coincidan con la búsqueda.
                                     </td>
                                 </tr>

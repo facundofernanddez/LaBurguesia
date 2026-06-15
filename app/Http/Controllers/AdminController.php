@@ -25,7 +25,6 @@ class AdminController extends Controller
             ->get();
         $productos = Producto::orderBy('created_at', 'desc')->get();
         $categorias = Categoria::orderBy('nombre')->get();
-        $categoriaOptions = $categorias->pluck('nombre')->toArray();
         $contactos = Contacto::orderBy('created_at', 'desc')->get();
 
         // Consulta de ventas con relaciones (todas las ventas se cargan para filtrado dinámico)
@@ -40,6 +39,14 @@ class AdminController extends Controller
         $editingCategoria = $request->filled('edit_categoria')
             ? Categoria::find($request->edit_categoria)
             : null;
+
+        $categoriaOptions = Categoria::where('activo', true)
+            ->when($editingProducto, function ($q) use ($editingProducto) {
+                return $q->orWhere('nombre', $editingProducto->categoria);
+            })
+            ->orderBy('nombre')
+            ->pluck('nombre')
+            ->toArray();
 
         return view('backend.admin.dashboard', compact(
             'usuarios',

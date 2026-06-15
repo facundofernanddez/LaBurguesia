@@ -20,7 +20,11 @@ class AdminCategoriaController extends Controller
             'descripcion.max' => 'La descripción debe tener como máximo 500 caracteres.',
         ]);
 
-        Categoria::create($validated);
+        Categoria::create([
+            'nombre' => $validated['nombre'],
+            'descripcion' => $validated['descripcion'] ?? null,
+            'activo' => $request->boolean('activo', true),
+        ]);
 
         return redirect()->route('admin.dashboard')->with('success', 'Categoría creada correctamente.');
     }
@@ -39,7 +43,11 @@ class AdminCategoriaController extends Controller
 
         $oldName = $categoria->nombre;
 
-        $categoria->update($validated);
+        $categoria->update([
+            'nombre' => $validated['nombre'],
+            'descripcion' => $validated['descripcion'] ?? null,
+            'activo' => $request->boolean('activo'),
+        ]);
 
         if ($oldName !== $validated['nombre']) {
             Producto::where('categoria', $oldName)->update(['categoria' => $validated['nombre']]);
@@ -50,12 +58,11 @@ class AdminCategoriaController extends Controller
 
     public function destroy(Categoria $categoria)
     {
-        if (Producto::where('categoria', $categoria->nombre)->exists()) {
-            return redirect()->route('admin.dashboard')->with('success', 'No se puede eliminar la categoría porque hay productos asociados.');
-        }
+        $categoria->update([
+            'activo' => !$categoria->activo
+        ]);
 
-        $categoria->delete();
-
-        return redirect()->route('admin.dashboard')->with('success', 'Categoría eliminada correctamente.');
+        $statusText = $categoria->activo ? 'activada' : 'desactivada';
+        return redirect()->route('admin.dashboard')->with('success', "Categoría {$statusText} correctamente.");
     }
 }

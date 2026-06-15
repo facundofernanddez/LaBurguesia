@@ -30,9 +30,10 @@ Route::get('/comercializacion', function () {
 Route::get('/catalogo', function () {
     $categoria = request('categoria', 'todos');
 
-    $categorias = Categoria::orderBy('nombre')->get();
+    $categorias = Categoria::where('activo', true)->orderBy('nombre')->get();
+    $activeCategoryNames = $categorias->pluck('nombre')->toArray();
 
-    $query = Producto::where('activo', true);
+    $query = Producto::where('activo', true)->whereIn('categoria', $activeCategoryNames);
     if ($categoria !== 'todos') {
         $query->where('categoria', $categoria);
     }
@@ -49,13 +50,17 @@ Route::middleware('auth.custom')->group(function () {
 });
 
 Route::get('/', function () {
+    $activeCategoryNames = Categoria::where('activo', true)->pluck('nombre')->toArray();
+
     $destacados = Producto::where('activo', true)
         ->where('destacado', true)
+        ->whereIn('categoria', $activeCategoryNames)
         ->get();
 
     $carruselProductos = Producto::where('activo', true)
         ->whereNotNull('imagen')
         ->where('imagen', '!=', '')
+        ->whereIn('categoria', $activeCategoryNames)
         ->inRandomOrder()
         ->take(5)
         ->get();
