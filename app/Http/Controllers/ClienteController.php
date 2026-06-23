@@ -118,10 +118,13 @@ class ClienteController extends Controller
         $usuario = auth()->user();
         $usuario->load('rol');
 
-        $compras = Venta::where('usuario_id', $usuario->id)
-            ->with('detalles.producto')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $compras = collect();
+        if ($usuario->rol?->nombre !== 'admin') {
+            $compras = Venta::where('usuario_id', $usuario->id)
+                ->with('detalles.producto')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
 
         return view('frontend.perfil', compact('usuario', 'compras'));
     }

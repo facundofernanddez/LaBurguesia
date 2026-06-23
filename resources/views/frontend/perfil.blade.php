@@ -1,7 +1,7 @@
 <x-layout title="Mi Perfil">
     <div class="row pt-4">
         <!-- Columna Datos del Usuario -->
-        <div class="col-lg-5 mb-4">
+        <div class="{{ $usuario->rol?->nombre === 'admin' ? 'col-lg-6 mx-auto mb-4' : 'col-lg-5 mb-4' }}">
             <div class="card border-0 shadow-sm rounded-4" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px);">
                 <div class="card-header bg-marron text-white rounded-top-4 py-3 d-flex justify-content-between align-items-center">
                     <h4 class="mb-0 text-white"><i class="bi bi-person-circle me-2"></i>Mis Datos</h4>
@@ -65,6 +65,7 @@
         </div>
 
         <!-- Columna Historial de Compras -->
+        @if ($usuario->rol?->nombre !== 'admin')
         <div class="col-lg-7 mb-4">
             <div class="card border-0 shadow-sm rounded-4" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(8px);">
                 <div class="card-header bg-marron text-white rounded-top-4 py-3">
@@ -155,6 +156,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
     <style>
